@@ -1,3 +1,32 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+/* Site hero banner.
+   Full-bleed photographic header on every page. Asset lives in
+   quartz/static (published-site layer); pure CSS, no markup, so it
+   never touches note content or Obsidian's reading view. */
+body::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: clamp(170px, 28vh, 320px);
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(8, 12, 24, 0.22) 0%,
+      rgba(8, 12, 24, 0) 26%,
+      rgba(8, 12, 24, 0) 55%,
+      var(--light) 100%
+    ),
+    url("/static/cold.JPG");
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center 40%, center 40%;
+  margin-bottom: -1px;
+}
+
+@media (max-width: 800px) {
+  body::before {
+    height: clamp(140px, 24vh, 240px);
+    background-position: center 42%, center 42%;
+  }
+}

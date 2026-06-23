@@ -26,9 +26,10 @@ function u2(e2, t2, n2, o2, i2, u3) {
 // Nav component
 var NAV_LINKS = [
   ["Home", "/"],
-  ["Notes", "/notes"],
-  ["Projects", "/projects"],
-  ["About", "/about"]
+  ["Operations & Strategy", "/operations--and--strategy"],
+  ["Amateur Radio", "/amateur-radio"],
+  ["Overlanding", "/overlanding"],
+  ["Kitchen Notes", "/kitchen-notes"]
 ];
 var Nav = ({ displayClass }) => {
   return /* @__PURE__ */ u2("nav", { class: classNames(displayClass, "dbz-nav"), "aria-label": "Primary", children: /* @__PURE__ */ u2("ul", { class: "dbz-nav-list", children: NAV_LINKS.map(([label, href]) => /* @__PURE__ */ u2("li", { class: "dbz-nav-item", children: /* @__PURE__ */ u2("a", { class: "dbz-nav-link", href, children: label }) })) }) });
