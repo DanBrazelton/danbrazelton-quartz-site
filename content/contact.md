@@ -1,6 +1,8 @@
 ---
-title: Contact
 publish: true
+title: Contact
+created: 2026-06-23T12:41:04.912Z
+modified: 2026-06-23T12:41:04.916Z
 ---
 
 # Where to find me

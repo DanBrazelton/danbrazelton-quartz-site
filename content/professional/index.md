@@ -1,6 +1,8 @@
 ---
-title: Professional
 publish: true
+title: Professional
+created: 2026-06-23T02:24:30.773Z
+modified: 2026-06-23T05:08:24.115Z
 ---
 
 # The Professional

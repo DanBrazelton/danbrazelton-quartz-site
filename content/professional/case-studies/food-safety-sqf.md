@@ -1,6 +1,8 @@
 ---
-title: On food safety as a discipline
 publish: true
+title: On food safety as a discipline
+created: 2026-06-23T02:24:30.746Z
+modified: 2026-06-23T05:08:24.092Z
 ---
 
 # On food safety as a discipline

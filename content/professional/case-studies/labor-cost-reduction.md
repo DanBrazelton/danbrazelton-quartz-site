@@ -1,6 +1,8 @@
 ---
-title: On taking cost out of a plant
 publish: true
+title: On taking cost out of a plant
+created: 2026-06-23T02:24:30.759Z
+modified: 2026-06-23T05:08:24.103Z
 ---
 
 # On taking cost out of a plant

@@ -1,6 +1,8 @@
 ---
-title: Operating Approach
 publish: true
+title: Operating Approach
+created: 2026-06-23T02:24:30.787Z
+modified: 2026-06-23T05:08:24.126Z
 ---
 
 # How I think about the work

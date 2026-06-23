@@ -1,6 +1,8 @@
 ---
-title: On building something and letting it go
 publish: true
+title: On building something and letting it go
+created: 2026-06-23T02:24:30.740Z
+modified: 2026-06-23T05:08:24.086Z
 ---
 
 # On building something and letting it go

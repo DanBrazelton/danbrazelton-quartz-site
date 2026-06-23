@@ -1,6 +1,8 @@
 ---
-title: Field Notes
 publish: true
+title: Field Notes
+created: 2026-06-23T02:24:30.701Z
+modified: 2026-06-23T05:08:24.060Z
 ---
 
 # Field Notes

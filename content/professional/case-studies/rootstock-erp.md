@@ -1,6 +1,8 @@
 ---
-title: On moving a business off the spreadsheet
 publish: true
+title: On moving a business off the spreadsheet
+created: 2026-06-23T02:24:30.767Z
+modified: 2026-06-23T05:08:24.109Z
 ---
 
 # On moving a business off the spreadsheet

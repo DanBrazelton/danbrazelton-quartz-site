@@ -1,6 +1,8 @@
 ---
-title: Leadership Profile
 publish: true
+title: Leadership Profile
+created: 2026-06-23T02:24:30.780Z
+modified: 2026-06-23T05:08:24.120Z
 ---
 
 # The longer story

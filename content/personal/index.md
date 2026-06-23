@@ -1,6 +1,8 @@
 ---
-title: Personal
 publish: true
+title: Personal
+created: 2026-06-23T02:24:30.716Z
+modified: 2026-06-23T05:08:24.070Z
 ---
 
 # The Personal

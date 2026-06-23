@@ -1,6 +1,8 @@
 ---
-title: The Shack
 publish: true
+title: The Shack
+created: 2026-06-23T02:24:30.729Z
+modified: 2026-06-23T05:08:24.081Z
 ---
 
 # The Shack

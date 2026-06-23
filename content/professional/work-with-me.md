@@ -1,6 +1,8 @@
 ---
-title: Working Together
 publish: true
+title: Working Together
+created: 2026-06-23T12:41:04.940Z
+modified: 2026-06-23T12:41:04.945Z
 ---
 
 # On working together

@@ -1,6 +1,8 @@
 ---
-title: The Work
 publish: true
+title: The Work
+created: 2026-06-23T02:24:30.752Z
+modified: 2026-06-23T05:08:24.097Z
 ---
 
 # The Work
