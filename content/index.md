@@ -25,4 +25,4 @@ When I have something worth writing down — about operations, leadership, food,
 
 ---
 
-[LinkedIn →](https://www.linkedin.com/in/danbrazelton/)
+[LinkedIn →](https://www.linkedin.com/in/dan-brazelton/)

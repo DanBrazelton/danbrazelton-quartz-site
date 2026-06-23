@@ -30,3 +30,26 @@ body::before {
     background-position: center 42%, center 42%;
   }
 }
+
+/* --- Wider main content column ---
+   The default theme caps the page at 1500px and fixes both side panels at
+   320px, leaving the center text narrow. Let the page use most of the screen
+   and trim the side panels so the body gets the bulk of the width.
+   To go wider/narrower, lower/raise the two px values below. */
+body .page {
+  max-width: min(1700px, 97vw);
+}
+
+/* Desktop (>= 1200px): left panel | content | right panel */
+@media all and (min-width: 1200px) {
+  body .page > #quartz-body {
+    grid-template-columns: 200px minmax(0, 1fr) 240px;
+  }
+}
+
+/* Tablet (800–1200px): left panel | content (right panel flows below) */
+@media all and (min-width: 800px) and (max-width: 1200px) {
+  body .page > #quartz-body {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+}

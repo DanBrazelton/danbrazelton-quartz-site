@@ -13,4 +13,4 @@ The problems I'm drawn to are the ones I've spent a career on: an operation that
 
 I'm not the right answer for every situation, and I'd rather tell you that early than discover it late. If what you're facing sounds like the above, the way to start is a conversation — no pitch, just an honest look at whether I can actually help.
 
-[Start the conversation on LinkedIn →](https://www.linkedin.com/in/danbrazelton/)
+[Start the conversation on LinkedIn →](https://www.linkedin.com/in/dan-brazelton/)
