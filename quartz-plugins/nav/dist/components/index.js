@@ -28,7 +28,6 @@ var NAV_LINKS = [
   ["Home", "/"],
   ["Operations & Strategy", "/operations--and--strategy"],
   ["Amateur Radio", "/amateur-radio"],
-  ["Overlanding", "/overlanding"],
   ["Kitchen Notes", "/kitchen-notes"]
 ];
 var Nav = ({ displayClass }) => {
