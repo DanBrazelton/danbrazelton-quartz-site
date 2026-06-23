@@ -11,10 +11,10 @@ function classNames(...classes: (string | undefined)[]): string {
 // Hand-picked top-level navigation links.
 const NAV_LINKS: [string, string][] = [
   ["Home", "/"],
-  ["Operations & Strategy", "/operations--and--strategy"],
-  ["Amateur Radio", "/amateur-radio"],
-  ["Overlanding", "/overlanding"],
-  ["Kitchen Notes", "/kitchen-notes"],
+  ["Professional", "/professional/"],
+  ["Personal", "/personal/"],
+  ["About", "/about"],
+  ["Contact", "/contact"],
 ]
 
 const Nav: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {

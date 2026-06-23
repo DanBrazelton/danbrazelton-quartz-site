@@ -1,30 +1,28 @@
 ---
-publish: true
 title: Dan Brazelton
-created: 2026-06-22T00:23:02.360Z
-modified: 2026-06-22T13:09:04.204Z
+publish: true
 ---
 
-Operations, signals, and a vehicle pointed at the next forest road. A working notebook, published.
+# A maker who happens to run plants
 
-Welcome — this is a living set of notes: operations and business thinking on one side, radio and the outdoors on the other. Here's a quick map of what lives here.
+There is a habit of mind that does not care whether it is pointed at a production line, a pot of stock, or a radio signal bent around the curve of the earth. It wants to know how the thing actually works — not the story told about it in the meeting, but the real mechanism underneath, the one that keeps running after everyone goes home. I have spent a working life following that habit into factories, and the rest of my life following it into a kitchen and a radio shack. This site is the record of both, kept honestly, because pretending they are separate has never once helped me understand either.
 
-## Explore
+## Two ways in
 
-**[[Operations & Strategy]]** — Cost discipline, CPG go-to-market, and the parts of running a business that actually move numbers.
+**[The Professional →](/professional/)**
+A quarter-century inside food and manufacturing — what it taught me about cost, systems, safety, and the people who actually do the work. Written for anyone trying to decide whether I'm the person they want in the building.
 
-**[[Amateur Radio]]** — HF and DXing, VHF/UHF weak signal, digital modes, and emergency comms. General class, always tinkering.
+**[The Personal →](/personal/)**
+The same attention turned loose on things I do for no reason but love: cooking, in [The Kitchen](/personal/kitchen), and amateur radio, in [The Shack](/personal/shack).
 
-**[[Overlanding]]** — Field setups, adventure platforms, and the gear that survives a washboard road. Maps and mileage.
+## What ties it together
 
-**[[Kitchen Notes]]** — A growing recipe collection: tested, tagged, and occasionally chargrilled.
+I don't believe in the line people draw between the analytical and the sensory — the spreadsheet on one side, the bread and the antenna on the other. The plant taught me that a number means nothing until you've stood where it was made, and the kitchen taught me that craft is just a system you've come to love. It's all the same work: pay attention, find the mechanism, make it repeatable, and respect the result enough to measure it.
 
-## What I'm building
+## Field Notes
 
-This site is itself a demonstration — notes written in Obsidian, synced to a Git repo, and rendered by Quartz onto a Cloudflare-hosted page.
-
-Currently in rotation: a business curriculum (*ongoing*), a recipe system in Obsidian (*building*), and a field radio kit (*refining*).
+When I have something worth writing down — about operations, leadership, food, or radio — it goes in one place, undivided. **[Read Field Notes →](/field-notes/)**
 
 ---
 
-*Built with [Quartz](https://quartz.jzhao.xyz/). Notes managed in Obsidian, published via Git.*
+[LinkedIn →](https://www.linkedin.com/in/danbrazelton/)
