@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pizza sauce.md"
 ---
-
 # Pizza sauce
-
 > **Quick Summary:** A simple and flavorful pizza sauce made from tomato puree, fresh garlic, and a classic blend of Italian herbs.
 > **Source:** Traditional
 

@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Biscuit Plain Milk Baking Powder.md"
 ---
-
 # Biscuit Plain Milk Baking Powder
-
 > **Quick Summary:** A simple and classic recipe for plain milk biscuits using baking powder for leavening.
 > **Source:** Traditional
 

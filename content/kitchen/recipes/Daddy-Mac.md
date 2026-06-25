@@ -25,9 +25,7 @@ have_cooked: true
 generated: true
 generated_from: "Cooking/Recipes/Daddy Mac.md"
 ---
-
 # Daddy Mac
-
 > **Quick Summary:** A rich and creamy baked macaroni and cheese featuring a classic roux-based sauce and a buttery breadcrumb topping.
 > **Source:** Traditional
 

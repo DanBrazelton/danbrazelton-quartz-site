@@ -25,11 +25,9 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Romesco Shrimp.md"
 ---
-
 # Romesco Shrimp
-
 > **Quick Summary:** A vibrant, smoky dish featuring a rich romesco sauce made from roasted sweet peppers, served over fresh pasta and topped with succulent seared shrimp.
-> **Source:**
+> **Source:** 
 
 ```cooklang
 >> servings: 4

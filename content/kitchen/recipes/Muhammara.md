@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Muhammara.md"
 ---
-
 # Muhammara
-
 > **Quick Summary:** Muhammara is a rich and flavorful Middle Eastern dip made from roasted red peppers, walnuts, and pomegranate molasses.
 
 > **Source:** Ottolenghi

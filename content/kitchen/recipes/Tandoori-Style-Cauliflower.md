@@ -25,6 +25,7 @@ generated_from: "Cooking/Recipes/Tandoori-Style Cauliflower.md"
 
 # Tandoori-Style Cauliflower
 
+
 > **Quick Summary:** This Indian-style tandoori cauliflower is coated in a spiced yogurt paste with garlic, ginger, and garam masala, then roasted until tender and caramelized.
 
 > **Source:** https://www.bonappetit.com/recipe/tandoori-style-roasted-indian-cauliflower

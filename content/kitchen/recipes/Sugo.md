@@ -17,9 +17,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Sugo.md"
 ---
-
 # Sugo
-
 > **Quick Summary:** A classic, slow-simmered Italian tomato sauce that forms the rich and flavorful base for countless pasta dishes.
 > **Source:** Traditional
 

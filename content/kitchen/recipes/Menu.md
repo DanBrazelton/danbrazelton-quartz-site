@@ -23,7 +23,6 @@ has_recipe: true
 generated: true
 generated_from: "Cooking/MENUS/Master Menu/Menu.md"
 ---
-
 Beans
 Lemon garlic kale and fennel bean
 Chickpea Curry

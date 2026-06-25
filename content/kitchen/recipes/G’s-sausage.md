@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/G’s sausage.md"
 ---
-
 # G’s sausage
-
 > **Quick Summary:** This recipe provides two ingredient lists, for a small and large batch, to make a classic Italian-style sausage with ground pork.
 > **Source:** Mommy
 

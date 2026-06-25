@@ -39,9 +39,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chicken Paprikash.md"
 ---
-
 # Chicken Paprikash
-
 > **Quick Summary:** This classic Hungarian dish features tender chicken simmered in a rich, creamy paprika sauce, served with traditional nokedli dumplings.
 
 > **Source:** Traditional

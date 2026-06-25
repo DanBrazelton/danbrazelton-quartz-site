@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Char Siu Rough.md"
 ---
-
 # Char Siu
-
 > **Quick Summary:** This recipe details how to make authentic charcoal-grilled Char Siu, complete with a from-scratch marinade and lushui base.
 
 > **Source:** Traditional

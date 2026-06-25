@@ -23,16 +23,12 @@ has_recipe: true
 generated: true
 generated_from: "Cooking/MENUS/Cooking Reference/Bean Consumption.md"
 ---
-
 ### Chickpeas
-
 25#
 Hummus
 Curries
 Salad
-
-### Beans
-
+### Beans 
 25#
 
 12#
@@ -44,3 +40,4 @@ Navy Beans
 Cranberry
 Pinto
 Green Lentils
+

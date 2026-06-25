@@ -39,9 +39,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Falafel.md"
 ---
-
 # Falafel
-
 > **Quick Summary:** These classic Middle Eastern fritters are made from ground chickpeas, fresh herbs, and spices, then deep-fried to golden-brown perfection.
 > **Source:** Traditional
 

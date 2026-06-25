@@ -17,9 +17,7 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Char Siu Marinade.md"
 ---
-
 # Char Siu Marinade
-
 **Marinade Ingredients:**
 
 | **English Name**                       | **Chinese Characters** | **Phonetic (Pinyin)** | **Best Substitute(s)**                                | **Amount (Metric)** |
@@ -31,9 +29,8 @@ generated_from: "Cooking/Recipes/Char Siu Marinade.md"
 | **Red Yeast Rice Pwd.**                | 红曲米粉                   | _Hóng qū mǐ fěn_      | Red food dye or sweet Hungarian paprika               | 1.25 ml             |
 | **Rock Sugar**                         | 冰糖                     | _Bīng táng_           | Granulated sugar or light brown sugar                 | 50 g                |
 | **Maltose**                            | 麦芽糖                    | _Mài yá táng_         | Honey or brown rice syrup                             | 45 ml               |
-
 > **Quick Summary:** A rich and complex marinade for classic Chinese BBQ pork, featuring fermented tofu, Chu Hou paste, and maltose for a signature sweet and savory flavor.
-> **Source:**
+> **Source:** 
 
 ```cooklang
 >> servings: 2

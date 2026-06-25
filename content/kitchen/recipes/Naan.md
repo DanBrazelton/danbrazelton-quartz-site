@@ -40,9 +40,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Naan.md"
 ---
-
 # Naan
-
 > **Quick Summary:** This recipe creates soft, chewy Indian flatbread using a sponge starter for a deeper, more complex flavor.
 
 > **Source:** Traditional

@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pancakes.md"
 ---
-
 # Pancakes
-
 > **Quick Summary:** A simple and classic recipe for light and fluffy American-style pancakes.
 > **Source:** Traditional
 

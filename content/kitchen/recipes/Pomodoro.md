@@ -32,9 +32,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pomodoro.md"
 ---
-
 # Pomodoro
-
 > **Quick Summary:** This classic Italian sauce achieves a rich, velvety flavor with just three simple ingredients: tomatoes, butter, and an onion.
 > **Source:** Marcella Hazan
 

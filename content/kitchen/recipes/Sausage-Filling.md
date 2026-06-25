@@ -20,6 +20,7 @@ generated_from: "Cooking/Recipes/Sausage Filling.md"
 
 # Sausage Filling
 
+
 > **Quick Summary:** A savory and aromatic mixture of ground pork, herbs, and spices, perfect for stuffing poultry or pastries.
 > **Source:** Traditional
 

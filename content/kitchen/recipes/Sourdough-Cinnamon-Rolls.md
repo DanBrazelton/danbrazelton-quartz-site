@@ -23,9 +23,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Sourdough Cinnamon Rolls.md"
 ---
-
 # Sourdough Cinnamon Rolls
-
 > **Quick Summary:** These sourdough cinnamon rolls feature a tender, silky brioche dough filled with a warm, gooey brown sugar and cinnamon mixture.
 > **Source:** Maurizio Leo
 

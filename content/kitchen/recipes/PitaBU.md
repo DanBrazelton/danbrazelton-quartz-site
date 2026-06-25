@@ -39,9 +39,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/PitaBU.md"
 ---
-
 # PitaBU
-
 > **Quick Summary:** This recipe outlines the process for making fluffy, pocketed pita bread using a pre-fermented sponge for enhanced flavor.
 
 > **Source:** Traditional

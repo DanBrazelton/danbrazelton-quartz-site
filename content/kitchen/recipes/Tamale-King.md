@@ -20,6 +20,7 @@ generated_from: "Cooking/Recipes/Tamale King.md"
 
 # Tamale King
 
+
 > **Quick Summary:** A classic Mexican dish featuring seasoned pork filling encased in masa dough, steamed in corn husks.
 > **Source:** Traditional
 

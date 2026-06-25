@@ -30,9 +30,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Zataar.md"
 ---
-
 # Zataar
-
 > **Quick Summary:** A classic Middle Eastern spice blend made from dried thyme, toasted sesame seeds, and tangy sumac.
 > **Source:** https://www.tiktok.com/t/ZTHbwhwGEsc9X-dL4YC/
 

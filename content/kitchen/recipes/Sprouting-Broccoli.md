@@ -15,9 +15,7 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Sprouting Broccoli.md"
 ---
-
 # Sprouting Broccoli
-
 > **Quick Summary:** A simple and elegant side dish featuring tender-crisp sprouting broccoli roasted with garlic, lemon, and a hint of chili.
 > **Source:** Traditional
 

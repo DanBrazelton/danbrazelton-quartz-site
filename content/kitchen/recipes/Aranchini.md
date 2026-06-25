@@ -17,12 +17,9 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Aranchini.md"
 ---
-
 # Aranchini
-
 > **Quick Summary:** Classic Italian fried rice balls stuffed with a savory meat ragù and mozzarella, then coated in crispy breadcrumbs.
 > **Source:** Traditional
-
 ```cooklang
 >> servings: 2
 First, prepare the risotto. In a #large saucepan{}, heat @chicken broth{4%cups} with a pinch of @saffron threads{} and keep it at a simmer.

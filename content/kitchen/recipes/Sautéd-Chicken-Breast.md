@@ -17,9 +17,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Sautéd Chicken Breast.md"
 ---
-
 # Sautéd Chicken Breast
-
 > **Quick Summary:** A simple and quick method for cooking juicy, golden-brown chicken breasts in a skillet.
 > **Source:** Traditional
 

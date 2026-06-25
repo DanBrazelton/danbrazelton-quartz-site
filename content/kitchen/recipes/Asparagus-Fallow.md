@@ -26,14 +26,14 @@ generated_from: "Cooking/Recipes/Asparagus Fallow.md"
 
 # 🌿 Fallow's Sautéed Asparagus
 
+
 > **Quick Summary:** The signature technique from the chefs at Fallow Restaurant. By meticulously peeling the stalks instead of snapping them, and pan-steaming them in olive oil instead of boiling, you eliminate waste while retaining maximum nutrients, crunch, and a vibrant green color.
 
 ## 🛒 Ingredients
-
-- 1 bunch **Thick asparagus**
-- 15g (1 tbsp) **Olive oil**
-- **Flaky sea salt** (to taste)
-- **Black pepper** (to taste)
+* 1 bunch **Thick asparagus**
+* 15g (1 tbsp) **Olive oil**
+* **Flaky sea salt** (to taste)
+* **Black pepper** (to taste)
 
 ## 🧑‍🍳 Instructions
 
@@ -56,6 +56,5 @@ Remove from heat, generously season with @flaky sea salt{to taste} and @black pe
 ```
 
 ## 💡 Notes & Tweaks
-
-- **The "No-Boil" Rule:** Most home cooks blanch asparagus in salted boiling water. The chefs at Fallow avoid this entirely because the chlorophyll and flavor compounds are water-soluble. Cooking them directly in fat with a tight lid preserves the flavor and keeps them beautifully bright.
-- **Serving Suggestion:** At the restaurant, they often serve their vegetables alongside one of their famous rich sauces, like a Smoked Soubise or a classic Béarnaise, to contrast the fresh crunch of the asparagus.
+* **The "No-Boil" Rule:** Most home cooks blanch asparagus in salted boiling water. The chefs at Fallow avoid this entirely because the chlorophyll and flavor compounds are water-soluble. Cooking them directly in fat with a tight lid preserves the flavor and keeps them beautifully bright.
+* **Serving Suggestion:** At the restaurant, they often serve their vegetables alongside one of their famous rich sauces, like a Smoked Soubise or a classic Béarnaise, to contrast the fresh crunch of the asparagus.

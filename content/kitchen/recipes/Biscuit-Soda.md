@@ -39,9 +39,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Biscuit Soda.md"
 ---
-
 # Biscuit Soda
-
 > **Quick Summary:** This is a simple and quick recipe for tender biscuits using baking soda and yogurt or buttermilk for leavening.
 > **Source:** Traditional
 

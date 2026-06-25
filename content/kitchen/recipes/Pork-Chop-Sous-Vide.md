@@ -15,9 +15,7 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Pork Chop Sous Vide.md"
 ---
-
 # Pork Chop Sous Vide
-
 > **Quick Summary:** Perfectly cooked, juicy pork chops are achieved using a sous vide water bath and finished with a quick, high-heat sear.
 > **Source:** Traditional
 

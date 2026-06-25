@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Ravioli.md"
 ---
-
 # Ravioli
-
 > **Quick Summary:** This recipe outlines a simple, classic dough for making fresh ravioli.
 > **Source:** Traditional
 

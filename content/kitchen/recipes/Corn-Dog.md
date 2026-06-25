@@ -32,9 +32,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Corn Dog.md"
 ---
-
 # Corn Dog
-
 > **Quick Summary:** This recipe creates classic state fair-style corn dogs by dipping skewered hot dogs in a sweet cornmeal batter and deep-frying them until golden brown.
 > **Source:** Jennifer Locklin
 

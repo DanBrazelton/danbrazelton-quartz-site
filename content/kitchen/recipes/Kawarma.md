@@ -40,9 +40,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Kawarma.md"
 ---
-
 # Kawarma
-
 > **Quick Summary:** A luxurious Middle Eastern dish featuring creamy hummus topped with spiced, hand-chopped lamb and a zesty lemon sauce.
 > **Source:** Ottolenghi
 

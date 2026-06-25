@@ -32,9 +32,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chorizo 1.md"
 ---
-
 # Chorizo 1
-
 > **Quick Summary:** This recipe details how to make flavorful and fragrant homemade Mexican chorizo using lean ground beef marinated in a blend of rehydrated chiles and spices.
 > **Source:** muydelish.com
 

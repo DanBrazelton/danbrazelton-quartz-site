@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Beef Cheeks.md"
 ---
-
 # Beef Cheeks
-
 > **Quick Summary:** Tender, slow-braised beef cheeks are seared and then simmered in a rich red wine and beef broth sauce with aromatic vegetables until fall-apart tender.
 
 > **Source:** Traditional

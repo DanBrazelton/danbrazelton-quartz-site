@@ -34,6 +34,7 @@ generated_from: "Cooking/Recipes/Classic Bread.md"
 
 # Classic Bread
 
+
 > **Quick Summary:** This is a classic sourdough-style bread recipe that involves mixing a starter, multiple folding stages, and a long fermentation period to develop flavor and structure.
 
 > **Source:** Traditional

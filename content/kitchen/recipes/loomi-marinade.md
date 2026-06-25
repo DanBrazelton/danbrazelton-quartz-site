@@ -30,9 +30,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/loomi marinade.md"
 ---
-
 # loomi marinade
-
 > **Quick Summary:** A tangy and aromatic Middle Eastern marinade featuring dried lime (loomi), yogurt, and a blend of warm spices.
 
 > **Source:** Traditional

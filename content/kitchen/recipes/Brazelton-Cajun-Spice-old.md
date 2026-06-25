@@ -39,9 +39,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Brazelton Cajun Spice old.md"
 ---
-
 # Brazelton Cajun Spice old
-
 > **Quick Summary:** A straightforward, multi-purpose Cajun spice blend combining salt, various peppers, garlic, cumin, and paprika.
 > **Source:** Brazelton
 

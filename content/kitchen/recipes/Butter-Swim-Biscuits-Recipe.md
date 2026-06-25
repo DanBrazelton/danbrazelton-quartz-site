@@ -19,9 +19,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Butter Swim Biscuits Recipe.md"
 ---
-
 # Butter Swim Biscuits Recipe
-
 > **Quick Summary:** This quick and easy butter swim biscuits recipe requires no kneading or rolling and results in irresistible, golden-brown biscuits.
 
 > **Source:** https://grandbaby-cakes.com/butter-swim-biscuits/

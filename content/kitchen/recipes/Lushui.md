@@ -17,7 +17,6 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Lushui.md"
 ---
-
 **Lushui Ingredients:**
 
 | **English Name**         | **Chinese Characters** | **Phonetic (Pinyin)** | **Best Substitute(s)**                 | **Amount (Metric)** |
@@ -35,8 +34,8 @@ generated_from: "Cooking/Recipes/Lushui.md"
 | **Dried Tangerine Peel** | 陈皮                     | _Chén pí_             | Fresh orange peel (withered overnight) | 1 peel (soaked)     |
 | **Liquorice Root**       | 甘草                     | _Gān cǎo_             | Omit entirely if unavailable           | 8 slices            |
 |                          |                        |                       |                                        |                     |
-
 # Lushui
+
 
 > **Quick Summary:** Lushui is a fragrant Chinese master stock used for braising and poaching, which develops more complex flavor with each reuse.
 > **Source:** Traditional

@@ -34,6 +34,7 @@ generated_from: "Cooking/Recipes/Garam Masala.md"
 
 # Garam Masala
 
+
 > **Quick Summary:** This document outlines several different regional and personal variations for creating the classic Indian spice blend, Garam Masala.
 > **Source:** Brazelton, Mara Jaffres, Multani, Neelam Batra
 

@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/La vic sauce.md"
 ---
-
 # La vic sauce
-
 > **Quick Summary:** This recipe details how to create a creamy, emulsified orange hot sauce using fermented red peppers, a large amount of raw garlic, and a slow oil-drizzling technique similar to making mayonnaise.
 > **Source:** Traditional
 

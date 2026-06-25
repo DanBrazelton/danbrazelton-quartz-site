@@ -40,9 +40,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pasta.md"
 ---
-
 # Pasta
-
 > **Quick Summary:** A collection of simple pasta dough recipes using eggs, flour, and salt.
 > **Source:** Traditional
 

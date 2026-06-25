@@ -20,6 +20,7 @@ generated_from: "Cooking/Recipes/Broccoli Steamed.md"
 
 # Broccoli Steamed
 
+
 > **Quick Summary:** This recipe outlines a simple method for steaming fresh broccoli florets until tender-crisp.
 > **Source:** Traditional
 

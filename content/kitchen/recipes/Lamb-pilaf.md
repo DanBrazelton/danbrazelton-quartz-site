@@ -17,9 +17,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Lamb pilaf.md"
 ---
-
 # Lamb pilaf
-
 > **Quick Summary:** A one-pot lamb and asparagus pilaf, seasoned with thyme and cinnamon, and served with a fresh yogurt sauce.
 > **Source:** Original recipe
 

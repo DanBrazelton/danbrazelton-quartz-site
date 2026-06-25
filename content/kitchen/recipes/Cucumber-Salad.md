@@ -33,9 +33,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Cucumber Salad.md"
 ---
-
 # Cucumber Salad
-
 > **Quick Summary:** This is a quick and easy Japanese-style cucumber salad that is light, crispy, and refreshing.
 > **Source:** https://www.hungryhuy.com/sunomono-japanese-cucumber-salad-recipe/
 

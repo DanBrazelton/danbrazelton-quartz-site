@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Frybread.md"
 ---
-
 # Frybread
-
 > **Quick Summary:** A simple, quick bread fried to golden perfection, perfect for sweet or savory toppings.
 
 > **Source:** Traditional

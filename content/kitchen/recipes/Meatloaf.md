@@ -32,9 +32,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Meatloaf.md"
 ---
-
 # Meatloaf
-
 > **Quick Summary:** This recipe creates a deeply meaty, moist, and tender meatloaf that holds its shape perfectly, finished with a classic sweet and tangy glaze.
 
 > **Source:** The Food Lab

@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pizza.md"
 ---
-
 # Pizza
-
 > **Quick Summary:** This recipe outlines the steps for creating a simple sourdough pizza dough using a starter, flour, water, oil, and salt.
 > **Source:** Traditional
 

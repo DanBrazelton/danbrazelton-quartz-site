@@ -29,6 +29,7 @@ generated_from: "Cooking/Recipes/Pita.md"
 
 # Pita
 
+
 > **Quick Summary:** This recipe creates soft, puffy pita bread with a signature pocket, perfect for stuffing or dipping.
 > **Source:** Traditional
 

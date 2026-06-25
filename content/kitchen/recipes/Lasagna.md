@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Lasagna.md"
 ---
-
 # Lasagna
-
 > **Quick Summary:** This recipe outlines the simple steps for making fresh pasta dough, the foundational element for a classic lasagna.
 > **Source:** Traditional
 

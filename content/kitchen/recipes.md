@@ -1,11 +1,11 @@
 ---
-publish: true
 title: Recipes
-created: 2026-06-25T13:47:14.853Z
-modified: 2026-06-25T14:44:10.860Z
+publish: true
+generated: true
 ---
+# Recipes
 
-Here's the Brazelton family rotation of recipes.  Most are scalable.
+126 recipes. Drag the servings slider on any recipe to scale it.
 
 ## Breakfast
 

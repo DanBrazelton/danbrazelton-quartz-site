@@ -32,9 +32,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chorizo.md"
 ---
-
 # Chorizo
-
 > **Quick Summary:** This is an easy recipe for making spicy, homemade Mexican chorizo sausage with bold chili flavor.
 > **Source:** chilipeppermadness.com
 

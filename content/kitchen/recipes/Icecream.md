@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Icecream.md"
 ---
-
 # Icecream
-
 > **Quick Summary:** This recipe creates a rich, custard-based chocolate ice cream using Ghirardelli semi-sweet chocolate, perfect for a Cuisinart ice cream maker.
 > **Source:** Ghirardelli & Cuisinart
 

@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Cod Arrancanato.md"
 ---
-
 # Cod Arrancanato
-
 > **Quick Summary:** This is a classic Italian baked cod dish featuring a flavorful crust of breadcrumbs, raisins, and pine nuts.
 > **Source:** Traditional
 

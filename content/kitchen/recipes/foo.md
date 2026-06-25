@@ -15,9 +15,7 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/foo.md"
 ---
-
 # foo
-
 > **Quick Summary:** A perfectly fried egg with a runny yolk and crispy edges, ready in just a few minutes.
 > **Source:** Traditional
 

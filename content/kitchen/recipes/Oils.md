@@ -23,7 +23,6 @@ has_recipe: true
 generated: true
 generated_from: "Cooking/MENUS/Cooking Reference/Oils.md"
 ---
-
 Here’s the list of cooking oils and fats sorted by smoke point (high to low):
 
 1. **Avocado Oil** – 520°F (270°C)

@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Biscuit Sweet.md"
 ---
-
 # Biscuit Sweet
-
 > **Quick Summary:** A simple and classic recipe for sweet, fluffy biscuits made with buttermilk and a hint of sugar.
 > **Source:** Traditional
 

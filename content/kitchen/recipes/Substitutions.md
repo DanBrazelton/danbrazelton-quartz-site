@@ -29,7 +29,6 @@ cook_time:
 generated: true
 generated_from: "Cooking/MENUS/Cooking Reference/Substitutions.md"
 ---
-
 Add an extra 2 tablespoons per cup of cake flour to equal the quantity in 1 cup of all-purpose flour.
 
 If you're substituting all-purpose flour for cake flour, you'll want to reverse these ratios: Use 2 tablespoons less AP flour per cup of cake flour, and add 2 tablespoons of corn starch per cup.

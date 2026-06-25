@@ -30,9 +30,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pan fry fish.md"
 ---
-
 # Pan fry fish
-
 > **Quick Summary:** This recipe guides you through pan-frying fish fillets to achieve a crispy skin and a perfectly cooked, flaky interior.
 > **Source:** Traditional
 

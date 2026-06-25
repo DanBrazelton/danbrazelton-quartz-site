@@ -39,9 +39,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Crepe.md"
 ---
-
 # Crepe
-
 > **Quick Summary:** A simple and classic crepe recipe made by blending a smooth batter that is then pan-fried into thin, delicate pancakes.
 
 > **Source:** Traditional

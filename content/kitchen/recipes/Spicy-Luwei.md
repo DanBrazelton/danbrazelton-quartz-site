@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Spicy Luwei.md"
 ---
-
 # Spicy Luwei
-
 > **Quick Summary:** Spicy Luwei is a savory and aromatic Chinese master brine infused with a rich blend of spices and chilies, perfect for poaching or braising meats, tofu, and eggs.
 > **Source:** Souped Up Recipes
 

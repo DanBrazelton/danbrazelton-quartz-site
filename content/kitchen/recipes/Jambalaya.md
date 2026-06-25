@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Jambalaya.md"
 ---
-
 # Jambalaya
-
 > **Quick Summary:** A rich and savory jambalaya-style rice dish built from a homemade stock using roasted chicken, smoked sausage, and the holy trinity of Cajun cooking.
 > **Source:** Traditional
 

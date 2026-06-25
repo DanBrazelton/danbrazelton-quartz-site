@@ -17,11 +17,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Michelin French Toast.md"
 ---
-
 # Michelin French Toast
-
 > **Quick Summary:** This recipe creates a decadent, crème brûlée-style French toast by soaking thick-cut brioche in a rich custard, pan-frying it in butter, and finishing with a torched sugar crust.
-> **Source:** https://youtube.com/shorts/IAT\_Zf2PCL4?si=e6-YBeEzTE\_XR2fN
+> **Source:** https://youtube.com/shorts/IAT_Zf2PCL4?si=e6-YBeEzTE_XR2fN
 
 ```cooklang
 >> servings: 2

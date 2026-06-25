@@ -31,9 +31,7 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Creamy White Beans on Toast.md"
 ---
-
 # Creamy White Beans on Toast
-
 > **Quick Summary:** Hearty dried white beans are slow-simmered with aromatics until tender, then mashed into a creamy mixture and served over thick slices of toasted sourdough.
 > **Source:** Traditional
 
