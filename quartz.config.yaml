@@ -278,6 +278,12 @@ plugins:
       position: beforeBody
       priority: 1
       display: all
+  - source: ./quartz-plugins/cooklang
+    enabled: true
+    layout:
+      position: afterBody
+      priority: 1
+      display: all
 layout:
   groups:
     toolbar:
