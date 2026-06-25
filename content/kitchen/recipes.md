@@ -1,7 +1,8 @@
 ---
-title: Recipes
 publish: true
-generated: true
+title: Recipes
+created: 2026-06-25T13:47:14.853Z
+modified: 2026-06-25T14:24:51.477Z
 ---
 
 # Recipes

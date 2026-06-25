@@ -2,7 +2,7 @@
 publish: true
 title: Dan Brazelton
 created: 2026-06-25T01:46:58.758Z
-modified: 2026-06-25T13:47:11.027Z
+modified: 2026-06-25T14:26:17.806Z
 ---
 
 # Dan Brazelton
@@ -24,5 +24,3 @@ My wife has the better palate. She just won't write anything down. I'm the bette
 ---
 
 Stay a while. Read something. Make dinner.
-
-[LinkedIn →](https://www.linkedin.com/in/dan-brazelton/)
