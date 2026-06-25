@@ -1,35 +1,7 @@
 ---
 publish: true
-cover:
-aliases:
-title:
-status:
-priority:
-scheduled:
-contexts: Recipe
-dateCreated:
-dateModified:
-completedDate:
-author:
-url:
-tags: 1
-made: false
-type: recipe
-in_rotation: true
-context: Home
-have_cooked: true
-rating: 5
-has_recipe: true
-legacy_folder: Cooking/Biscuits
-meal_type: Breakfast
-cuisine: American
-main_ingredient: Wheat
-prep_time:
-cook_time:
-servings: 1
-yield: ""
-generated: true
-generated_from: "Cooking/Recipes/Biscuit Plain Milk Baking Powder.md"
+created: 2026-06-25T12:39:53.051Z
+modified: 2026-06-25T12:43:29.670Z
 ---
 
 # Biscuit Plain Milk Baking Powder
