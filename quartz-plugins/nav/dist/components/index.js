@@ -26,9 +26,8 @@ function u2(e2, t2, n2, o2, i2, u3) {
 // Nav component
 var NAV_LINKS = [
   ["Home", "/"],
-  ["Professional", "/professional/"],
-  ["Personal", "/personal/"],
-  ["About", "/about"],
+  ["Kitchen", "/kitchen/recipes"],
+  ["Field Notes", "/field-notes"],
   ["Contact", "/contact"]
 ];
 var Nav = ({ displayClass }) => {

@@ -11,9 +11,8 @@ function classNames(...classes: (string | undefined)[]): string {
 // Hand-picked top-level navigation links.
 const NAV_LINKS: [string, string][] = [
   ["Home", "/"],
-  ["Professional", "/professional/"],
-  ["Personal", "/personal/"],
-  ["About", "/about"],
+  ["Kitchen", "/kitchen/recipes"],
+  ["Field Notes", "/field-notes"],
   ["Contact", "/contact"],
 ]
 
