@@ -2,10 +2,12 @@
 publish: true
 title: Recipes
 created: 2026-06-25T11:03:07.604Z
-modified: 2026-06-25T12:45:57.329Z
+modified: 2026-06-25T13:05:56.483Z
 ---
 
 # Recipes
+
+Our regular rotation.
 
 126 recipes. Drag the servings slider on any recipe to scale it.
 
