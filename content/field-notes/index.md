@@ -1,8 +1,8 @@
 ---
 publish: true
 title: Field Notes
-created: 2026-06-23T02:24:30.701Z
-modified: 2026-06-23T05:08:24.060Z
+created: 2026-06-25T02:22:14.001Z
+modified: 2026-06-25T02:22:14.001Z
 ---
 
 # Field Notes
@@ -11,6 +11,9 @@ I keep one notebook, not two. The temptation, when you have a professional self 
 
 So this is a single feed. Some of it will be about operations and leadership — the convictions in [the operating approach](/professional/operating-approach), worked out at the length they deserve. Some of it will be about cooking, from [the kitchen](/personal/kitchen), recipes with their reasoning intact. Some will be about radio, from [the shack](/personal/shack) — a contest, an antenna, the long patience of the hobby. They'll be tagged so you can follow only one thread if you like, but I'd rather you didn't.
 
-## The notebook is still blank
+## Latest
 
-There's nothing here yet. That's the honest state of it, and I'd rather show you an empty page than a manufactured one. When there is something worth writing down, it will appear here, newest first, and you'll be able to sort it by what it's about: operations, leadership, cooking, radio.
+**[I've Seen This Movie Before →](/field-notes/ive-seen-this-movie)**
+And the AI skeptics are reading from the same script. Typesetting, then film editing, then everything after: the same disruption, the same two reactions, the exact same ending both times. Old judgment, new reps. That person wins every time.
+
+More will appear here, newest first, tagged so you can follow one thread if you like: operations, leadership, cooking, radio.
