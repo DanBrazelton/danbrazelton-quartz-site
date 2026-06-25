@@ -1,21 +1,7 @@
 ---
 publish: true
-type: recipe
-meal_type: Appetizer
-cuisine: Italian
-main_ingredient: Rice
-prep_time:
-cook_time:
-servings: 1
-yield:
-rating:
-tags: []
-source:
-in_rotation: false
-has_recipe: true
-have_cooked: false
-generated: true
-generated_from: "Cooking/Recipes/Aranchini.md"
+created: 2026-06-25T12:39:53.012Z
+modified: 2026-06-25T13:41:57.657Z
 ---
 
 # Aranchini

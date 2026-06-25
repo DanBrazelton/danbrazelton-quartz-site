@@ -2,7 +2,7 @@
 publish: true
 title: Dan Brazelton
 created: 2026-06-25T01:46:58.758Z
-modified: 2026-06-25T11:03:02.171Z
+modified: 2026-06-25T13:47:11.027Z
 ---
 
 # Dan Brazelton
@@ -19,7 +19,7 @@ Essays on the stuff I've watched up close: how tools eat trades, why every disru
 
 ## Recipes
 
-My wife has the better palate. She just won't write anything down. I'm the better technical cook, so together we eat well. This is thirteen years or so of our regular rotation, the meals we actually make. Some original, some traditional, some stolen. Usually credited, if I know the source. **[Into the Kitchen →](/kitchen/recipes)**
+My wife has the better palate. She just won't write anything down. I'm the better technical cook, so together we eat well. This is thirteen years or so of our regular rotation, the meals we actually make. Some original, some traditional, some stolen. Usually credited, if I know the source. **[Into the Kitchen →](/kitchen/recipes/)**
 
 ---
 
