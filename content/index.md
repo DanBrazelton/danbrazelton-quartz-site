@@ -1,30 +1,28 @@
 ---
 publish: true
 title: Dan Brazelton
-created: 2026-06-23T12:41:04.921Z
-modified: 2026-06-23T12:41:04.926Z
+created: 2026-06-25T01:46:58.758Z
+modified: 2026-06-25T01:46:58.758Z
 ---
 
-# A maker who happens to run plants
+# Dan Brazelton
 
-There is a habit of mind that does not care whether it is pointed at a production line, a pot of stock, or a radio signal bent around the curve of the earth. It wants to know how the thing actually works — not the story told about it in the meeting, but the real mechanism underneath, the one that keeps running after everyone goes home. I have spent a working life following that habit into factories, and the rest of my life following it into a kitchen and a radio shack. This site is the record of both, kept honestly, because pretending they are separate has never once helped me understand either.
+I've shipped games, cut film by hand, and chipped ice off a hull in the Gulf of Alaska at three in the morning. A few full careers, a few misspent years. The job underneath all of them was the same: keep the thing afloat and pointed roughly the right way, and try not to be the reason it isn't.
 
-## Two ways in
+I'm usually found organizing chaos, which means I've been thinking about leadership, operations, and process for a long time. I read Frederick Winslow Taylor at sixteen. For fun. Yeah, weird kid. Teams, companies, a few startups, the occasional galley. I've taken startups from angel checks to real products, and I've been the lowest man on a tugboat, cooking for the crew and then jumping up the side of a barge to grab the line as we hipped up (still not sure why that was the cook's job). Most of operational leadership fits in one sentence: the work doesn't care how you feel about it, so you may as well be useful and kind while you get it done.
 
-**[The Professional →](/professional/)**
-A quarter-century inside food and manufacturing — what it taught me about cost, systems, safety, and the people who actually do the work. Written for anyone trying to decide whether I'm the person they want in the building.
+The rest is the other half. I write about technology, culture, and the things people get precious about. I cook, and then I write it down so it survives contact with a Tuesday. Not so much thought leadership as thinking out loud.
 
-**[The Personal →](/personal/)**
-The same attention turned loose on things I do for no reason but love: cooking, in [The Kitchen](/personal/kitchen), and amateur radio, in [The Shack](/personal/shack).
+## Writing
 
-## What ties it together
+Essays on the stuff I've watched up close: how tools eat trades, why every disruption runs the same movie, and the occasional bad take. **[Read the Field Notes →](/field-notes/)**
 
-I don't believe in the line people draw between the analytical and the sensory — the spreadsheet on one side, the bread and the antenna on the other. The plant taught me that a number means nothing until you've stood where it was made, and the kitchen taught me that craft is just a system you've come to love. It's all the same work: pay attention, find the mechanism, make it repeatable, and respect the result enough to measure it.
+## Recipes
 
-## Field Notes
-
-When I have something worth writing down — about operations, leadership, food, or radio — it goes in one place, undivided. **[Read Field Notes →](/field-notes/)**
+My wife has the better palate. She just won't write anything down. I'm the better technical cook, so together we eat well. This is thirteen years or so of our regular rotation, the meals we actually make. Some original, some traditional, some stolen. Usually credited, if I know the source. **[Into the Kitchen →](/personal/kitchen)**
 
 ---
+
+Stay a while. Read something. Make dinner.
 
 [LinkedIn →](https://www.linkedin.com/in/dan-brazelton/)
