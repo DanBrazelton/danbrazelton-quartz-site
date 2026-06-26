@@ -19,7 +19,7 @@ tags:
   - sourdough
   - pastry
   - fried
-source: [https://www.farmhouseonboone.com/sourdough-beignets/](https://www.farmhouseonboone.com/sourdough-beignets/)
+source: "https://www.farmhouseonboone.com/sourdough-beignets/"
 in_rotation: true
 has_recipe: true
 have_cooked: false
