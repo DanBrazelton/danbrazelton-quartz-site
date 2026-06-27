@@ -32,7 +32,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pommes Boulangère.md"
 ---
+
 # Pommes Boulangère
+
 > **Quick Summary:** A classic French potato casserole layered with caramelized onions and baked in a rich stock until tender and sliceable.
 > **Source:** Claire Saffitz
 

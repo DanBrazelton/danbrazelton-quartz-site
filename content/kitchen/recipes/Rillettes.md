@@ -17,7 +17,9 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Rillettes.md"
 ---
+
 # Rillettes
+
 > **Quick Summary:** A rustic French spread made by slow-cooking pork until tender, then shredding it and preserving it in its own fat.
 > **Source:** Traditional
 

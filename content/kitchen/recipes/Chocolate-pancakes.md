@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chocolate pancakes.md"
 ---
+
 # Chocolate pancakes
+
 > **Quick Summary:** A simple recipe for chocolate pancakes made by combining standard dry and wet ingredients.
 > **Source:** Traditional
 

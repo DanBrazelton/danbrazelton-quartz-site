@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Cavetalli Le Noci.md"
 ---
+
 # Cavetalli Le Noci
+
 > **Quick Summary:** This recipe details how to make fresh cavatelli pasta and a simple, spicy walnut sauce.
 > **Source:** Traditional
 

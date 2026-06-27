@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Radicchio Salad.md"
 ---
+
 # Radicchio Salad
+
 > **Quick Summary:** A simple yet elegant salad balancing the bitterness of radicchio with the sweetness of raisins and the saltiness of olives.
 > **Source:** Traditional
 

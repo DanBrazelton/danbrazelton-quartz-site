@@ -33,7 +33,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Panang Curry.md"
 ---
+
 # Panang Curry
+
 > **Quick Summary:** This recipe provides instructions for an authentic Thai Panang curry with pork, including options for making the curry paste from scratch or semi-homemade.
 > **Source:** Pailin Chongchitnant
 

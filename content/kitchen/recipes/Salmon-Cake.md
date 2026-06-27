@@ -39,7 +39,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Salmon Cake.md"
 ---
+
 # Salmon Cake
+
 > **Quick Summary:** Simple and savory salmon patties are pan-fried until golden brown for a quick and easy meal.
 > **Source:** Traditional
 

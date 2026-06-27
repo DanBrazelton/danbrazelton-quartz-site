@@ -32,7 +32,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Waffle.md"
 ---
+
 # Waffle
+
 > **Quick Summary:** Easy, crispy, and fluffy golden waffles with a touch of tang from the added sourdough starter.
 > **Source:** Maurizio Leo
 

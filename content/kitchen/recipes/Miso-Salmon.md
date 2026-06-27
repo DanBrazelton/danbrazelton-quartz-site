@@ -39,7 +39,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Miso Salmon.md"
 ---
+
 # Miso Salmon
+
 > **Quick Summary:** Salmon fillets are coated in a savory-sweet miso glaze and broiled until perfectly flaky and caramelized.
 
 > **Source:** Traditional

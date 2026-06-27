@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chorizo Taluco.md"
 ---
+
 # Chorizo Taluco
+
 > **Quick Summary:** This is a classic recipe for homemade Mexican chorizo, a flavorful and spicy ground pork sausage seasoned with a rich red chile paste.
 
 > **Source:** Traditional

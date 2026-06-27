@@ -1,6 +1,8 @@
 ---
-title: I've Seen This Movie Before
 publish: true
+title: I've Seen This Movie Before
+created: 2026-06-25T02:21:45.027Z
+modified: 2026-06-27T16:24:39.218Z
 tags:
   - operations
   - leadership
@@ -11,7 +13,7 @@ tags:
 And the AI skeptics are reading from the same script.
 
 The first time, the room smelled like fixer and hot wax.
-
+![[field-notes/Pasted image 20260627092437.png]]
 The designer worked in a dark room at the back of the print shop, dominated by an ominous sci-fi console. Tech that couldn't decide whether it was a tool or a piece of furniture. She sat in a hard white plastic chair built into it, more of a cockpit than a workstation, in front of a small, hooded green screen recessed into the console, pulsing at you, a cursor blinking slow. Much like talking to Mother in Alien.
 
 Except all you did was type a sentence.

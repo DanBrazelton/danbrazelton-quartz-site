@@ -32,7 +32,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Stuffed Olives.md"
 ---
+
 # Stuffed Olives
+
 > **Quick Summary:** These classic Italian appetizers feature large green olives stuffed with a savory meat and cheese filling, which are then breaded and deep-fried until golden brown.
 > **Source:** Roz
 

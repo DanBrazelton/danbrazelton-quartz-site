@@ -17,7 +17,9 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Cured Meats.md"
 ---
+
 # Cured Meats
+
 > **Quick Summary:** A fundamental guide to dry-curing pork belly at home to create delicious, savory bacon.
 > **Source:** Traditional
 

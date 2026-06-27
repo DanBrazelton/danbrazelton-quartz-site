@@ -23,9 +23,10 @@ has_recipe: true
 generated: true
 generated_from: "Cooking/MENUS/Cooking Reference/Cooklang.md"
 ---
+
 # CookLang Editor Obsidian Plugin
 
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/deathau/cooklang-obsidian?style=for-the-badge&sort=semver)](https://github.com/deathau/cooklang-obsidian/releases/latest)  
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/deathau/cooklang-obsidian?style=for-the-badge\&sort=semver)](https://github.com/deathau/cooklang-obsidian/releases/latest)\
 ![GitHub All Releases](https://img.shields.io/github/downloads/deathau/cooklang-obsidian/total?style=for-the-badge)
 
 A plugin for [Obsidian](https://obsidian.md/) adding support for [CookLang](https://cooklang.org/)
@@ -49,20 +50,20 @@ I can assure you here that I do nothing to collect your data, send information t
 
 This is the stuff I would ideally like to include in this plugin that isn't available as yet:
 
-- [x] Improve editor/preview mode buttons to be more like markdown
-- [x] Command to convert `.md` to `.cook`
-    - [ ] Maybe also `cook` code block support?
-- [x] Include option for showing quantities inline in the method
-    - [ ] Option to link between ingredients and method?
-- [x] Include options for showing ingredients list, tools list and time
-    - [x] (calculate total time)
-- [ ] Unit conversion (metric <-> imperial)
-- [ ] Scaling up/down (check spec)
-- [ ] Shopping list and `.conf` file support (needs designing)
-- [ ] Better metadata support.
-    - [ ] Making source links clickable.
-    - [ ] Support for Obsidian tagging.
-- [ ] (Maybe, pending feedback) Markdown formatting support.
+- Improve editor/preview mode buttons to be more like markdown
+- Command to convert `.md` to `.cook`
+  - Maybe also `cook` code block support?
+- Include option for showing quantities inline in the method
+  - Option to link between ingredients and method?
+- Include options for showing ingredients list, tools list and time
+  - (calculate total time)
+- Unit conversion (metric <-> imperial)
+- Scaling up/down (check spec)
+- Shopping list and `.conf` file support (needs designing)
+- Better metadata support.
+  - Making source links clickable.
+  - Support for Obsidian tagging.
+- (Maybe, pending feedback) Markdown formatting support.
 
 # Version History
 
@@ -71,8 +72,8 @@ This is the stuff I would ideally like to include in this plugin that isn't avai
 - Separated out the CookLang parsing code into its own library, and brought it up to date with the latest CookLang spec (so things like named timers are now supported properly)
 - Added more options for displaying timers
 - Added the ability to click on a timer and show a countdown
-    - it also optionally plays a sound while the timer is running and when it's finished
-    - This feature is still pretty new and probably needs more testing
+  - it also optionally plays a sound while the timer is running and when it's finished
+  - This feature is still pretty new and probably needs more testing
 
 ## 0.2.0
 
@@ -86,7 +87,7 @@ This is the stuff I would ideally like to include in this plugin that isn't avai
 ## 0.1.0
 
 - Improve editor/preview mode buttons to be more like markdown views
-    - You can even ctrl/cmd click to open in new pane!
+  - You can even ctrl/cmd click to open in new pane!
 - Include options for showing ingredients list, tools list and time
 - Include option for showing quantities inline in the method
 
@@ -104,6 +105,6 @@ Initial release!
 
 - You can open and edit `.cook` files
 - There is an edit view with syntax highlighting
-- There is also a preview view which displays the ingredients and amounts at the top like a traditional recipe  
-    and numbers the steps.
+- There is also a preview view which displays the ingredients and amounts at the top like a traditional recipe\
+  and numbers the steps.
 - If images are provided (as per the [CookLang convention](https://cooklang.org/docs/spec/#adding-pictures) ) they will also be displayed.

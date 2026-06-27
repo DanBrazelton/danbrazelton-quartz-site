@@ -25,7 +25,9 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/foocooklang.md"
 ---
+
 # foocooklang
+
 > **Quick Summary:** A soft, chewy homemade pita bread that puffs up beautifully in the oven.
 > **Source:** Traditional
 

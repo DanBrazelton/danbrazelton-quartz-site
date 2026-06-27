@@ -32,7 +32,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Flourless Chocolate Torte.md"
 ---
+
 # Flourless Chocolate Torte
+
 > **Quick Summary:** This is a foolproof, impressive, and decadent flourless chocolate torte made special with a touch of almond extract.
 
 > **Source:** https://www.wellplated.com/flourless-chocolate-torte/

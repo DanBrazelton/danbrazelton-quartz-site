@@ -17,7 +17,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chicken Tenders.md"
 ---
+
 # Chicken Tenders
+
 > **Quick Summary:** Classic, double-dredged fried chicken tenders featuring a buttermilk marinade and a savory spice blend for an extra crispy result.
 > **Source:** Unknown
 

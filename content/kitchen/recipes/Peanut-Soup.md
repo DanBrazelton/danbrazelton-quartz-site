@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Peanut Soup.md"
 ---
+
 # Peanut Soup
+
 > **Quick Summary:** This rich and savory West African-style soup features a creamy peanut base with tender chicken, sweet potatoes, and aromatic spices.
 
 > **Source:** Traditional

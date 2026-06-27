@@ -29,7 +29,6 @@ generated_from: "Cooking/Recipes/Lamb Shanks Braised.md"
 
 # Michelin Braised Lamb Shank
 
-
 > **Quick Summary:** Michelin-style braised lamb shanks from Fallow, inspired by Le Gavroche. Brined overnight for tenderness, slow-braised with roasted bones, then glazed in a Madeira-and-lamb-fat sauce and served with star anise braised carrots.
 > **Source:** YouTube: Fallow
 

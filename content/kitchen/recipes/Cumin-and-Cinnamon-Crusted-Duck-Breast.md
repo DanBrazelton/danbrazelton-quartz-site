@@ -22,8 +22,10 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Cumin and Cinnamon Crusted Duck Breast.md"
 ---
+
 # Cumin and Cinnamon Crusted Duck Breast
-> **Quick Summary:** This signature dish from the pioneering farm-to-table restaurant *Home* uses a long dry-cure and a cold-pan start to create an incredibly crisp skin and savory, spice-infused meat.
+
+> **Quick Summary:** This signature dish from the pioneering farm-to-table restaurant _Home_ uses a long dry-cure and a cold-pan start to create an incredibly crisp skin and savory, spice-infused meat.
 > **Source:** Home Restaurant (David Page & Barbara Shinn)
 
 ```cooklang

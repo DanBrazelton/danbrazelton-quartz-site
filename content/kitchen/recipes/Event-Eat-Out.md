@@ -17,9 +17,12 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Event Eat Out.md"
 ---
+
 # Event Eat Out
+
 > **Quick Summary:** A simple guide for planning and enjoying a meal at a restaurant or event.
 > **Source:** Traditional
+
 ```cooklang
 >> servings: 2
 First, decide on a @cuisine{} and select a @restaurant{}.
@@ -38,4 +41,5 @@ When the food arrives, savor your meal.
 
 Finally, pay the @bill{} and leave a generous @tip{}.
 ```
+
 ## 💡 Notes & Tweaks

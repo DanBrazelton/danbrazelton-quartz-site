@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chicken Cardamom.md"
 ---
+
 # Chicken Cardamom
+
 > **Quick Summary:** This one-pot dish features seared chicken thighs and basmati rice cooked together with aromatic spices like cardamom, cinnamon, and cloves, finished with fresh herbs and sweet barberries.
 > **Source:** Traditional
 

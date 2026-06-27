@@ -17,6 +17,7 @@ have_cooked: false
 generated: true
 generated_from: "Cooking/Recipes/Char Siu Pork.md"
 ---
+
 # Char Siu Pork
 
 **Roast Ingredients:**
@@ -24,10 +25,11 @@ generated_from: "Cooking/Recipes/Char Siu Pork.md"
 |**English Name**|**Chinese Characters**|**Phonetic (Pinyin)**|**Best Substitute(s)**|**Amount (Metric)**|
 |---|---|---|---|---|
 |**Pork Collar / Butt**|梅肉 / 猪肉|_Méi ròu / Zhū ròu_|Pork belly or skinless chicken thighs|1.13 kg|
-|**Light Soy Sauce**|生抽|_Shēng chōu_|Regular soy sauce|1 part*|
-|**Char Siu Marinade**|叉烧酱|_Chā shāo jiàng_|None (from Part 2)|3 parts*|
+|**Light Soy Sauce**|生抽|_Shēng chōu_|Regular soy sauce|1 part\*|
+|**Char Siu Marinade**|叉烧酱|_Chā shāo jiàng_|None (from Part 2)|3 parts\*|
 |**Maltose**|麦芽糖|_Mài yá táng_|Honey|For Glaze|
 |**Cooking Oil**|食用油|_Shí yòng yóu_|Any neutral oil (canola, peanut, etc.)|For brushing|
+
 > **Quick Summary:** This recipe details how to create authentic Char Siu by marinating pork collar and then slow-roasting it on a grill with a sweet maltose glaze.
 > **Source:** Unknown
 

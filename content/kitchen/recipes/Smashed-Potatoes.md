@@ -25,16 +25,16 @@ generated_from: "Cooking/Recipes/Smashed Potatoes.md"
 
 # 🥔 Crispy Smashed Potatoes
 
-
-> **Quick Summary:** The ultimate side dish. Boiling the potatoes first makes the insides incredibly fluffy and creamy, while smashing and roasting them at high heat creates an irresistible, thick crust of crispy edges. 
+> **Quick Summary:** The ultimate side dish. Boiling the potatoes first makes the insides incredibly fluffy and creamy, while smashing and roasting them at high heat creates an irresistible, thick crust of crispy edges.
 
 ## 🛒 Ingredients
-* 700g (1.5 lbs) **Baby potatoes** (Yukon gold or red work best)
-* 45g (3 tbsp) **Olive oil**
-* 15g (1 tbsp) **Kosher salt** (for the boiling water) + extra to taste
-* 3g (1 tsp) **Garlic powder**
-* 1g (0.5 tsp) **Black pepper**
-* *Optional:* Fresh parsley or chives, Parmesan cheese
+
+- 700g (1.5 lbs) **Baby potatoes** (Yukon gold or red work best)
+- 45g (3 tbsp) **Olive oil**
+- 15g (1 tbsp) **Kosher salt** (for the boiling water) + extra to taste
+- 3g (1 tsp) **Garlic powder**
+- 1g (0.5 tsp) **Black pepper**
+- _Optional:_ Fresh parsley or chives, Parmesan cheese
 
 ## 🧑‍🍳 Instructions
 
@@ -59,7 +59,7 @@ Remove from the oven and garnish with optional @fresh parsley{to taste} or a dus
 ```
 
 ## 💡 Notes & Tweaks
-* **The Drying Step:** Do not skip letting the potatoes steam dry after boiling. If they go into the oven wet, they will steam instead of fry, and you won't get those shattered, crispy edges.
-* **The Smash:** If the potato sticks to the bottom of your glass when you smash it, lightly oil the bottom of the glass first. 
-* **Flavor Variations:** Try tossing them with some fresh rosemary before roasting, or top them with bacon bits, cheddar cheese, and sour cream after baking for a "loaded baked potato" vibe.
 
+- **The Drying Step:** Do not skip letting the potatoes steam dry after boiling. If they go into the oven wet, they will steam instead of fry, and you won't get those shattered, crispy edges.
+- **The Smash:** If the potato sticks to the bottom of your glass when you smash it, lightly oil the bottom of the glass first.
+- **Flavor Variations:** Try tossing them with some fresh rosemary before roasting, or top them with bacon bits, cheddar cheese, and sour cream after baking for a "loaded baked potato" vibe.

@@ -23,7 +23,6 @@ generated_from: "Cooking/Recipes/Hamburger.md"
 
 # Hamburger
 
-
 > **Quick Summary:** A classic American cheeseburger — well-seasoned 80/20 beef patties with a deep seared crust, melted cheese, and toasted buttered buns.
 > **Source:** Traditional
 

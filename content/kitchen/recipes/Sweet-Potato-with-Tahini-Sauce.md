@@ -39,7 +39,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Sweet Potato with Tahini Sauce.md"
 ---
+
 # Sweet Potato with Tahini Sauce
+
 > **Quick Summary:** Roasted sweet potato rounds are drizzled with a savory miso-tahini dressing and garnished with fresh green onions.
 
 > **Source:** Traditional

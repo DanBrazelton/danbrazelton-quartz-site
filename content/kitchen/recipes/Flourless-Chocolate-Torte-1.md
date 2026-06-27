@@ -35,10 +35,9 @@ generated_from: "Cooking/Recipes/Flourless Chocolate Torte 1.md"
 
 # Flourless Chocolate Torte 1
 
-
 > **Quick Summary:** This decadent and foolproof flourless chocolate torte is made special with a hint of almond extract and can be served on its own or with various toppings.
 
-> **Source:** [https://www.wellplated.com/flourless-chocolate-torte/](https://www.wellplated.com/flourless-chocolate-torte/)
+> **Source:** <https://www.wellplated.com/flourless-chocolate-torte/>
 
 ```cooklang
 >> servings: 2

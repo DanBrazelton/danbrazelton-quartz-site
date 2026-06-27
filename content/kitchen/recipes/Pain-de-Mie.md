@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pain de Mie.md"
 ---
+
 # Pain de Mie
+
 > **Quick Summary:** This recipe produces a classic, soft, and finely-textured French sandwich loaf using a levain starter.
 
 > **Source:** Traditional

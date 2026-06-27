@@ -33,7 +33,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Leek Pasta.md"
 ---
+
 # Leek Pasta
+
 > **Quick Summary:** This is a luscious and creamy pasta dish featuring slowly caramelized leeks and onions, finished with parmesan, lemon, and rosemary.
 
 > **Source:** [Emilie Pullar, The Burnt Butter Table](https://www.theburntbuttertable.com/creamy-leek-pasta/)

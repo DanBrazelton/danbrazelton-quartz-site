@@ -25,7 +25,6 @@ generated_from: "Cooking/Recipes/Valentine Tuile Cannoli.md"
 
 # Valentine Tuile Cannoli
 
-
 > **Quick Summary:** This recipe creates delicate cannoli shells from lace tuile cookies, filled with a perfectly smooth and balanced mascarpone and ricotta cream.
 
 > **Source:** Chef Sara Furcini

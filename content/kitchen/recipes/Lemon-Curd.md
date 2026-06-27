@@ -14,7 +14,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Lemon Curd.md"
 ---
+
 # Lemon Curd
+
 > **Quick Summary:** A rich and tangy spread made by cooking eggs, sugar, lemon juice, and butter until thick and creamy.
 
 > **Source:** Adapted half-batch

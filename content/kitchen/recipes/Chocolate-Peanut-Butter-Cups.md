@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Chocolate Peanut Butter Cups.md"
 ---
+
 # Chocolate Peanut Butter Cups
+
 > **Quick Summary:** This gourmet recipe creates sophisticated peanut butter cups by making a cooked sugar syrup for the filling and tempering semisweet chocolate for a professional snap and shine.
 > **Source:** Claire Saffitz / Bon Appétit
 

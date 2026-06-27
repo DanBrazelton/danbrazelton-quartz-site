@@ -36,7 +36,9 @@ main_ingredient: Chickpeas
 generated: true
 generated_from: "Cooking/Recipes/Falafel BU.md"
 ---
+
 # Falafel BU
+
 > **Quick Summary:** A foundational recipe for preparing the base of falafel by soaking dried chickpeas and fava beans before combining them with fresh herbs and spices.
 
 > **Source:** Traditional

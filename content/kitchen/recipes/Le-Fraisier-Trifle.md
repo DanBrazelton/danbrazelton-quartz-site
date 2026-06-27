@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Le Fraisier Trifle.md"
 ---
+
 # Le Fraisier Trifle
+
 > **Quick Summary:** A sophisticated trifle featuring layers of vanilla sponge cake, vanilla mousseline, and Grand Marnier-macerated strawberries, topped with a lemon-mascarpone mousse.
 > **Source:** Unknown
 

@@ -32,7 +32,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Nam Khao Tod.md"
 ---
+
 # Nam Khao Tod
+
 > **Quick Summary:** This classic Lao dish features crispy fried rice balls crumbled and mixed with cured pork, herbs, coconut, and peanuts for a crunchy and flavorful lettuce wrap experience.
 > **Source:** Saeng Douangdara
 
@@ -56,6 +58,7 @@ Add the diced @cured pork{1%cup}, @pork skin{1%cup}, diced @cilantro{½%cup}, di
 
 Garnish with @fried chili{} then eat it as a @lettuce{} wrap.
 ```
------
+
+---
 
 ## Notes

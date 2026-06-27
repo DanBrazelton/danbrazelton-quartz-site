@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Miso butter pasta.md"
 ---
+
 # Miso butter pasta
+
 > **Quick Summary:** A simple and savory weeknight pasta dish featuring a rich sauce made from miso, butter, and garlic, tossed with sautéed shiitake mushrooms.
 > **Source:** https://jessicainthekitchen.com/
 

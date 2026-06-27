@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Miso Cod.md"
 ---
+
 # Miso Cod
+
 > **Quick Summary:** This recipe features black cod fillets marinated for several days in a sweet and savory mixture of miso, sake, and mirin, then broiled to a perfect caramelization.
 > **Source:** Chef Nobu Matsuhisa
 

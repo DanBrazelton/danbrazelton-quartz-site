@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/40 Clove Chicken.md"
 ---
+
 # 40 Clove Chicken
+
 > **Quick Summary:** This recipe involves pan-searing chicken legs with an abundance of garlic, flambéing with Cognac, and creating a rich, creamy sauce from the pan juices.
 
 ```cooklang

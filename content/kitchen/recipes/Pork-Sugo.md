@@ -22,7 +22,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Pork Sugo.md"
 ---
+
 # Pork Sugo
+
 > **Quick Summary:** This rich and hearty Italian sauce features pork shoulder slow-braised in a tomato and red wine base until it's fall-apart tender.
 
 > **Source:** [freshforkmarket.com](https://freshforkmarket.com/recipes/pork-sugo/)

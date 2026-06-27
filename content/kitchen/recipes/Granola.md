@@ -39,7 +39,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Granola.md"
 ---
+
 # Granola
+
 > **Quick Summary:** This is a classic baked granola featuring rolled oats, almonds, and coconut, sweetened with honey and finished with raisins.
 > **Source:** Traditional
 

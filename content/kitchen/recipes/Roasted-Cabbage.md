@@ -33,7 +33,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Roasted Cabbage.md"
 ---
+
 # Roasted Cabbage
+
 > **Quick Summary:** Simple and flavorful roasted cabbage wedges seasoned with Za'atar and garlic, cooked until tender with crispy edges.
 > **Source:** Jenné Claiborne
 

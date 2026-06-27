@@ -32,7 +32,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Crispy Rice.md"
 ---
+
 # Crispy Rice
+
 > **Quick Summary:** This recipe creates a vibrant salad by combining pan-fried crispy rice with fresh vegetables and a savory soy-lime dressing.
 
 > **Source:** Izy Hossack

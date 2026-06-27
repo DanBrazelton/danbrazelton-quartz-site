@@ -39,7 +39,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Hummus .md"
 ---
-# Hummus 
+
+# Hummus
+
 > **Quick Summary:** A classic and creamy Middle Eastern dip made from dried chickpeas, tahini, lemon, and garlic.
 > **Source:** Traditional
 

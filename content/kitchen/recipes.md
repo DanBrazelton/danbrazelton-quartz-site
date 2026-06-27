@@ -3,6 +3,7 @@ title: Recipes
 publish: true
 generated: true
 ---
+
 # Recipes
 
 126 recipes. Drag the servings slider on any recipe to scale it.

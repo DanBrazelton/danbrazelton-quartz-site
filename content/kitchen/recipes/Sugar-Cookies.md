@@ -39,9 +39,11 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Sugar Cookies.md"
 ---
+
 # Sugar Cookies
+
 > **Quick Summary:** A classic, versatile sugar cookie recipe perfect for cutting into shapes and decorating.
-> **Source:** 
+> **Source:**
 
 ```cooklang
 >> servings: 2

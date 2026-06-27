@@ -32,7 +32,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Risotto.md"
 ---
+
 # Risotto
+
 > **Quick Summary:** A classic, creamy risotto that serves as a perfect base for various seasonal toppings or can be enjoyed simply on its own.
 
 > **Source:** [Bon Appétit](https://www.bonappetit.com/recipe/bas-best-risotto)

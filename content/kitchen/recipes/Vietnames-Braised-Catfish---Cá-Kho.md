@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Vietnames Braised Catfish - Cá Kho.md"
 ---
+
 # Vietnames Braised Catfish - Cá Kho
+
 > **Quick Summary:** A savory and caramelized Vietnamese dish featuring catfish filets braised in a flavorful sauce of fish sauce, soy sauce, and aromatics.
 > **Source:** Traditional
 

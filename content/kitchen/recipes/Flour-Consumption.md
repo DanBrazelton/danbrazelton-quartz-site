@@ -25,20 +25,26 @@ generated_from: "Cooking/MENUS/Cooking Reference/Flour Consumption.md"
 ---
 
 ## Pastry Flour
+
 ### Biscuits
+
 452 weekly
+
 ### Pastry
+
 452 biweekly
 
 5# month
 
 ## Bread
+
 2000g week
 8000g month
 18 lb a month
 
 ## Pasta
+
 300g x 2 weekly
-Semolina 
+Semolina
 
 2400 g month

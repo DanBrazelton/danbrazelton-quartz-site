@@ -29,7 +29,6 @@ generated_from: "Cooking/Recipes/Beignets.md"
 
 # 🍳 Sourdough Beignets
 
-
 > **Quick Summary:** Warm, pillowy pockets of fried dough made with an enriched sourdough base, puffed to golden perfection and showered in powdered sugar. They are crisp on the outside, light and soft on the inside.
 > **Base Yield:** 24 Beignets
 

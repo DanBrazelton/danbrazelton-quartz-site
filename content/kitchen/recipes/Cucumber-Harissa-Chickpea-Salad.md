@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Cucumber Harissa Chickpea Salad.md"
 ---
+
 # Cucumber Harissa Chickpea Salad
+
 > **Quick Summary:** This is a quick and refreshing salad featuring chickpeas and fresh vegetables tossed in a spicy harissa-lemon vinaigrette.
 > **Source:** N/A
 

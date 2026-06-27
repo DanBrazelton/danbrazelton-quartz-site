@@ -17,7 +17,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Cinnamon rolls.md"
 ---
+
 # Cinnamon rolls
+
 > **Quick Summary:** These are classic, soft cinnamon rolls with a sweet cinnamon-sugar filling and a simple vanilla glaze.
 > **Source:** Traditional
 

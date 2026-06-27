@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Greek Stew.md"
 ---
+
 # Greek Stew
+
 > **Quick Summary:** This is a hearty fisherman's stew featuring wild striped bass simmered in a flavorful tomato, fennel, and white wine broth.
 
 > **Source:** Florence Fabricant

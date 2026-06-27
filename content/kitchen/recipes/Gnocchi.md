@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Gnocchi.md"
 ---
+
 # Gnocchi
+
 > **Quick Summary:** Classic Italian potato dumplings made with russet potatoes, flour, and egg, creating a light and tender pasta perfect for any sauce.
 > **Source:** Traditional
 

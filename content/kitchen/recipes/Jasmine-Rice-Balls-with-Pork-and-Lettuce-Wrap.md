@@ -31,7 +31,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Jasmine Rice Balls with Pork and Lettuce Wrap.md"
 ---
+
 # Jasmine Rice Balls with Pork and Lettuce Wrap
+
 > **Quick Summary:** Crispy fried jasmine rice balls are crumbled and mixed with cured pork, herbs, and a zesty lime dressing, served in fresh lettuce wraps.
 > **Source:** Traditional
 

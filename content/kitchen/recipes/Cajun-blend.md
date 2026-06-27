@@ -39,7 +39,9 @@ yield: ""
 generated: true
 generated_from: "Cooking/Recipes/Cajun blend.md"
 ---
+
 # Cajun blend
+
 > **Quick Summary:** A homemade, earthy, and less salty Cajun spice blend perfect for a variety of dishes.
 > **Source:** Adapted from coops place
 
