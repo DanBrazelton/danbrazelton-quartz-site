@@ -1,36 +1,7 @@
 ---
 publish: true
-cover:
-aliases:
-title:
-status:
-priority:
-scheduled:
-contexts: Recipe
-dateCreated:
-dateModified:
-completedDate:
-tags: 1
 created: 2022-09-17T14:41:00+00:00
-author: Maurizio Leo
-url: https://littlespoonfarm.com/sourdough-pancakes-waffles-recipe/
-made: false
-type: recipe
-in_rotation: true
-context: Home
-have_cooked: false
-rating: 4
-has_recipe: true
-legacy_folder: Cooking/🥞jentacular
-meal_type: Breakfast
-cuisine: American
-main_ingredient: Wheat
-prep_time:
-cook_time:
-servings: 1
-yield: ""
-generated: true
-generated_from: "Cooking/Recipes/Waffle.md"
+modified: 2026-07-16T14:57:44.860Z
 ---
 
 # Waffle

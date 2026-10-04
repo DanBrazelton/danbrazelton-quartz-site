@@ -1,27 +1,9 @@
 ---
 publish: true
+created: 2016-12-23
+modified: 2026-08-23T14:08:54.759Z
 tags:
   - 1
-created: 2016-12-23
-author: Maurizio Leo
-url: https://www.theperfectloaf.com/sourdough-cinnamon-rolls/
-contexts: Recipe
-type: recipe
-in_rotation: true
-context: Home
-have_cooked: false
-rating: 5
-has_recipe: true
-legacy_folder: Cooking
-meal_type: Breakfast
-cuisine: American
-main_ingredient: Wheat
-prep_time:
-cook_time:
-servings: 1
-yield: ""
-generated: true
-generated_from: "Cooking/Recipes/Sourdough Cinnamon Rolls.md"
 ---
 
 # Sourdough Cinnamon Rolls

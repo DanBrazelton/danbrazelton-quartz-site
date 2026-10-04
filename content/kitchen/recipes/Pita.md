@@ -1,30 +1,11 @@
 ---
 publish: true
-type: recipe
-prep: Make pita dough
-prep_time_reminder: 07:00
-meal_type:
-  - Side
-  - Lunch
-cuisine:
-  - Middle Eastern
-main_ingredient:
-  - Flour
-prep_time: 2 hours
-cook_time: 15 mins
-servings: 6
-yield: 6 Pitas
-rating: 5
+created: 2026-06-25T12:39:53.684Z
+modified: 2026-07-09T14:02:46.908Z
 tags:
   - bread
   - pita
   - baking
-source:
-in_rotation: true
-has_recipe: true
-have_cooked: true
-generated: true
-generated_from: "Cooking/Recipes/Pita.md"
 ---
 
 # Pita

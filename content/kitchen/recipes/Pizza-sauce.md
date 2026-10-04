@@ -1,35 +1,7 @@
 ---
 publish: true
-cover:
-aliases:
-title:
-status:
-priority:
-scheduled:
-contexts: Recipe
-dateCreated:
-dateModified:
-completedDate:
-author:
-url:
-tags: 1
-made: false
-type: recipe
-in_rotation: true
-context: Home
-have_cooked: false
-rating: 4
-has_recipe: true
-legacy_folder: Cooking/Italian
-meal_type: Sauce
-cuisine: Italian
-main_ingredient: Produce/Veg
-prep_time:
-cook_time:
-servings: 1
-yield: ""
-generated: true
-generated_from: "Cooking/Recipes/Pizza sauce.md"
+created: 2026-06-25T13:40:43.082Z
+modified: 2026-09-21T23:38:57.628Z
 ---
 
 # Pizza sauce

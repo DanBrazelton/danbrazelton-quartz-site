@@ -2,13 +2,15 @@
 publish: true
 title: I've Seen This Movie Before
 created: 2026-06-25T02:21:45.027Z
-modified: 2026-06-27T16:24:39.218Z
+modified: 2026-06-27T16:51:42.507Z
 tags:
   - operations
   - leadership
 ---
 
 # I've Seen This Movie Before
+
+![[field-notes/Varityper.png]]
 
 And the AI skeptics are reading from the same script.
 
@@ -83,6 +85,8 @@ I bought the Mac. I learned the Avid. I was never the most talented guy in eithe
 The masters were brilliant. The masters were also wrong. And the masters are not who got hired next.
 
 The tool is here. It's clumsy, it's improving faster than you want it to, and it does not care even a little whether you approve of its kerning.
+
+![[field-notes/Screenshot 2026-06-27 at 09.06.22 1.png]]
 
 I edited this essay inside a tool that didn't exist this morning. I had a thought about how I wanted to work and it got built.
 
