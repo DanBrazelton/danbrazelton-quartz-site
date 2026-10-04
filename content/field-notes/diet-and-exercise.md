@@ -1,8 +1,8 @@
 ---
 publish: true
 title: Diet and Exercise…
-created: 2026-10-04T18:14:34.829Z
-modified: 2026-10-04T18:14:34.831Z
+created: 2026-10-02
+modified: 2026-10-02T09:00:00.000Z
 tags:
   - operations
   - leadership
