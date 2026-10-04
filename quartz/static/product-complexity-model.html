@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- Product Complexity Model v1.2 · built 2026-10-04 -->
+<!-- Product Complexity Model v1.3 · built 2026-10-04 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="version" content="1.2">
+<meta name="version" content="1.3">
 <title>Product Complexity Model</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 </head>
@@ -14,7 +14,7 @@
 :root {
   --bg: #f2f4f7; --surface: #ffffff; --ink: #17212c; --muted: #586675; --line: #7f8d9c; --rule: #d5dbe2;
   --task-fill: #e4edf8; --task-stroke: #2c5a8a;
-  --hold-fill: #fce6bd; --hold-stroke: #9a5b06;
+  --hold-fill: #fce6bd; --hold-stroke: #9a5b06; --rework: #c62828;
   --band-a: #e8ecf1; --band-b: #eef1f5;
   --gold: #e3b01e; --gold-s: #8a6400; --silver: #c6ccd4; --silver-s: #66707c; --bronze: #c98651; --bronze-s: #7a4520;
   --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -23,13 +23,13 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #11161c; --surface: #19202a; --ink: #e5eaf0; --muted: #9ba8b6; --line: #73818f; --rule: #2b3541;
   --task-fill: #1d3147; --task-stroke: #82b3e3;
-  --hold-fill: #453310; --hold-stroke: #e9af4d;
+  --hold-fill: #453310; --hold-stroke: #e9af4d; --rework: #ff7b72;
   --band-a: #1b232d; --band-b: #161d26;
   --gold: #e3b01e; --gold-s: #f6d97a; --silver: #aab2bc; --silver-s: #e3e8ee; --bronze: #b0703f; --bronze-s: #e7b48c; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #11161c; --surface: #19202a; --ink: #e5eaf0; --muted: #9ba8b6; --line: #73818f; --rule: #2b3541;
   --task-fill: #1d3147; --task-stroke: #82b3e3;
-  --hold-fill: #453310; --hold-stroke: #e9af4d;
+  --hold-fill: #453310; --hold-stroke: #e9af4d; --rework: #ff7b72;
   --band-a: #1b232d; --band-b: #161d26;
   --gold: #e3b01e; --gold-s: #f6d97a; --silver: #aab2bc; --silver-s: #e3e8ee; --bronze: #b0703f; --bronze-s: #e7b48c; color-scheme: dark }
 
@@ -37,6 +37,9 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
 .page { max-width: none; margin: 0 auto; padding-inline: 16px; padding-block: 10px 32px; display: flex; flex-direction: column; gap: 10px; }
 .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
 .top .summary { margin: 0; }
+.top .kpi { margin: 0; display: flex; gap: 18px; align-items: baseline; }
+.top .kpi b { font: 700 22px var(--sans); }
+.top .kpi span span { font: 600 12px var(--sans); color: var(--muted, inherit); margin-left: 5px; }
 h1 { font-size: 18px; font-weight: 600; margin: 0; text-wrap: balance; }
 .lede { margin: 6px 0 0; color: var(--muted); max-width: 65ch; }
 h2 { font-size: 16px; font-weight: 600; margin: 0; }
@@ -44,7 +47,7 @@ h2 { font-size: 16px; font-weight: 600; margin: 0; }
 .state { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .scroller { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
 .scroller:focus-visible { outline: 2px solid var(--task-stroke); outline-offset: 2px; }
-.scroller svg { display: block; width: 100%; height: auto; max-height: calc(100vh - 190px); min-height: 280px; }
+.scroller svg { display: block; width: 100%; min-width: 900px; height: auto; max-height: calc(100vh - 190px); min-height: 280px; }
 
 .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 8px; }
 .stat { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; text-align: left; padding: 9px 11px; background: var(--surface); color: var(--ink);
@@ -86,7 +89,7 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
 .btn:focus-visible, #panel summary:focus-visible, #panel input:focus-visible, #panel select:focus-visible { outline: 2px solid var(--task-stroke); outline-offset: 2px; }
 #panel, .fold { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; }
 #panel summary, .fold summary { font-weight: 600; cursor: pointer; }
-#panel-body, #weights-body, #staff-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 12px; }
+#panel-body, #weights-body, #staff-body, #rework-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 12px; }
 #panel fieldset, .fold fieldset { border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px 12px; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
 #panel fieldset.wide { grid-column: 1 / -1; }
 #panel legend, .fold legend { font-size: 12px; font-weight: 600; color: var(--muted); padding: 0 4px; letter-spacing: .04em; text-transform: uppercase; }
@@ -106,7 +109,7 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
 .fold .ctl { grid-template-columns: minmax(0, 1fr) 5em 0; }
 #cost { display: flex; flex-direction: column; gap: 8px; }
 .fold table { border-collapse: collapse; font-size: 13px; } .fold th { text-align: left; font-weight: 500; color: var(--muted); padding: 2px 10px 6px 0; } .fold td { padding: 3px 10px 3px 0; }
-.cost { display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(3, minmax(120px, 1fr)); gap: 8px; }
+.cost { display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
 .cost-total { border-color: var(--task-stroke); background: var(--task-fill); }
 .cost-total .stat-n { font-size: 34px; }
 .cost-part { display: flex; flex-direction: column; gap: 2px; padding: 9px 11px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; min-width: 0; }
@@ -131,19 +134,36 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
 .pbundle { fill: none; stroke: var(--hold-stroke); stroke-width: 2.5; }
 .feed { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 4 4; }
 .band-a { fill: var(--band-a); } .band-b { fill: var(--band-b); }
-.t-label { fill: var(--ink); font: 600 12px var(--sans); text-anchor: middle; }
+.t-label { fill: var(--ink); font: 600 13px var(--sans); text-anchor: middle; }
 .brk { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
-.t-brk { fill: var(--ink); font: 600 22px var(--sans); text-anchor: middle; font-variant-numeric: tabular-nums; }
-.t-sub { fill: var(--muted); font: 400 10.5px var(--sans); text-anchor: middle; }
-.t-lane { fill: var(--muted); font: 500 10px var(--sans); text-anchor: end; }
+.t-brk { paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; fill: var(--ink); font: 600 22px var(--sans); text-anchor: middle; font-variant-numeric: tabular-nums; }
+.t-sub { fill: var(--muted); font: 400 11.5px var(--sans); text-anchor: middle; }
+.t-lane { fill: var(--muted); font: 500 11px var(--sans); text-anchor: end; }
 .inbound { fill: none; stroke: var(--line); stroke-width: 1; opacity: .7; }
 .thread { fill: none; stroke: var(--task-stroke); stroke-width: 1; opacity: .5; }
-.t-stage { fill: var(--muted); font: 600 10.5px var(--sans); letter-spacing: .09em; text-anchor: middle; text-transform: uppercase; }
+.t-stage { fill: var(--muted); font: 600 11.5px var(--sans); letter-spacing: .09em; text-anchor: middle; text-transform: uppercase; }
+.rwloop { fill: none; stroke: var(--rework); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.rwhead { fill: var(--rework); stroke: var(--rework); stroke-width: 1; stroke-linejoin: round; }
+.rwscrap { fill: none; stroke: var(--rework); stroke-width: 3.6; stroke-linecap: round; }
+.dump { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.ppl { fill: var(--surface); stroke: var(--ink); stroke-width: .95; stroke-linecap: round; stroke-linejoin: round; } .ppl path:last-child, .ppl circle { fill: none; } .ppl path:first-child { fill: var(--surface); }
+.t-rw { fill: var(--rework); font: 700 11.5px var(--sans); text-anchor: middle; }
+@keyframes crawl { to { stroke-dashoffset: -16; } }
+.antwrap { position: relative; } .scroller .antwrap { min-width: 900px; } .scroller .antwrap > svg { min-width: 0; }
+.delta b { font-variant-numeric: tabular-nums; } .delta .up { color: #b3261e; } .delta .down { color: #1b6e3c; }
+@keyframes bump { 0% { background: var(--task-fill); } 100% { background: transparent; } } .top .kpi.bump { animation: bump 1.4s ease-out; }
+@media (prefers-color-scheme: dark) { .delta .up { color: #ff8a80; } .delta .down { color: #7bd69a; } }
+.antwrap > svg { display: block; }
+.scroller .antwrap > svg.ants { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; min-height: 0; pointer-events: none; }
+.ant { fill: none; stroke: var(--task-stroke); stroke-width: 1.7; stroke-linecap: round; stroke-dasharray: 5 11; animation: crawl .8s linear infinite; }
+.ant-g { stroke: var(--muted); } .ant-a { stroke: var(--hold-stroke); }
+.ant-r { stroke: #fff; stroke-width: 1.6; stroke-dasharray: 8 8; animation-duration: .5s; }
+@media (prefers-reduced-motion: reduce) { .ants { display: none; } }
 .stage-rule { stroke: var(--rule); stroke-width: 1; }
 </style>
 
 <div class="page">
-  <header class="top"><h1>Product Complexity Model</h1><h2 id="state-name"></h2><p class="summary" id="state-summary"></p><button type="button" class="btn" id="present" aria-pressed="false">Present</button></header>
+  <header class="top"><h1>Product Complexity Model</h1><h2 id="state-name"></h2><p class="kpi" id="state-kpi"></p><p class="summary" id="state-summary"></p><button type="button" class="btn" id="present" aria-pressed="false">Present</button></header>
 
 
   <section class="state">
@@ -165,7 +185,10 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
       <p><strong>Left to right is the life of a product:</strong> order, receive, store, make, package, inspect, store, pick, pack, ship.</p>
       <p><strong>Every thin line is one item.</strong> Blue lines are things being made and shipped. Amber lines are packaging. Grey lines on the left are things being bought. A triangle is one item sitting in stock.</p>
       <p><strong>Drag the slider</strong> to grow the operation from Day one through Early and Mature to Sprawling. Nothing about the process changes. Only the number of items does.</p>
+      <p><strong>Tick Rework and scrap</strong> to see what complexity costs in things done twice or thrown away. Red curls with broad arrows are items that went round a step again. Scrap runs along one red line to the dumpsters at the bottom right, one dumpster for every 8 scrapped items. At Receiving the arrows are returns to source: goods sent back toward the vendor after a wrong item, a wrong count or a purchase order mismatch, and the scrap is goods rejected or damaged on arrival. The red count in each step is the full number. The share lost at each stage compounds as that stage gets more complex, and it feeds the people estimate, the cost index and OTIF. Set the rates under Rework and scrap rates.</p>
       <p><strong>Use the minus and plus buttons</strong> to add or take away one offering, size, package type or channel. The chart and the numbers under it show what came with it.</p>
+      <p><strong>Animate flow</strong> and dashes crawl along every line in the direction product moves, and round the red loops. It stops for anyone whose computer asks for reduced motion.</p>
+      <p><strong>OTIF</strong> is the share of orders that go out on time and complete. It falls as complexity compounds, and falls further when Rework and scrap is ticked.</p>
       <p><strong>The numbers under the chart</strong> count what the picture shows. Select any number for what it means.</p>
       <p><strong>What it leaves out:</strong> volume. It counts how many different things there are, not how much of each. The cost index is relative, not dollars. The people figure is an estimate.</p>
       <p><a href="complexity-model-guide.html">Read the full guide</a></p>
@@ -180,10 +203,13 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
         <span><svg width="22" height="18" aria-hidden="true"><path class="hold" d="M1,1h20l-10,16z"/></svg>Storage: one triangle per item kept in stock</span>
         <span><svg width="30" height="18" aria-hidden="true"><path class="pthread" style="opacity:1" d="M1,5H29M1,9H29M1,13H29"/></svg>One line per packaging item, thick when shared by a size</span>
         <span><svg width="30" height="18" aria-hidden="true"><path class="feed" d="M1,6H29M1,12H29"/></svg>One dashed line per case type</span>
+        <span><svg width="30" height="18" aria-hidden="true"><path class="rwloop" style="stroke-width:2.4" d="M3,13C20,-5 28,18 9,12"/><path class="rwhead" d="M4,12l8,-5v10z"/></svg>Rework: an item that went round a step again (tick Rework and scrap)</span>
+        <span><svg width="30" height="18" aria-hidden="true"><path class="rwloop" style="stroke-width:2.4" d="M4,2V8H12"/><path class="dump" style="stroke-width:1.2" d="M14,6H28L26,16H16z"/></svg>Scrap: runs to the dumpsters</span>
         <span><svg width="30" height="18" aria-hidden="true"><rect class="band-a" x="0" y="1" width="30" height="16"/></svg>Lane: one variant into one package type</span>
       </div>
   </details>
   <details id="panel"><summary>Parameters</summary><div id="panel-body"></div></details>
+  <details id="rework" class="fold"><summary>Rework and scrap rates</summary><div id="rework-body"></div></details>
   <details id="weights" class="fold"><summary>Logistics cost weights</summary><div id="weights-body"></div></details>
   <details id="io" class="fold"><summary>Save and load</summary>
     <div class="io">
@@ -195,8 +221,9 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
     </div></details>
   <details id="staffing" class="fold"><summary>Staffing rates</summary><div id="staff-body"></div></details>
   <div class="def" popover id="def-staffIndex"><h3>People to run it</h3><p>An estimate, not a staffing plan. Each function (operators, line associates, processing, warehouse, delivery, leads, quality, purchasing, maintenance, planning) is a fixed part plus a rate times what drives it, such as machines, offerings, pick faces or ways out the door. It does not know volume. Set the rates under Staffing rates.</p></div>
+  <div class="def" popover id="def-otif"><h3>OTIF</h3><p>On Time, In Full: the share of orders that leave on time and complete. Complexity alone makes some orders late (changeovers and ways out the door) and some short (more items to have in stock), and each added bit of complexity compounds the loss. With Rework and scrap ticked, rework makes orders later and scrap leaves them short. An estimate, not a measurement. Set the rates under Rework and scrap rates.</p></div>
   <div class="def" popover id="def-costIndex"><h3>Logistics cost index</h3><p>A relative measure, not dollars. Each logistics driver on the chart (components to receive, items in storage, pick faces, packing units, ways out the door, carrier types) is multiplied by a weight and added up, then scaled so the first keyframe is 1. Set the weights under Logistics cost weights.</p></div>
-  <p class="ver" id="ver">Product Complexity Model v1.2 · built 2026-10-04</p>
+  <p class="ver" id="ver">Product Complexity Model v1.3 · built 2026-10-04</p>
   <div id="defs"></div>
 </div>
 
@@ -395,6 +422,10 @@ const DEFINITIONS = {
   wipItems: { label: "WIP items", text: "Distinct half-made products held between the secondary step and packaging: one per offering in each WIP state." },
   changeoverDays: { label: "Days of changeovers", text: "Each machine can only absorb so many changeovers a day. This is how many days the busiest machine type needs to work through one cycle of them." },
   shipLanes: { label: "Ways out the door", text: "Every pairing of a sales channel with a way it ships. Each one is its own routine, paperwork and cut-off time." },
+  reworkLoops: { label: "Rework loops", text: "Items that go back through a step to be fixed in one cycle, counted across every stage. Each stage loses a share of what passes through it, and the share rises with that stage's own complexity. Set the rates under Rework and scrap rates." },
+  reworkPct: { label: "Rework %", text: "The chance that an item has to be reworked at some step on its way through, counted over every stage." },
+  scrapPct: { label: "Scrap %", text: "The chance that an item is scrapped at some step on its way through, counted over every stage. A set share of what goes wrong is scrapped instead of reworked." },
+  scrapExits: { label: "Scrap exits", text: "Items thrown away in one cycle, counted across every stage. A set share of what goes wrong is scrapped instead of reworked." },
   carrierTypes: { label: "Carrier types", text: "Distinct ways product leaves the building, such as common carrier, will call or delivery." }
 };
 
@@ -421,12 +452,12 @@ function buildGraph(s) {
   const groups = ["form2", "form2b"].map(form => ({ form, lanes: lanes.filter(l => l.form === form).map(l => l.index) })).filter(g => g.lanes.length);
   return {
     name: s.name, offerings: s.offerings, lanes, groups,
-    vendors: d.stats.vendors, pos: d.stats.posPerMonth, people: typeof staffing === "function" ? Math.round(staffing(s).total) : null,
+    vendors: d.stats.vendors, pos: d.stats.posPerMonth, rw: reworkOn ? reworkModel(s) : null, team: typeof staffing === "function" ? staffing(s).by : null, people: typeof staffing === "function" ? Math.round(staffing(s).total) : null,
     ingredients: s.components.perOffering, common: d.detail.commonIngredients,
     packagingItems: d.detail.packagingItems, caseTypes: d.detail.caseTypes,
     purchased: d.detail.purchasedItems, finished: d.counters.finishedSkus,
     units: d.detail.pickUnits.slice().sort((a, b) => UNIT_ORDER[a] - UNIT_ORDER[b]),
-    channels: Object.entries(s.channels).filter(e => e[1].on).map(e => ({ label: CHANNEL_LABEL[e[0]], unit: e[1].unit, ship: e[1].ship }))
+    animate: animateOn, channels: Object.entries(s.channels).filter(e => e[1].on).map(e => ({ label: CHANNEL_LABEL[e[0]], unit: e[1].unit, ship: e[1].ship }))
   };
 }
 
@@ -463,7 +494,7 @@ function renderChart(g, fit) {
   const triPos = (c, cx, i) => ({ x: cx - c.hw + (i % c.cols) * (TW + 4) + TW / 2, y: c.top + Math.floor(i / c.cols) * c.pitch + TH / 2 });
   const rawC = coins(g.purchased), finC = coins(g.finished), rawBottom = rawC.bottom + 6;
   const by = Math.max(Yb + 22, rawBottom + 16) + 34 + g.caseTypes * 5;
-  const railY = Math.max(Yb + 22, rawBottom + 16), H = by + 162;
+  const railY = Math.max(Yb + 22, rawBottom + 16), tn = g.team ? teamList(g.team) : [], tPer = Math.max(8, Math.floor((X.packout.r - 16 - G.pad) / 46)), tRows = Math.ceil(tn.length / tPer), H = Math.max(by + 162 + (g.rw ? 118 : 0), by + (g.rw ? 236 : 190) + tRows * 54);
   const rowY = (l, i) => l.y0 + (l.h - l.rows * pitch) / 2 + (i + 0.5) * pitch;
   const port = (i, n, a, b) => a + (i + 0.5) * (b - a) / n;
   const P = o => port(o, g.offerings, Y0, Y1);
@@ -506,7 +537,7 @@ function renderChart(g, fit) {
   for (const grp of g.groups) {
     const first = g.lanes[grp.lanes[0]], last = g.lanes[grp.lanes[grp.lanes.length - 1]];
     const a = first.y0, b = last.y0 + last.h, S = o => port(o, g.offerings, a + 4, b - 4);
-    tall.push({ kind: "task", x: X.secondary.c, a, b, lines: ["Secondary step", FORM_LABEL[grp.form], plural(g.offerings, "WIP item")] });
+    tall.push({ kind: "task", stage: "secondary", x: X.secondary.c, a, b, lines: ["Secondary step", FORM_LABEL[grp.form], plural(g.offerings, "WIP item")] });
     tall.push({ kind: "delay", x: X.wip.c, a, b });
     for (let o = 0; o < g.offerings; o++) {
       threads.push(fan(pR, P(o), X.g1.r, S(o)) + `H${X.wip.c}`);
@@ -519,19 +550,19 @@ function renderChart(g, fit) {
   let sk = 0;
   for (const l of g.lanes) {
     for (let i = 0; i < l.rows; i++) { const ry = rowY(l, i), t = triPos(finC, X.store.c, sk++); threads.push(`M${packL},${ry}H${X.inspect.c}` + fan(X.inspect.c + hw, ry, t.x, t.y)); }
-    tall.push({ kind: "task", x: X.pack.c, a: l.y0, b: l.y0 + l.h, lines: [l.machine, l.sub, plural(l.rows, "item")] });
-    tall.push({ kind: "task", x: X.inspect.c, a: l.y0, b: l.y0 + l.h, lines: ["Inspection"] });
+    tall.push({ kind: "task", stage: "pack", x: X.pack.c, a: l.y0, b: l.y0 + l.h, lines: [l.machine, l.sub, plural(l.rows, "item")] });
+    tall.push({ kind: "task", stage: "inspect", x: X.inspect.c, a: l.y0, b: l.y0 + l.h, lines: ["Inspection"] });
   }
   // outbound: a pick face per item per unit, packing by unit, then every way each channel ships
   const nSku = g.lanes.reduce((n, l) => n + l.rows, 0), U = g.units.length, F = nSku * U;
   const faceY = (i, u) => port(i * U + u, F, Y0 + 4, Y1 - 4);
   const split = (n, gap) => k => { const h = ((Yb - Y0) - (n - 1) * gap) / n, a = Y0 + k * (h + gap); return [a, a + h]; };
   for (let i = 0; i < nSku; i++) for (let u = 0; u < U; u++) { const t = triPos(finC, X.store.c, i); threads.push(fan(t.x, t.y, X.pick.c - hw, faceY(i, u))); }
-  tall.push({ kind: "task", x: X.pick.c, a: Y0, b: Y1, lines: ["Picking", plural(F, "pick face"), g.units.join(", ")] });
+  tall.push({ kind: "task", stage: "pick", x: X.pick.c, a: Y0, b: Y1, lines: ["Picking", plural(F, "pick face"), g.units.join(", ")] });
   const packBox = split(U, 14);
   g.units.forEach((unit, u) => { const [a, b] = packBox(u);
     for (let i = 0; i < nSku; i++) threads.push(fan(X.pick.c + hw, faceY(i, u), X.packout.c - hw, port(i, nSku, a + 4, b - 4)));
-    tall.push({ kind: "task", x: X.packout.c, a, b, lines: ["Packing", "by " + unit, plural(nSku, "item")] });
+    tall.push({ kind: "task", stage: "packout", x: X.packout.c, a, b, lines: ["Packing", "by " + unit, plural(nSku, "item")] });
   });
   const pairs = methods.map(m => g.channels.filter(c => c.ship.includes(m)).sort((x, y) => g.units.indexOf(x.unit) - g.units.indexOf(y.unit)));   // same order as the packing boxes, so lines do not cross inside a carrier
   const sGap = 12, unitH = ((Yb - Y0) - (methods.length - 1) * sGap) / nShip, shw = 72; let sy = Y0;
@@ -540,22 +571,22 @@ function renderChart(g, fit) {
       for (let i = 0; i < nSku; i++) threads.push(fan(X.packout.c + hw, port(i, nSku, pa + 4, pb - 4), X.ship.c - shw, port(ci * nSku + i, pairs[mi].length * nSku, a + 4, b - 4))); });
     tall.push({ kind: "task", x: X.ship.c, w: shw * 2, a, b, lines: [m].concat(pairs[mi].map(c => c.label)) });
   });
-  tall.push({ kind: "task", x: X.primary.c, a: Y0, b: Y1, lines: ["Primary step", plural(g.ingredients, "ingredient") + " into 1", plural(g.offerings, "offering")] });
+  tall.push({ kind: "task", stage: "primary", x: X.primary.c, a: Y0, b: Y1, lines: ["Primary step", plural(g.ingredients, "ingredient") + " into 1", plural(g.offerings, "offering")] });
   out.push(`<path class="thread" d="${threads.join("")}"/>`);
 
   // single flows where product is not yet, or no longer, split by item
 
   // packaging: every finished item has its own packaging item. One line each, bundled along a rail, fanning up into its row.
   const ox = X.g2.l + 8, r = 6, pk = [], nUnique = g.lanes.reduce((n, l) => n + l.rows, 0);
-  const nIng = g.offerings * nUniq + g.common, tX = X.raw.c - rawC.hw - 6, stubs = []; let topY = railY;
-  for (let n = 0; n < g.packagingItems; n++) { const t = triPos(rawC, X.raw.c, nIng + n); stubs.push(`M${t.x},${t.y}H${tX}`); topY = Math.min(topY, t.y); }
+  const nIng = g.offerings * nUniq + g.common, xe = X.raw.c + rawC.hw + 40, stubs = [];
+  for (let n = 0; n < g.packagingItems; n++) { const t = triPos(rawC, X.raw.c, nIng + n); stubs.push(fan(t.x + TW / 2, t.y, xe, railY)); }
   out.push(`<path class="pthread" d="${stubs.join("")}"/>`);
-  out.push(`<path class="pbundle" d="M${tX},${topY}V${railY - r}Q${tX},${railY} ${tX + r},${railY}H${ox}"/>`);
+  out.push(`<path class="pbundle" d="M${xe},${railY}H${ox}"/>`);
   for (const l of g.lanes) for (let i = 0; i < l.rows; i++) pk.push(fan(ox, railY, packL, rowY(l, i) + 1.3));
   out.push(`<path class="pthread" d="${pk.join("")}"/>`);
   const sh = []; for (const l of g.lanes) for (let j = 0; j < l.shared; j++) sh.push(fan(ox, railY, packL, port(j, l.shared, l.y0 + 5, l.y0 + l.h - 5)));
   out.push(`<path class="pshared" d="${sh.join("")}"/>`);
-  out.push(`<text class="t-sub" style="text-anchor:start" x="${X.raw.c + 14 + g.caseTypes * 5}" y="${railY - 6}">${esc(plural(g.packagingItems, "packaging item") + ": " + nUnique + " one per finished item, " + (g.packagingItems - nUnique) + " shared by size")}</text>`);
+  out.push(`<text class="t-sub" style="text-anchor:start" x="${xe + 12}" y="${railY - 6}">${esc(plural(g.packagingItems, "packaging item") + ": " + nUnique + " one per finished item, " + (g.packagingItems - nUnique) + " shared by size")}</text>`);
   // case types: one dashed line each, running up behind the machines
   for (let j = 0; j < g.caseTypes; j++) {
     const sx = X.raw.c + 4 + j * 5, ry = railY + 9 + j * 5, tx = packL + 16 + j * 5;
@@ -565,13 +596,17 @@ function renderChart(g, fit) {
 
   const textBlock = (cx, cy, lines) => lines.map((t, i) =>
     `<text class="${i ? "t-sub" : "t-label"}" x="${cx}" y="${cy + 4 + (i - (lines.length - 1) / 2) * 14}">${esc(t)}</text>`).join("");
+  const boxIdx = out.length;
   for (const n of tall) {
     if (n.kind === "task") out.push(`<rect class="task" x="${n.x - (n.w || G.boxW) / 2}" y="${n.a}" width="${n.w || G.boxW}" height="${n.b - n.a}" rx="9"/>` + textBlock(n.x, (n.a + n.b) / 2, n.lines));
     else out.push(`<path class="hold" d="M${n.x - 19},${n.a + 4}h19a19,19 0 0 1 19,19V${n.b - 23}a19,19 0 0 1 -19,19h-19z"/><text class="t-sub" x="${n.x}" y="${(n.a + n.b) / 2 + 4}">WIP</text>`);
   }
   tall.push({ kind: "task", x: X.po.c, a: poA, b: poB, lines: ["Purchase orders", plural(g.pos, "PO") + " a month", plural(g.vendors, "vendor")] });
-  tall.push({ kind: "task", x: X.receive.c, a: rcA, b: rcB, lines: ["Receive", plural(g.purchased, "thing") + " to buy"] });
+  tall.push({ kind: "task", stage: "receive", x: X.receive.c, a: rcA, b: rcB, lines: ["Receive", plural(g.purchased, "thing") + " to buy"] });
   for (const n of tall.slice(-2)) out.push(`<rect class="task" x="${n.x - hw}" y="${n.a}" width="${G.boxW}" height="${n.b - n.a}" rx="9"/>` + textBlock(n.x, (n.a + n.b) / 2, n.lines));
+  const rl = g.rw ? reworkLoops(g.rw, tall, { busY: by + 192, x0: X.packout.r + 8, x1: X.ship.r - 6, antY: by + 156 }) : null;
+  if (rl) { out.splice(boxIdx, 0, rl.under); out.push(rl.svg); }
+  if (tn.length) out.push(teamSvg(tn, G.pad + 6, by + (g.rw ? 222 : 176), tPer));
   for (const [k, count, c] of [["raw", g.purchased, rawC], ["store", g.finished, finC]]) {
     const cx = X[k].c, d = [];
     for (let i = 0; i < count; i++) { const col = i % c.cols, row = Math.floor(i / c.cols); d.push(`M${cx - c.hw + col * (TW + 4)},${c.top + row * c.pitch}h${TW}l${-TW / 2},${TH}z`); }
@@ -589,7 +624,12 @@ function renderChart(g, fit) {
     if (H > frameH && pitch > 0.5) return renderChart(g, { pitch: pitch * 0.93, top: top0 });
     return renderChart(g, { pitch, top: top0 + Math.max(0, (frameH - H) / 2), done: true });
   }
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${frameH}" role="img" aria-label="Process chart for the ${esc(g.name)} state: ${plural(g.finished, "finished item")}, one line each">${out.join("")}</svg>`;
+  const base = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${frameH}" role="img" aria-label="Process chart for the ${esc(g.name)} state: ${plural(g.finished, "finished item")}, one line each">${out.join("")}</svg>`;
+  if (!g.animate) return base;
+  // Ant crawl: a second, lighter picture laid over the first. It carries a sample of the lines, drawn with moving dashes, so the busy base picture is never redrawn.
+  const smp = (arr, cap) => { const k = Math.max(1, Math.ceil(arr.length / cap)); return arr.filter((_, i) => i % k === 0).join(""); };
+  const over = `<svg class="ants" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${frameH}" aria-hidden="true"><path class="ant" d="${smp(threads, 450)}"/><path class="ant ant-g" d="${smp(inb, 120)}"/><path class="ant ant-a" d="${smp(pk, 120)}"/>${rl ? `<path class="ant ant-r" d="${rl.ants}"/>` : ""}</svg>`;
+  return `<div class="antwrap">${base}${over}</div>`;
 }
 
 function summaryLine(s) {
@@ -599,13 +639,70 @@ function summaryLine(s) {
   return [plural(s.offerings, "offering"), plural(types.length, "machine type"), plural(pk, "package type"), plural(ch, "channel"), plural(derive(s).counters.finishedSkus, "finished item")].join(" · ");
 }
 
+// Red loops: each curl is an item that went round again (out of a step and back into it, broad arrow at the return). Scrap is one red line per item, dropping out of its step onto one bus and into the dumpsters at the bottom right, one dumpster for every 8 scrapped items, six at most. Up to CAP curls a step so a busy one stays readable; the red count in the box is always the full number.
+function reworkLoops(rw, tall, geo) {
+  const out = [], ants = [], scrapD = [], antD = [], heads = [], CAP = 14, SCAP = 7, DUMP = 8, bin = rw.scrap < DUMP, nDump = bin ? 0 : Math.min(6, Math.ceil(rw.scrap / DUMP)),
+    dw = 44, dg = 6, dTop = geo.busY + 18, dH = 42, dx = k => geo.x0 + dw / 2 + k * (dw + dg),
+    head = (x, y, ddx, ddy, L, Wd) => { const m = Math.hypot(ddx, ddy) || 1, ux = ddx / m, uy = ddy / m;
+      return `M${(x).toFixed(1)},${(y).toFixed(1)}L${(x - ux * L - uy * Wd).toFixed(1)},${(y - uy * L + ux * Wd).toFixed(1)}L${(x - ux * L + uy * Wd).toFixed(1)},${(y - uy * L - ux * Wd).toFixed(1)}z`; };
+  let item = 0, maxX = geo.x0;
+  for (const st of Object.keys(rw.stages)) {
+    const boxes = tall.filter(n => n.stage === st), tot = boxes.reduce((n, b) => n + (b.b - b.a), 0) || 1, r = rw.stages[st];
+    boxes.forEach((b, bi) => { const share = (b.b - b.a) / tot, w = (b.w || G.boxW) / 2, xr = b.x + w, h = b.b - b.a;
+      const er = r.rework * share, es = r.scrap * share, nr = Math.min(CAP, Math.ceil(er - 1e-9)), ns = Math.min(SCAP, Math.ceil(es - 1e-9)), d = [], hd = [];
+      for (let i = 0; i < nr; i++) { const y = b.a + (i + 0.5) * h / nr, v = ((i * 7 + bi * 3) % 5) / 4, rad = Math.min(14 + v * 8, h / nr * 0.5 + 6), len = 34 + v * 18, ey = y + rad * 0.9;
+        if (st === "receive") { const xl = b.x - w, rr = Math.min(10 + v * 3, h / nr * 0.5 + 4), e2 = y + rr * 0.8;
+          d.push(`M${xl},${y.toFixed(1)}C${(xl - 36).toFixed(1)},${(y - rr * 2.4).toFixed(1)} ${(xl - 4).toFixed(1)},${(y + rr * 2.6).toFixed(1)} ${(xl - 28).toFixed(1)},${e2.toFixed(1)}`);
+          hd.push(head(xl - 30, e2, -1, 0, 9, 5.5)); continue; }
+        d.push(`M${xr},${y.toFixed(1)}C${(xr + len).toFixed(1)},${(y - rad * 2.4).toFixed(1)} ${(xr + len + 8).toFixed(1)},${(y + rad * 2.6).toFixed(1)} ${(xr + 14).toFixed(1)},${ey.toFixed(1)}`);
+        hd.push(head(xr + 1, ey, -13, -1, 13, 7.5)); }
+      for (let i = 0; i < ns; i++) { const x = b.x - w + (i + 0.5) * (2 * w) / ns, v = ((i * 5 + bi * 2) % 4) / 3, rad = 7 + v * 4, len = 26 + v * 8, y = b.b, k = item++ % Math.max(1, nDump), tx = dx(k), by0 = geo.busY;
+        scrapD.push(`M${x.toFixed(1)},${y}C${(x - rad * 2).toFixed(1)},${y + len * 0.35} ${(x + rad * 2).toFixed(1)},${y + len * 0.7} ${x.toFixed(1)},${y + len}V${by0 - 10}Q${x.toFixed(1)},${by0} ${(x + 10).toFixed(1)},${by0}H${(tx - 10).toFixed(1)}Q${tx.toFixed(1)},${by0} ${tx.toFixed(1)},${by0 + 10}V${dTop - 4}`);
+        antD.push(`M${x.toFixed(1)},${geo.antY}V${by0 - 10}Q${x.toFixed(1)},${by0} ${(x + 10).toFixed(1)},${by0}H${(tx - 10).toFixed(1)}Q${tx.toFixed(1)},${by0} ${tx.toFixed(1)},${by0 + 10}V${dTop - 4}`);
+        heads.push(head(tx, dTop + 4, 0, 1, 12, 7)); maxX = Math.max(maxX, tx); }
+      if (d.length) { out.push(`<path class="rwloop" d="${d.join("")}"/><path class="rwhead" d="${hd.join("")}"/>`); ants.push(d.join("")); }
+      const a = Math.round(er), c = Math.round(es);
+      if (a + c > 0 && h >= 90) out.push(`<text class="t-rw" x="${b.x}" y="${b.a + 14}">${a ? a + (st === "receive" ? " returned" : " rework") : ""}${a && c ? " · " : ""}${c ? c + " scrap" : ""}</text>`); });
+  }
+  const under = scrapD.length ? `<path class="rwloop" d="${scrapD.join("")}"/>` : "";
+  if (scrapD.length) { out.push(`<path class="rwhead" d="${heads.join("")}"/>`); ants.push(antD.join("")); }
+  // dumpsters: simple line drawings, one for every 8 scrapped items
+  for (let k = 0; k < nDump; k++) { const x = geo.x0 + k * (dw + dg), y = dTop, bo = y + dH;
+    out.push(`<path class="dump" d="M${x},${y + 8}H${x + dw}L${x + dw - 6},${bo - 7}H${x + 6}z M${x - 3},${y + 8}H${x + dw + 3} M${x + dw - 8},${y + 8}L${x + dw + 6},${y - 4} M${x + 15},${y + 12}L${x + 17},${bo - 10} M${x + 22},${y + 12}V${bo - 10} M${x + 29},${y + 12}L${x + 27},${bo - 10}"/><circle class="dump" cx="${x + 10}" cy="${bo - 3}" r="3.5"/><circle class="dump" cx="${x + dw - 10}" cy="${bo - 3}" r="3.5"/>`); }
+  if (bin) { const x = geo.x0 + 8, y = dTop + 4, bo = y + 38;
+    out.push(`<path class="dump" d="M${x + 4},${y + 6}H${x + 28}L${x + 25},${bo - 5}H${x + 7}z M${x + 1},${y + 6}H${x + 31} M${x + 1},${y + 6}Q${x + 3},${y} ${x + 10},${y + 1}H${x + 22}Q${x + 29},${y} ${x + 31},${y + 6} M${x + 11},${y + 11}L${x + 12},${bo - 9} M${x + 16},${y + 11}V${bo - 9} M${x + 21},${y + 11}L${x + 20},${bo - 9} M${x + 28},${y + 6}L${x + 38},${y - 2}"/><circle class="dump" cx="${x + 9}" cy="${bo - 1}" r="3.5"/><circle class="dump" cx="${x + 23}" cy="${bo - 1}" r="3.5"/>`);  }
+  return { svg: out.join(""), under, ants: ants.join("") };
+}
+
+// The team: one small line figure per person, drawn bottom left. Roles are approximated from the staffing estimate, one figure type per function.
+const TEAM_ROLES = [["leads", "lead"], ["purchasing", "buyer"], ["planning", "planner"], ["quality", "quality"], ["maintenance", "mechanic"], ["operators", "operator"],
+  ["associates", "associate"], ["processing", "processor"], ["whFaces", "picker"], ["whLanes", "shipper"], ["delivery", "driver"], ["rework", "handler"]];
+function teamList(by) {
+  const total = Math.round(Object.values(by).reduce((n, v) => n + v, 0)), rows = TEAM_ROLES.map(([k, kind]) => ({ kind, v: by[k] || 0, n: Math.floor(by[k] || 0) }));
+  let left = total - rows.reduce((n, r) => n + r.n, 0);
+  rows.slice().sort((a, b) => (b.v - b.n) - (a.v - a.n)).forEach(r => { if (left > 0 && r.v - r.n > 0) { r.n++; left--; } });
+  const out = []; rows.forEach(r => { for (let i = 0; i < r.n; i++) out.push({ kind: r.kind, alt: i % 2 === 1 }); });
+  return out;
+}
+function personIcon(kind, alt, x, y) {
+  const hair = alt ? "M7,9C6,2.5 18,2.5 17,9V14M7,9V14" : "M7,8C7,3.2 17,3.2 17,8", cap = "M6.5,8C6.5,1.8 17.5,1.8 17.5,8z M17.5,7.6H21.5", hat = "M6,8C6,1.2 18,1.2 18,8z M4.5,8H19.5 M12,1.6V5",
+    collar = "M9.2,16.2L12,20L14.8,16.2", tie = collar + " M12,20L10.9,24L12,27L13.1,24z", vest = "M8.4,18.4V27 M15.6,18.4V27", box = "M13.5,20H23.5V27H13.5z M13.5,23.2H23.5", bun = "M7,8C7,3.2 17,3.2 17,8 M12,3.2m-2,0a2,2 0 1,0 4,0a2,2 0 1,0 -4,0";
+  const top = { lead: hat, buyer: hair, planner: bun, quality: hair, mechanic: hat, operator: cap, associate: cap + (alt ? " M7,9V14" : ""), processor: cap, picker: cap, shipper: hair, driver: cap, handler: cap }[kind];
+  const mid = { lead: vest, buyer: tie, planner: collar, quality: collar, mechanic: collar, operator: vest, associate: collar, processor: collar, picker: collar, shipper: "", driver: "", handler: "" }[kind];
+  const ex = { shipper: box, driver: box, handler: box }[kind] || "";
+  return `<g transform="translate(${x},${y}) scale(1.7)" class="ppl"><path d="M3,28C3,19.5 7.5,16 12,16C16.5,16 21,19.5 21,28z"/><circle cx="12" cy="9.5" r="5"/><path d="${top} ${mid} ${ex}"/></g>`;
+}
+function teamSvg(list, x0, y0, per) { return `<g class="team" aria-hidden="true">` + list.map((p, i) => personIcon(p.kind, p.alt, x0 + (i % per) * 46, y0 + Math.floor(i / per) * 54)).join("") + `</g>`; }
+
 const STAT_ORDER = ["finishedSkus", "inventoryItems", "vendors", "posPerMonth", "componentItems", "ingredientItems", "packagingItems", "caseTypes", "boms", "wipStates", "wipItems",
-  "routings", "changeoversPerCycle", "changeoverDays", "pickFaces", "shipLanes", "carrierTypes"];
+  "routings", "changeoversPerCycle", "changeoverDays", "pickFaces", "shipLanes", "carrierTypes", "reworkLoops", "scrapExits", "reworkPct", "scrapPct"];
 
 function statsStrip(s, i) {
-  const st = derive(s).stats;
-  return `<div class="stats">` + STAT_ORDER.map(k =>
-    `<button class="stat" type="button" id="stat-${i}-${k}" popovertarget="def-${k}"><span class="stat-n">${st[k].toLocaleString("en-US")}</span><span class="stat-l">${esc(DEFINITIONS[k].label)}</span></button>`).join("") + `</div>`;
+  const st = Object.assign({}, derive(s).stats), rw = reworkOn ? reworkModel(s) : null;
+  if (rw) { st.reworkLoops = rw.rework; st.scrapExits = rw.scrap; st.reworkPct = rw.reworkPct; st.scrapPct = rw.scrapPct; }
+  const show = (k, v) => k === "reworkPct" || k === "scrapPct" ? (v < 10 ? v.toFixed(1) : Math.round(v)) + "%" : v.toLocaleString("en-US");
+  return `<div class="stats">` + STAT_ORDER.filter(k => st[k] !== undefined).map(k =>
+    `<button class="stat" type="button" id="stat-${i}-${k}" popovertarget="def-${k}"><span class="stat-n">${show(k, st[k])}</span><span class="stat-l">${esc(DEFINITIONS[k].label)}</span></button>`).join("") + `</div>`;
 }
 
 
@@ -684,6 +781,7 @@ function redraw() {
   const live = activeMachineTypes(state), chOn = Object.values(state.channels).some(c => c.on);
   document.getElementById("state-name").textContent = typeof whatIf !== "undefined" && whatIf ? whatIf.base.name : state.name;   // a trial keeps the base name so the line beside it does not shift
   document.getElementById("state-summary").textContent = summaryLine(state);
+  { const k = document.getElementById("state-kpi"); if (k) k.innerHTML = `<span style="margin:0"><b>${Math.round(staffing(state).total)}</b><span>people</span></span><span style="margin:0"><b>${Math.round(otifModel(state).otif)}%</b><span>OTIF</span></span>`; }
   document.getElementById("cost").innerHTML = costStrip(state) + staffStrip(state);
   document.getElementById("stats").innerHTML = statsStrip(state, 0);
   document.getElementById("chart").innerHTML = !live.length
@@ -711,24 +809,28 @@ const COST_DRIVERS = [
   { key: "pickFace", group: "Warehouse", label: "Each pick face", stat: "pickFaces", w: 1 },
   { key: "packUnit", group: "Warehouse", label: "Each packing unit (each, case, pallet)", stat: "packUnits", w: 10 },
   { key: "shipLane", group: "Outbound", label: "Each way out the door", stat: "shipLanes", w: 15 },
-  { key: "carrier", group: "Outbound", label: "Each carrier type", stat: "carrierTypes", w: 30 }
+  { key: "carrier", group: "Outbound", label: "Each carrier type", stat: "carrierTypes", w: 30 },
+  { key: "reworkLoop", group: "Rework and scrap", label: "Each rework loop", stat: "reworkLoops", w: 4 },
+  { key: "scrapExit", group: "Rework and scrap", label: "Each scrap exit", stat: "scrapExits", w: 12 }
 ];
-const COST_GROUPS = ["Inbound", "Warehouse", "Outbound"];
+const COST_GROUPS = ["Inbound", "Warehouse", "Outbound", "Rework and scrap"];
+const costGroups = () => reworkOn ? COST_GROUPS : COST_GROUPS.slice(0, 3);   // the fourth group only counts while the box is ticked
 let weights = {};
 COST_DRIVERS.forEach(d => { weights[d.key] = d.w; });
 try { const v = JSON.parse(localStorage.getItem(W_KEY)); if (v) COST_DRIVERS.forEach(d => { if (typeof v[d.key] === "number" && v[d.key] >= 0) weights[d.key] = v[d.key]; }); } catch (e) { /* storage is optional */ }
 
 function logisticsCost(s) {
-  const d = derive(s), val = Object.assign({ packUnits: d.detail.pickUnits.length }, d.stats), groups = {};
-  COST_GROUPS.forEach(g => { groups[g] = 0; });
-  COST_DRIVERS.forEach(c => { groups[c.group] += weights[c.key] * val[c.stat]; });
-  return { groups, total: COST_GROUPS.reduce((n, g) => n + groups[g], 0) };
+  const d = derive(s), val = Object.assign({ packUnits: d.detail.pickUnits.length }, d.stats), groups = {}, rw = reworkOn ? reworkModel(s) : { rework: 0, scrap: 0 };
+  val.reworkLoops = rw.rework; val.scrapExits = rw.scrap;
+  const live = costGroups(); live.forEach(g => { groups[g] = 0; });
+  COST_DRIVERS.forEach(c => { if (live.includes(c.group)) groups[c.group] += weights[c.key] * val[c.stat]; });
+  return { groups, total: live.reduce((n, g) => n + groups[g], 0) };
 }
 function costStrip(s) {
   const base = logisticsCost(typeof frames !== "undefined" && frames.length ? frames[0] : s).total || 1, c = logisticsCost(s);
   const idx = v => (v / base).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   return `<div class="cost"><button class="stat cost-total" type="button" id="cost-total" popovertarget="def-costIndex"><span class="stat-n">${idx(c.total)}</span><span class="stat-l">Logistics cost index (first keyframe = 1)</span></button>` +
-    COST_GROUPS.map(g => `<div class="cost-part"><span class="stat-n">${idx(c.groups[g])}</span><span class="stat-l">${g}</span><span class="cost-bar"><span style="width:${c.total ? (c.groups[g] / c.total * 100).toFixed(1) : 0}%"></span></span></div>`).join("") + `</div>`;
+    costGroups().map(g => `<div class="cost-part"><span class="stat-n">${idx(c.groups[g])}</span><span class="stat-l">${g}</span><span class="cost-bar"><span style="width:${c.total ? (c.groups[g] / c.total * 100).toFixed(1) : 0}%"></span></span></div>`).join("") + `</div>`;
 }
 
 if (typeof document !== "undefined") {
@@ -756,7 +858,8 @@ const STAFF_FUNCS = [
   { key: "quality", group: "Support", label: "Quality", per: "100 finished SKUs", driver: "skus100", rate: 0.735, floor: 0.118 },
   { key: "purchasing", group: "Support", label: "Purchasing", per: "100 components", driver: "components100", rate: 0.252, floor: 0.11 },
   { key: "maintenance", group: "Support", label: "Maintenance", per: "packaging machine", driver: "machines", rate: 0.175, floor: -0.05 },
-  { key: "planning", group: "Support", label: "Planning and coordination", per: "100 changeovers per cycle", driver: "changeovers100", rate: 0.296, floor: 0.125 }
+  { key: "planning", group: "Support", label: "Planning and coordination", per: "100 changeovers per cycle", driver: "changeovers100", rate: 0.296, floor: 0.125 },
+  { key: "rework", group: "Support", label: "Rework and scrap handling (only when Rework and scrap is ticked)", per: "10 rework loops and scrap exits", driver: "rework10", rate: 0.5, floor: 0 }
 ];
 const STAFF_GROUPS = ["Production", "Warehouse and delivery", "Support"];
 let staffRates = {};
@@ -766,7 +869,7 @@ try { const v = JSON.parse(localStorage.getItem(S_KEY)); if (v) STAFF_FUNCS.forE
 function staffing(s) {
   const d = derive(s), st = d.stats, on = Object.values(s.channels).filter(c => c.on);
   const drv = { machines: activeMachineTypes(s).reduce((n, m) => n + m.machines, 0), offerings: s.offerings, shipLanes: st.shipLanes, pickFaces100: st.pickFaces / 100,
-    ownFleet: OWN_FLEET.filter(m => on.some(c => c.ship.includes(m))).length, skus100: st.finishedSkus / 100, components100: st.componentItems / 100, changeovers100: st.changeoversPerCycle / 100, supervised: 0 };
+    ownFleet: OWN_FLEET.filter(m => on.some(c => c.ship.includes(m))).length, skus100: st.finishedSkus / 100, components100: st.componentItems / 100, changeovers100: st.changeoversPerCycle / 100, supervised: 0, rework10: reworkOn ? reworkModel(s).events / 10 : 0 };
   const groups = {}, by = {};
   STAFF_GROUPS.forEach(g => { groups[g] = 0; });
   for (const f of STAFF_FUNCS) { if (f.driver === "supervised") drv.supervised = groups["Production"] + groups["Warehouse and delivery"];
@@ -775,7 +878,7 @@ function staffing(s) {
 }
 function staffStrip(s) {
   const c = staffing(s), one = v => v.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  return `<div class="cost"><button class="stat cost-total" type="button" id="staff-total" popovertarget="def-staffIndex"><span class="stat-n">${Math.round(c.total)}</span><span class="stat-l">People to run it (estimate)</span></button>` +
+  return `<div class="cost"><button class="stat cost-total" type="button" id="staff-total" popovertarget="def-staffIndex"><span class="stat-n">${Math.round(c.total)}</span><span class="stat-l">People to run it (estimate)</span></button>` + otifTile(s) +
     STAFF_GROUPS.map(g => `<div class="cost-part"><span class="stat-n">${one(c.groups[g])}</span><span class="stat-l">${g}</span><span class="cost-bar"><span style="width:${c.total ? (c.groups[g] / c.total * 100).toFixed(1) : 0}%"></span></span></div>`).join("") + `</div>`;
 }
 
@@ -791,6 +894,82 @@ if (typeof document !== "undefined") {
     try { localStorage.setItem(S_KEY, JSON.stringify(staffRates)); } catch (err) { /* optional */ }
     redraw(); });
 }
+
+function otifTile(s) {
+  const o = otifModel(s), pc = v => Math.round(v) + "%";
+  return `<button class="stat cost-total" type="button" id="otif-total" popovertarget="def-otif"><span class="stat-n">${pc(o.otif)}</span><span class="stat-l">OTIF, on time and in full<br>On time ${pc(o.onTime)} · In full ${pc(o.inFull)}</span></button>`;
+}
+
+// ---------- Rework and scrap. A switch, not part of any keyframe. Each stage loses a share of what passes through it; the share rises with that stage's own complexity. ----------
+
+const R_KEY = "pcm-rework-v3";
+// Compounding: percent lost at a stage = start * (1 + growth) ^ (units of that stage's complexity). Each unit multiplies the loss rather than adding to it.
+const RW_STAGES = [
+  { key: "receive", label: "Receiving returns to vendor", per: "100 things to buy", base: 0.5, g: 0.7, drv: (s, d) => d.stats.componentItems / 100, n: (s, d) => d.stats.componentItems },
+  { key: "primary", label: "Primary step", per: "5 changeovers", base: 0.8, g: 0.7, drv: (s, d) => d.detail.changeovers.primary / 5, n: (s, d) => s.offerings },
+  { key: "secondary", label: "Secondary step", per: "10 changeovers", base: 0.8, g: 0.6, drv: (s, d) => d.detail.changeovers.secondary / 10, n: (s, d) => d.detail.wipItems },
+  { key: "pack", label: "Packaging", per: "100 changeovers", base: 0.8, g: 0.8, drv: (s, d) => d.detail.changeovers.packaging / 100, n: (s, d) => d.stats.finishedSkus },
+  { key: "inspect", label: "Inspection", per: "100 finished items", base: 0.4, g: 0.6, drv: (s, d) => d.stats.finishedSkus / 100, n: (s, d) => d.stats.finishedSkus },
+  { key: "pick", label: "Picking", per: "300 pick faces", base: 0.3, g: 0.7, drv: (s, d) => d.stats.pickFaces / 300, n: (s, d) => d.stats.pickFaces },
+  { key: "packout", label: "Packing", per: "3 ways out the door", base: 0.4, g: 0.7, drv: (s, d) => d.stats.shipLanes / 3, n: (s, d) => d.stats.finishedSkus * d.detail.pickUnits.length }
+];
+const RW_CAP = 25;       // no stage loses more than this percent
+let reworkOn = true, rwRates = { scrapShare: 25, lateShare: 30, shortShare: 50, lateBase: 0.5, lateG: 0.45, fullBase: 0.5, fullG: 0.45 };
+RW_STAGES.forEach(t => { rwRates[t.key] = { base: t.base, g: t.g }; });
+const RW_NUMS = ["scrapShare", "lateShare", "shortShare", "lateBase", "lateG", "fullBase", "fullG"];
+function loadRework(v) { if (!v) return; reworkOn = !!v.on; RW_NUMS.forEach(k => { if (isFinite(v[k])) rwRates[k] = +v[k]; });
+  RW_STAGES.forEach(t => { const x = v[t.key]; if (x && isFinite(x.base) && isFinite(x.g)) rwRates[t.key] = { base: +x.base, g: +x.g }; }); }
+try { loadRework(JSON.parse(localStorage.getItem(R_KEY))); } catch (e) { /* storage is optional */ }
+function saveRework() { try { localStorage.setItem(R_KEY, JSON.stringify(Object.assign({ on: reworkOn }, rwRates))); } catch (e) { /* optional */ } }
+
+// Per stage: items passing through, the percent that go wrong, and how many end up reworked or scrapped in one cycle.
+function reworkModel(s) {
+  const d = derive(s), sc = rwRates.scrapShare / 100, stages = {}; let rework = 0, scrap = 0;
+  for (const t of RW_STAGES) {
+    const items = t.n(s, d), pct = Math.min(RW_CAP, rwRates[t.key].base * Math.pow(1 + rwRates[t.key].g, t.drv(s, d))), bad = items * pct / 100;
+    stages[t.key] = { items, pct, rework: bad * (1 - sc), scrap: bad * sc }; rework += bad * (1 - sc); scrap += bad * sc;
+  }
+  const hit = f => (1 - Object.values(stages).reduce((n, x) => n * (1 - x.pct / 100 * f), 1)) * 100;   // chance an item is hit at some step on its way
+  return { stages, rework: Math.round(rework), scrap: Math.round(scrap), events: rework + scrap, reworkPct: hit(1 - sc), scrapPct: hit(sc) };
+}
+
+// OTIF: share of orders that go out on time and complete. Complexity alone costs some of each; with Rework and scrap ticked, rework makes orders late and scrap leaves them short.
+function otifModel(s) {
+  const d = derive(s), st = d.stats, R = rwRates, cap = x => Math.min(0.9, x);
+  let late = cap(R.lateBase / 100 * Math.pow(1 + R.lateG, st.changeoversPerCycle / 100 + st.shipLanes / 6));
+  let short = cap(R.fullBase / 100 * Math.pow(1 + R.fullG, st.finishedSkus / 100 + st.componentItems / 200));
+  let lateRw = 0, shortRw = 0;
+  if (reworkOn) { const m = reworkModel(s), sc = R.scrapShare / 100;
+    lateRw = 1 - Object.values(m.stages).reduce((n, x) => n * (1 - x.pct / 100 * (1 - sc) * R.lateShare / 100), 1);
+    shortRw = 1 - Object.values(m.stages).reduce((n, x) => n * (1 - x.pct / 100 * sc * R.shortShare / 100), 1); }
+  const onTime = (1 - late) * (1 - lateRw), inFull = (1 - short) * (1 - shortRw);
+  return { onTime: onTime * 100, inFull: inFull * 100, otif: onTime * inFull * 100 };
+}
+
+if (typeof document !== "undefined") {
+  const box = document.getElementById("rework-body");
+  box.innerHTML = `<fieldset><legend>Share lost at each stage</legend><div class="tscroll"><table><thead><tr><th>Stage</th><th>Starts at percent</th><th>Grows by percent for each</th><th></th></tr></thead><tbody>` +
+    RW_STAGES.map(t => `<tr><td>${t.label}</td>
+      <td><input type="number" id="rb-${t.key}" data-r="${t.key}" data-f="base" min="0" max="25" step="0.1" value="${rwRates[t.key].base}" aria-label="${t.label} percent lost at the start"></td>
+      <td><input type="number" id="rk-${t.key}" data-r="${t.key}" data-f="g" min="0" max="5" step="0.05" value="${rwRates[t.key].g}" aria-label="${t.label} growth for each ${t.per}"></td><td>(1 = doubles) for each ${t.per}</td></tr>`).join("") +
+    `</tbody></table></div></fieldset>
+    <fieldset><legend>Scrap</legend><label class="ctl" for="r-scrapShare"><span>Percent of what goes wrong that is scrapped, not reworked</span><input type="number" id="r-scrapShare" data-r="scrapShare" min="0" max="100" step="1" value="${rwRates.scrapShare}"><span></span></label></fieldset>
+    <fieldset><legend>OTIF (on time, in full)</legend>
+      ${[["lateBase", "On time: percent of orders late at the start", 0, 50, 0.1], ["lateG", "On time: growth for each 100 changeovers plus 6 ways out (1 = doubles)", 0, 5, 0.05], ["fullBase", "In full: percent of orders short at the start", 0, 50, 0.1], ["fullG", "In full: growth for each 100 finished items plus 200 things to buy (1 = doubles)", 0, 5, 0.05],
+        ["lateShare", "Percent of reworked items that make an order late", 0, 100, 1], ["shortShare", "Percent of scrapped items that leave an order short", 0, 100, 1]].map(([k, l, lo, hi, st]) =>
+      `<label class="ctl" for="r-${k}"><span>${l}</span><input type="number" id="r-${k}" data-r="${k}" min="${lo}" max="${hi}" step="${st}" value="${rwRates[k]}"><span></span></label>`).join("")}
+    </fieldset>`;
+  box.addEventListener("change", e => { const k = e.target.dataset.r; if (!k) return;
+    if (RW_NUMS.includes(k)) { const v = Math.max(0, Math.min(+e.target.max, parseFloat(e.target.value) || 0)); rwRates[k] = v; e.target.value = v; }
+    else { const v = Math.max(0, Math.min(+e.target.max, parseFloat(e.target.value) || 0)); rwRates[k][e.target.dataset.f] = v; e.target.value = v; }
+    saveRework(); redraw(); });
+}
+
+// Ant crawl: dashes march along every line in the direction product moves. A viewer's own preference, not part of any keyframe.
+const A_KEY = "pcm-animate-v1";
+let animateOn = true;
+try { const a = localStorage.getItem(A_KEY); animateOn = a === null ? true : a === "1"; } catch (e) { /* storage is optional */ }
+function saveAnimate() { try { localStorage.setItem(A_KEY, animateOn ? "1" : "0"); } catch (e) { /* optional */ } }
 
 // ---------- Feature 6: keyframes and the master slider. A keyframe is a whole state; between two, the slider interpolates. ----------
 
@@ -938,18 +1117,32 @@ function trialLabel() {
   return ADD_KINDS.filter(a => whatIf.net[a.key]).map(a => { const n = whatIf.net[a.key];
     return (n > 0 ? "+" : "\u2212") + Math.abs(n) + " " + a.label.toLowerCase() + (Math.abs(n) === 1 ? "" : "s"); }).join(" \u00b7 ");
 }
+let lastDelta = null;   // what the last click changed: shown beside the buttons, cleared when you move on
+function trialMetrics(st) {
+  const d = derive(st), base = logisticsCost(frames.length ? frames[0] : st).total || 1;
+  return { people: staffing(st).total, otif: otifModel(st).otif, cost: logisticsCost(st).total / base, items: d.counters.finishedSkus, lanes: d.stats.shipLanes, loops: reworkOn ? reworkModel(st).events : 0 };
+}
+function deltaHtml() {
+  if (!lastDelta) return "";
+  const a = lastDelta.a, b = lastDelta.b, f = (v, n) => (v > 0 ? "+" : v < 0 ? "\u2212" : "") + Math.abs(v).toFixed(n),
+    part = (lbl, v, n, badUp) => { const r = +v.toFixed(n); if (!r) return ""; const bad = badUp ? r > 0 : r < 0; return `<span class="${bad ? "up" : "down"}"><b>${f(r, n)}</b> ${lbl}</span>`; };
+  const parts = [part("people", Math.round(b.people) - Math.round(a.people), 0, true), part("OTIF points", b.otif - a.otif, 1, false), part("cost index", b.cost - a.cost, 1, true),
+    part("finished items", b.items - a.items, 0, true), part("ways out", b.lanes - a.lanes, 0, true), part("rework loops", b.loops - a.loops, 0, true)].filter(Boolean);
+  return `<p class="delta" id="kf-delta" aria-live="polite"><strong>${esc(lastDelta.label)}:</strong> ${parts.length ? parts.join(" \u00b7 ") : "no change in these measures"}</p>`;
+}
 function addOne(kind, dir) {
   const def = ADD_KINDS.find(a => a.key === kind), cur = currentState(); if (!def || !def.can(cur, dir)) return;
   if (!whatIf) whatIf = { base: clone(cur), state: clone(cur), net: {} };
-  def.run(whatIf.state, dir);
+  const before = trialMetrics(whatIf.state), lbl = def.run(whatIf.state, dir); lastDelta = { label: (dir > 0 ? "Added " : "Took away ") + lbl, a: before, b: trialMetrics(whatIf.state) };
   whatIf.net[kind] = (whatIf.net[kind] || 0) + dir;
-  if (ADD_KINDS.every(a => !whatIf.net[a.key])) { whatIf = null; return; }   // back where it started
+  if (ADD_KINDS.every(a => !whatIf.net[a.key])) { whatIf = null; lastDelta = null; return; }   // back where it started
   whatIf.state.name = whatIf.base.name + " " + trialLabel();
 }
 function renderAddOne() {
   const cur = currentState();
   let h = ADD_KINDS.map(a => `<span class="pm"><button type="button" class="btn" id="sub-${a.key}" data-add="${a.key}" data-dir="-1" aria-label="Take away one ${a.label.toLowerCase()}"${a.can(cur, -1) ? "" : " disabled"}>\u2212</button><span class="pm-l" id="n-${a.key}"><b>${a.count(cur)}</b> ${a.count(cur) === 1 ? a.label.toLowerCase() : a.label.toLowerCase() + "s"}</span><button type="button" class="btn" id="add-${a.key}" data-add="${a.key}" data-dir="1" aria-label="Add one ${a.label.toLowerCase()}"${a.can(cur, 1) ? "" : " disabled"}>+</button></span>`).join("");
-  if (whatIf) h += `<button type="button" class="btn" id="add-undo" data-add="undo">Undo</button>`;
+  h += `<label class="chk" for="rw-on"><input type="checkbox" id="rw-on"${reworkOn ? " checked" : ""}>Rework and scrap</label><label class="chk" for="crawl-on"><input type="checkbox" id="crawl-on"${animateOn ? " checked" : ""}>Animate flow</label>`;
+  if (whatIf) h += `<button type="button" class="btn" id="add-undo" data-add="undo">Undo</button>` + deltaHtml();
   document.getElementById("kf-add").innerHTML = h;
 }
 function refresh(panelToo) {
@@ -965,9 +1158,10 @@ if (typeof document !== "undefined") {
   document.getElementById("defs").innerHTML = STAT_ORDER.map(k => `<div class="def" popover id="def-${k}"><h3>${esc(DEFINITIONS[k].label)}</h3><p>${esc(DEFINITIONS[k].text)}</p></div>`).join("");
   frames = loadFrames();
 
+  document.getElementById("kf-add").addEventListener("change", e => { if (e.target.id === "crawl-on") { animateOn = e.target.checked; saveAnimate(); redraw(); return; } if (e.target.id !== "rw-on") return; reworkOn = e.target.checked; saveRework(); refresh(false); document.getElementById("rw-on").focus(); });
   document.getElementById("kf-add").addEventListener("click", e => { const b = e.target.closest("[data-add]"); if (!b) return;
-    const id = b.id; if (b.dataset.add === "undo") whatIf = null; else addOne(b.dataset.add, +b.dataset.dir); refresh(); const again = document.getElementById(id); if (again) again.focus(); });
-  sl.addEventListener("input", () => { whatIf = null; let v = +sl.value; if (Math.abs(v - Math.round(v)) < 0.04) v = Math.round(v); pos = v; refresh(); });
+    const id = b.id; if (b.dataset.add === "undo") { whatIf = null; lastDelta = null; } else addOne(b.dataset.add, +b.dataset.dir); refresh(); const again = document.getElementById(id); if (again) again.focus(); });
+  sl.addEventListener("input", () => { whatIf = null; lastDelta = null; let v = +sl.value; if (Math.abs(v - Math.round(v)) < 0.04) v = Math.round(v); pos = v; refresh(); });
   document.getElementById("kf-ticks").addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (!b) return; whatIf = null; pos = +b.dataset.go; refresh(); document.getElementById("kf-go-" + pos).focus(); });
   document.getElementById("kf-tools").addEventListener("change", e => { if (e.target.id !== "kf-name" || !onFrame()) return;
     frames[Math.round(pos)].name = e.target.value.trim() || "Keyframe " + (Math.round(pos) + 1); saveFrames(); refresh(); });
@@ -1005,7 +1199,7 @@ if (typeof document !== "undefined") {
 
 // ---------- Feature 9: save and load keyframes as a file, and a chart-only presenting view. ----------
 
-function exportText() { return JSON.stringify({ app: "product-complexity-model", version: 1, toolVersion: "1.2", frames, weights, staffRates }, null, 2); }
+function exportText() { return JSON.stringify({ app: "product-complexity-model", version: 1, toolVersion: "1.3", frames, weights, staffRates, rework: Object.assign({ on: reworkOn }, rwRates) }, null, 2); }
 function importText(text) {
   let d; try { d = JSON.parse(text); } catch (e) { return "That is not valid JSON."; }
   const list = Array.isArray(d) ? d : d && d.frames;
@@ -1018,6 +1212,7 @@ function importText(text) {
   frames = f.map(filled); whatIf = null; pos = 0;
   if (d.weights) COST_DRIVERS.forEach(c => { if (typeof d.weights[c.key] === "number" && d.weights[c.key] >= 0) weights[c.key] = d.weights[c.key]; });
   if (d.staffRates) STAFF_FUNCS.forEach(c => { const x = d.staffRates[c.key]; if (x && isFinite(x.rate) && isFinite(x.floor)) staffRates[c.key] = { rate: +x.rate, floor: +x.floor }; });
+  if (d.rework) { loadRework(d.rework); saveRework(); const el = document.getElementById("rework-body"); if (el) el.querySelectorAll("[data-r]").forEach(i => { const k2 = i.dataset.r; i.value = RW_NUMS.includes(k2) ? rwRates[k2] : rwRates[k2][i.dataset.f]; }); const cb = document.getElementById("rw-on"); if (cb) cb.checked = reworkOn; }
   saveFrames();
   try { localStorage.setItem(W_KEY, JSON.stringify(weights)); localStorage.setItem(S_KEY, JSON.stringify(staffRates)); } catch (e) { /* optional */ }
   document.querySelectorAll("[data-w]").forEach(el => { el.value = weights[el.dataset.w]; });

@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- Complexity Model Guide v1.2 · built 2026-10-04 -->
+<!-- Complexity Model Guide v1.3 · built 2026-10-04 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="version" content="1.2">
+<meta name="version" content="1.3">
 <title>Complexity Model Guide</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 </head>
@@ -96,7 +96,8 @@ a { color: var(--blue); }
       <tr><td>Items to keep in inventory</td><td>7</td><td>141</td><td>297</td><td>945</td></tr>
       <tr><td>Pick faces in the warehouse</td><td>1</td><td>96</td><td>360</td><td>1,260</td></tr>
       <tr><td>Ways out the door</td><td>1</td><td>4</td><td>6</td><td>12</td></tr>
-      <tr><td>People to run it (estimate)</td><td>4</td><td>13</td><td>25</td><td>53</td></tr>
+      <tr><td>People to run it (estimate)</td><td>4</td><td>13</td><td>26</td><td>62</td></tr>
+      <tr><td>OTIF, on time and in full (estimate)</td><td>98%</td><td>96%</td><td>94%</td><td>77%</td></tr>
     </tbody>
   </table></div>
 
@@ -104,6 +105,9 @@ a { color: var(--blue); }
     <h2>How to use it</h2>
     <p><b>Drag the slider.</b> It runs through four saved states: Day one, Early, Mature and Sprawling. Between them the model fills in the steps, so you watch machines, package types and channels arrive one at a time.</p>
     <p><b>Add or take away one.</b> Under the slider are minus and plus buttons for an offering, a size, a package type and a channel. Press one and the chart redraws, and the numbers under it show what came with it.</p>
+    <p><b>See what each click changed.</b> After a plus or minus, a line beside the buttons lists the change: people, OTIF points, cost index, finished items, ways out and rework loops. Red is worse, green is better.</p>
+    <p><b>Rework and scrap.</b> Tick it to see what complexity costs in things done twice or thrown away. Red curls with broad arrows are items that went round a step again. At Receive they are returns toward the vendor. Scrap runs along one red line to a rolling bin, then to dumpsters, up to six, as it grows. Both boxes are ticked on load. Untick Rework and scrap to see the plant without it. Animate flow makes the lines crawl in the direction items move.</p>
+    <p><b>The team.</b> The small figures at the lower left are the people estimate, one per person. Hard hats are leads and maintenance, caps are operators and pickers, a figure carrying a box ships, a tie is purchasing and a bun is planning. The mix is an approximation from the staffing model.</p>
     <p><b>Change the assumptions.</b> The rollups at the bottom hold every setting: how many ingredients, how many machines, which channels ship which way. Change them and save your own states.</p>
   </div>
 
@@ -122,6 +126,8 @@ a { color: var(--blue); }
     <dt>Changeovers per cycle</dt><dd>Stops to switch a machine from one item to the next, counted over one round of making everything once.</dd>
     <dt>Ways out the door</dt><dd>Every pairing of a sales channel with a way it ships. Each has its own routine and cut-off time.</dd>
     <dt>People to run it</dt><dd>An estimate built from machines, offerings, pick faces and the other counts. It is a guide to scale, not a staffing plan.</dd>
+    <dt>OTIF</dt><dd>On Time, In Full: the share of orders that leave on time and complete. It falls as complexity compounds, and falls further when Rework and scrap is ticked. An estimate, not a measurement.</dd>
+    <dt>Rework % and scrap %</dt><dd>The chance that an item is hit by rework, or scrapped, at some step on its way through. Each stage loses more as it gets more complex, and the losses compound.</dd>
     <dt>Logistics cost index</dt><dd>A relative number, not dollars. Day one is 1. It rises with vendors, stock, pick faces and ways out the door.</dd>
   </dl>
 
@@ -129,10 +135,11 @@ a { color: var(--blue); }
     <h2>What it does not claim</h2>
     <p><b>It does not know volume.</b> The model counts how many different things there are, not how much of each gets made or sold. A plant with half the items and the same sales is a different business from a plant with half the sales.</p>
     <p><b>It counts high on purpose.</b> It assumes every offering comes in every size on every machine that can run it. A real plant skips some of those combinations. The shape is right. The totals are a ceiling.</p>
+    <p><b>Its rework rates are assumptions.</b> The starting rates, how fast they grow and the OTIF effects are set so the picture looks plausible. They are editable under Rework and scrap rates, and none of them comes from a real plant.</p>
     <p><b>It is generic.</b> There is no company, product or customer in it. The states are built to look like a mid-size plant, and anyone who runs one should recognize their own.</p>
     <p><b>It is not an argument against new products.</b> It is a way to see what a new product costs the operation before saying yes to it.</p>
   </div>
-  <p class="ver">Guide to the Product Complexity Model v1.2 · built 2026-10-04</p>
+  <p class="ver">Guide to the Product Complexity Model v1.3 · built 2026-10-04</p>
 </div>
 </body>
 </html>
