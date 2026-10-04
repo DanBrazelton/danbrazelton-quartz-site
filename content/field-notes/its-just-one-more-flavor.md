@@ -2,7 +2,7 @@
 publish: true
 title: It's Just One More Flavor
 created: 2026-10-04T03:43:31.553Z
-modified: 2026-10-04T15:35:19.140Z
+modified: 2026-10-04T15:40:37.789Z
 tags:
   - operations
   - leadership
@@ -40,4 +40,4 @@ None of this is an argument against new products. New products are the business.
 
 It's an argument for knowing what you ordered. One new flavor isn't just one thing. It's also the eighteen things behind it, the processes to manage them, the inventory counts, the mental load, and the physical storage.
 
-**[Open the model →](/static/product-complexity-model.html)** · **[How to read it →](/static/complexity-model-guide.html)**
+<strong><a href="/static/product-complexity-model.html" >Open the model →</a></strong> · <strong><a href="/static/complexity-model-guide.html" >How to read it →</a></strong>
