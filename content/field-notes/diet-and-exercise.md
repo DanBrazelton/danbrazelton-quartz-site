@@ -2,7 +2,7 @@
 publish: true
 title: Diet and Exercise…
 created: 2026-10-02
-modified: 2026-10-02T09:00:00.000Z
+modified: 2026-10-04T18:50:44.043Z
 tags:
   - operations
   - leadership
@@ -10,6 +10,7 @@ tags:
 
 # Diet and Exercise…
 
+![[field-notes/Pasted image 20261004115042.png]]
 In my mid twenties I started working with a trainer. Smart guy. First session he didn't hand me a program. He asked what I wanted.
 
 I said stronger. And lose the belly.
