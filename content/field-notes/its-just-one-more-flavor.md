@@ -2,7 +2,7 @@
 publish: true
 title: It's Just One More Flavor
 created: 2026-10-04T03:43:31.553Z
-modified: 2026-10-04T15:47:09.073Z
+modified: 2026-10-04T16:39:09.036Z
 tags:
   - operations
   - leadership
@@ -14,7 +14,13 @@ Every CPG company thinks this - let's grow sales with more skus...
 
 And it sounds so reasonable. One recipe. One new label. Another size? How hard could it be?
 
-So I wind up being the wet blanket and try to explain how complex that 1 extra variant or flavor is going to be.  So I came up with an idea of a picture.
+So I wind up being the wet blanket and try to explain how complex that 1 extra variant or flavor is going to be.
+
+I have frequently had this conversation regarding the complexity of adding variants or new lines to a companies portfolio. The issue most people don't get is that one new flavor is a half dozen to even dozens of new items to manage. And that complexity expands logarithmically not linearly.
+
+I had an idea of charting it out, then that expanded into an interactive tool to look at the impact of adding or reducing complexity.
+
+It could be used as a business model tool, but frankly that is more work than I'm willing to do, but if there is interest I'll open source it people can run with it as they like.
 
 ![[field-notes/complexity-start.png]]
 

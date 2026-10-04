@@ -2,12 +2,15 @@
 publish: true
 title: Field Notes
 created: 2026-06-23T02:24:30.701Z
-modified: 2026-10-04T15:35:33.875Z
+modified: 2026-10-04T18:14:34.846Z
 ---
 
 # Field Notes
 
 ## Latest
+
+**[Diet and Exercise… →](/field-notes/diet-and-exercise)**
+Everybody likes cake. Especially marketing. The customer wants cake, but wants to pay for rolls.
 
 **[It's Just One More Flavor →](/field-notes/its-just-one-more-flavor)**
 Every CPG company thinks this - let's grow sales with more skus...
