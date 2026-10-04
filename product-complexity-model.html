@@ -1,0 +1,1059 @@
+<!doctype html>
+<!-- Product Complexity Model v1.2 · built 2026-10-04 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="version" content="1.2">
+<title>Product Complexity Model</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body style="margin:0">
+<style>
+/* Layout: one column. Sticky legend strip, then one wide process chart per reference state, each in its own sideways scroller. */
+:root {
+  --bg: #f2f4f7; --surface: #ffffff; --ink: #17212c; --muted: #586675; --line: #7f8d9c; --rule: #d5dbe2;
+  --task-fill: #e4edf8; --task-stroke: #2c5a8a;
+  --hold-fill: #fce6bd; --hold-stroke: #9a5b06;
+  --band-a: #e8ecf1; --band-b: #eef1f5;
+  --gold: #e3b01e; --gold-s: #8a6400; --silver: #c6ccd4; --silver-s: #66707c; --bronze: #c98651; --bronze-s: #7a4520;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11161c; --surface: #19202a; --ink: #e5eaf0; --muted: #9ba8b6; --line: #73818f; --rule: #2b3541;
+  --task-fill: #1d3147; --task-stroke: #82b3e3;
+  --hold-fill: #453310; --hold-stroke: #e9af4d;
+  --band-a: #1b232d; --band-b: #161d26;
+  --gold: #e3b01e; --gold-s: #f6d97a; --silver: #aab2bc; --silver-s: #e3e8ee; --bronze: #b0703f; --bronze-s: #e7b48c; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11161c; --surface: #19202a; --ink: #e5eaf0; --muted: #9ba8b6; --line: #73818f; --rule: #2b3541;
+  --task-fill: #1d3147; --task-stroke: #82b3e3;
+  --hold-fill: #453310; --hold-stroke: #e9af4d;
+  --band-a: #1b232d; --band-b: #161d26;
+  --gold: #e3b01e; --gold-s: #f6d97a; --silver: #aab2bc; --silver-s: #e3e8ee; --bronze: #b0703f; --bronze-s: #e7b48c; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.5; }
+.page { max-width: none; margin: 0 auto; padding-inline: 16px; padding-block: 10px 32px; display: flex; flex-direction: column; gap: 10px; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+.top .summary { margin: 0; }
+h1 { font-size: 18px; font-weight: 600; margin: 0; text-wrap: balance; }
+.lede { margin: 6px 0 0; color: var(--muted); max-width: 65ch; }
+h2 { font-size: 16px; font-weight: 600; margin: 0; }
+.summary { margin: 2px 0 0; color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
+.state { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.scroller { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.scroller:focus-visible { outline: 2px solid var(--task-stroke); outline-offset: 2px; }
+.scroller svg { display: block; width: 100%; height: auto; max-height: calc(100vh - 190px); min-height: 280px; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 8px; }
+.stat { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; text-align: left; padding: 9px 11px; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 6px; font-family: var(--sans); cursor: pointer; min-width: 0; }
+.stat:hover { border-color: var(--task-stroke); }
+.stat:focus-visible { outline: 2px solid var(--task-stroke); outline-offset: 2px; }
+.stat-n { font-size: 26px; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat-l { font-size: 12px; color: var(--muted); line-height: 1.3; }
+.def { max-width: min(420px, calc(100vw - 48px)); padding: 18px 20px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: var(--sans); }
+.def::backdrop { background: rgba(10, 16, 24, .35); }
+.def h3 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }
+.def p { margin: 0; font-size: 14px; line-height: 1.5; }
+.hint { margin: 0; color: var(--muted); font-size: 12.5px; }
+
+.kf { display: flex; flex-direction: column; gap: 6px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; }
+#kf-slider { width: 100%; margin: 0; accent-color: var(--task-stroke); }
+#kf-ticks { display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+#kf-tools input[type="text"] { font: 13px var(--sans); padding: 4px 6px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; width: 11em; }
+.pm { display: inline-flex; align-items: center; gap: 6px; } .pm-l { font-size: 13px; white-space: nowrap; } .pm-l b { display: inline-block; min-width: 2.2ch; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; } .pm .btn { min-width: 30px; padding: 4px 8px; font-size: 15px; line-height: 1; }
+#present { margin-left: auto; }
+.guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 6px 28px; margin-top: 10px; font-size: 13.5px; line-height: 1.5; } .guide p { margin: 0; max-width: 62ch; } .guide a { color: var(--task-stroke); }
+.io { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+#io-text { width: 100%; box-sizing: border-box; font: 12px var(--mono); padding: 8px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; resize: vertical; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 2px; }
+.presenting h1, .presenting #kf-tools, .presenting #cost, .presenting #stats, .presenting > details, .presenting #defs { display: none; }
+.presenting .scroller svg { max-height: calc(100vh - 150px); }
+.ver { margin: 0; font: 12px var(--mono); color: var(--muted); }
+.presenting .ver { display: none; }
+.delta { font-size: 13px; line-height: 1.4; flex: 1 1 320px; min-width: 0; }
+.btn:disabled { opacity: .45; cursor: default; }
+#panel-body[inert] { opacity: .55; }
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.bar-l { font-size: 13px; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.btn { font: 500 12.5px var(--sans); padding: 4px 10px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+.btn:hover { border-color: var(--task-stroke); }
+.btn[aria-pressed="true"] { background: var(--task-fill); border-color: var(--task-stroke); }
+.btn:focus-visible, #panel summary:focus-visible, #panel input:focus-visible, #panel select:focus-visible { outline: 2px solid var(--task-stroke); outline-offset: 2px; }
+#panel, .fold { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; }
+#panel summary, .fold summary { font-weight: 600; cursor: pointer; }
+#panel-body, #weights-body, #staff-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 12px; }
+#panel fieldset, .fold fieldset { border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px 12px; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+#panel fieldset.wide { grid-column: 1 / -1; }
+#panel legend, .fold legend { font-size: 12px; font-weight: 600; color: var(--muted); padding: 0 4px; letter-spacing: .04em; text-transform: uppercase; }
+.ctl { display: grid; grid-template-columns: minmax(0, 11em) minmax(0, 1fr) 3em; align-items: center; gap: 10px; font-size: 13px; }
+.ctl output { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+.chk { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+.tscroll { overflow-x: auto; }
+#panel table { border-collapse: collapse; font-size: 13px; }
+#panel th { text-align: left; font-weight: 500; color: var(--muted); padding: 2px 10px 6px 0; white-space: nowrap; }
+#panel td { padding: 3px 10px 3px 0; vertical-align: middle; }
+#panel td.ships { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+#panel input[type="text"], #panel input[type="number"], #panel select, .fold input[type="number"] { font: 13px var(--sans); padding: 4px 6px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; }
+#panel input[type="number"] { width: 4.5em; } #panel input[type="text"] { width: 11em; }
+#panel fieldset > .btn { align-self: flex-start; }
+.empty { margin: 0; padding: 28px 20px; color: var(--muted); }
+
+.fold .ctl { grid-template-columns: minmax(0, 1fr) 5em 0; }
+#cost { display: flex; flex-direction: column; gap: 8px; }
+.fold table { border-collapse: collapse; font-size: 13px; } .fold th { text-align: left; font-weight: 500; color: var(--muted); padding: 2px 10px 6px 0; } .fold td { padding: 3px 10px 3px 0; }
+.cost { display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(3, minmax(120px, 1fr)); gap: 8px; }
+.cost-total { border-color: var(--task-stroke); background: var(--task-fill); }
+.cost-total .stat-n { font-size: 34px; }
+.cost-part { display: flex; flex-direction: column; gap: 2px; padding: 9px 11px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; min-width: 0; }
+.cost-bar { display: block; height: 5px; background: var(--band-a); border-radius: 3px; margin-top: 5px; overflow: hidden; }
+.cost-bar > span { display: block; height: 100%; background: var(--task-stroke); }
+@media (max-width: 640px) { .cost { grid-template-columns: 1fr 1fr; } }
+
+.chartrow { display: flex; gap: 10px; align-items: stretch; }
+.chartrow .scroller { flex: 1 1 0; min-width: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 12.5px; line-height: 1.3; margin-top: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend svg { flex: none; }
+
+.task { fill: var(--task-fill); stroke: var(--task-stroke); stroke-width: 1.5; }
+.hold { fill: var(--hold-fill); stroke: var(--hold-stroke); stroke-width: 1.5; }
+.flow { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.tip { fill: var(--line); }
+.coin { stroke-width: 1; } .gold { fill: var(--gold); stroke: var(--gold-s); } .silver { fill: var(--silver); stroke: var(--silver-s); } .bronze { fill: var(--bronze); stroke: var(--bronze-s); }
+.pthread { fill: none; stroke: var(--hold-stroke); stroke-width: 1; opacity: .5; }
+.common { fill: none; stroke: var(--ink); stroke-width: 1.2; opacity: .8; }
+.pshared { fill: none; stroke: var(--hold-stroke); stroke-width: 1.8; }
+.pbundle { fill: none; stroke: var(--hold-stroke); stroke-width: 2.5; }
+.feed { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.band-a { fill: var(--band-a); } .band-b { fill: var(--band-b); }
+.t-label { fill: var(--ink); font: 600 12px var(--sans); text-anchor: middle; }
+.brk { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
+.t-brk { fill: var(--ink); font: 600 22px var(--sans); text-anchor: middle; font-variant-numeric: tabular-nums; }
+.t-sub { fill: var(--muted); font: 400 10.5px var(--sans); text-anchor: middle; }
+.t-lane { fill: var(--muted); font: 500 10px var(--sans); text-anchor: end; }
+.inbound { fill: none; stroke: var(--line); stroke-width: 1; opacity: .7; }
+.thread { fill: none; stroke: var(--task-stroke); stroke-width: 1; opacity: .5; }
+.t-stage { fill: var(--muted); font: 600 10.5px var(--sans); letter-spacing: .09em; text-anchor: middle; text-transform: uppercase; }
+.stage-rule { stroke: var(--rule); stroke-width: 1; }
+</style>
+
+<div class="page">
+  <header class="top"><h1>Product Complexity Model</h1><h2 id="state-name"></h2><p class="summary" id="state-summary"></p><button type="button" class="btn" id="present" aria-pressed="false">Present</button></header>
+
+
+  <section class="state">
+    <div class="chartrow">
+      <div class="scroller" tabindex="0" id="chart"></div>
+    </div>
+    <div class="kf">
+      <input type="range" id="kf-slider" min="0" max="3" step="0.01" value="0" aria-label="Position along the keyframes">
+      <div id="kf-ticks"></div>
+      <div id="kf-add" class="row"></div>
+      <div id="kf-tools" class="row"></div>
+    </div>
+    <div id="cost"></div>
+    <div id="stats"></div>
+  </section>
+
+  <details id="guide" class="fold"><summary>How to read this</summary>
+    <div class="guide">
+      <p><strong>Left to right is the life of a product:</strong> order, receive, store, make, package, inspect, store, pick, pack, ship.</p>
+      <p><strong>Every thin line is one item.</strong> Blue lines are things being made and shipped. Amber lines are packaging. Grey lines on the left are things being bought. A triangle is one item sitting in stock.</p>
+      <p><strong>Drag the slider</strong> to grow the operation from Day one through Early and Mature to Sprawling. Nothing about the process changes. Only the number of items does.</p>
+      <p><strong>Use the minus and plus buttons</strong> to add or take away one offering, size, package type or channel. The chart and the numbers under it show what came with it.</p>
+      <p><strong>The numbers under the chart</strong> count what the picture shows. Select any number for what it means.</p>
+      <p><strong>What it leaves out:</strong> volume. It counts how many different things there are, not how much of each. The cost index is relative, not dollars. The people figure is an estimate.</p>
+      <p><a href="complexity-model-guide.html">Read the full guide</a></p>
+    </div></details>
+  <details id="legend-fold" class="fold"><summary>Legend</summary>
+      <div class="legend" aria-label="Symbol legend">
+        <span><svg width="30" height="18" aria-hidden="true"><rect class="task" x="1" y="1" width="28" height="16" rx="5"/></svg>Task: work is done</span>
+        <span><svg width="30" height="18" aria-hidden="true"><path class="thread" d="M1,5H29M1,9H29M1,13H29"/></svg>One line per finished item</span>
+        <span><svg width="30" height="18" aria-hidden="true"><path class="common" d="M1,9H12M12,3V15M12,4H29M12,9H29M12,14H29"/></svg>Ingredient common to every offering</span>
+        <span><svg width="30" height="18" aria-hidden="true"><path class="flow" d="M1,9H22"/><path class="tip" d="M21,5l8,4l-8,4z"/></svg>Flow: product moves</span>
+        <span><svg width="20" height="18" aria-hidden="true"><path class="hold" d="M2,1h7a8,8 0 0 1 0,16h-7z"/></svg>Delay: product waits between steps</span>
+        <span><svg width="22" height="18" aria-hidden="true"><path class="hold" d="M1,1h20l-10,16z"/></svg>Storage: one triangle per item kept in stock</span>
+        <span><svg width="30" height="18" aria-hidden="true"><path class="pthread" style="opacity:1" d="M1,5H29M1,9H29M1,13H29"/></svg>One line per packaging item, thick when shared by a size</span>
+        <span><svg width="30" height="18" aria-hidden="true"><path class="feed" d="M1,6H29M1,12H29"/></svg>One dashed line per case type</span>
+        <span><svg width="30" height="18" aria-hidden="true"><rect class="band-a" x="0" y="1" width="30" height="16"/></svg>Lane: one variant into one package type</span>
+      </div>
+  </details>
+  <details id="panel"><summary>Parameters</summary><div id="panel-body"></div></details>
+  <details id="weights" class="fold"><summary>Logistics cost weights</summary><div id="weights-body"></div></details>
+  <details id="io" class="fold"><summary>Save and load</summary>
+    <div class="io">
+      <div class="row"><button type="button" class="btn" id="io-save">Save to a file</button><button type="button" class="btn" id="io-copy">Copy</button>
+        <label class="btn" for="io-file">Open a file</label><input type="file" id="io-file" accept=".json,application/json" class="vh">
+        <button type="button" class="btn" id="io-load">Load from the box</button><span class="hint" id="io-status" role="status"></span></div>
+      <label class="hint" for="io-text">Keyframes, cost weights and staffing rates as text. Copy fills this box; paste saved text here and choose Load from the box.</label>
+      <textarea id="io-text" rows="5" spellcheck="false"></textarea>
+    </div></details>
+  <details id="staffing" class="fold"><summary>Staffing rates</summary><div id="staff-body"></div></details>
+  <div class="def" popover id="def-staffIndex"><h3>People to run it</h3><p>An estimate, not a staffing plan. Each function (operators, line associates, processing, warehouse, delivery, leads, quality, purchasing, maintenance, planning) is a fixed part plus a rate times what drives it, such as machines, offerings, pick faces or ways out the door. It does not know volume. Set the rates under Staffing rates.</p></div>
+  <div class="def" popover id="def-costIndex"><h3>Logistics cost index</h3><p>A relative measure, not dollars. Each logistics driver on the chart (components to receive, items in storage, pick faces, packing units, ways out the door, carrier types) is multiplied by a weight and added up, then scaled so the first keyframe is 1. Set the weights under Logistics cost weights.</p></div>
+  <p class="ver" id="ver">Product Complexity Model v1.2 · built 2026-10-04</p>
+  <div id="defs"></div>
+</div>
+
+<script>
+// Product Complexity Model: feature 1. Data model, reference states, derived counters.
+// Pure functions, no DOM. Inlined into the single .html from feature 2 on.
+
+const SCHEMA_VERSION = 1;
+
+const STAGES = ["PO", "Receive", "Processing", "Packaging", "Inspection", "Storage", "Picking", "Packing", "Ship"];
+const FORMS = ["form1", "form2", "form2b"];          // form2b = second variant of the secondary step
+const CHANNELS = ["wholesale", "dtc", "grocery", "retail", "distributor"];
+const PICK_UNITS = ["each", "case", "pallet"];
+
+const SCHEMA = {
+  schemaVersion: "integer, currently 1",
+  name: "string, keyframe label",
+  offerings: "integer >= 1",
+  secondaryStep: "boolean. Off means no WIP and no Variant 2",
+  forms: { form1: "boolean", form2: "boolean (needs secondaryStep)", form2b: "boolean (needs form2)" },
+  packageTypes: { "<label>": "boolean. Switches every machine type that runs this package type" },
+  machineTypes: [{
+    id: "string, unique",
+    label: "string",
+    accepts: "form1 | form2 | form2b",
+    packageType: "string, a key of packageTypes",
+    sizes: ["string, one label per package size"],
+    machines: "integer >= 1",
+    maxChangeoversPerDay: "integer >= 1, per machine"
+  }],
+  components: { perOffering: "integer >= 1, ingredients that go into the primary step for one offering", commonPct: "0 to 100, percent of those ingredients that every offering shares" },
+  packaging: { caseTypes: "integer >= 1, distinct case types bought", components: { "<package type>": "integer >= 1, components in one package of this type. One is unique to each finished SKU; the rest are shared by every SKU of the same size on the same machine type" } },
+  purchasing: { itemsPerVendor: "integer >= 1, things bought from one vendor on average", posPerVendorYear: "integer >= 1, purchase orders placed with each vendor a year" },
+  kits: { count: "integer >= 0", componentsPerKit: "integer >= 0" },
+  channels: { "<wholesale|dtc|grocery|retail|distributor>": { on: "boolean", unit: "each | case | pallet", ship: ["string, one label per way this channel ships"] } }
+};
+
+const DAY_ONE = {
+  schemaVersion: 1,
+  name: "Day one",
+  offerings: 1,
+  components: { perOffering: 1, commonPct: 0 },
+  packaging: { caseTypes: 1, components: { "Package type A": 4 } },
+  secondaryStep: false,
+  forms: { form1: true, form2: false, form2b: false },
+  packageTypes: { "Package type A": true },
+  machineTypes: [
+    { id: "mt1", label: "Machine type 1", accepts: "form1", packageType: "Package type A", sizes: ["Size A"], machines: 1, maxChangeoversPerDay: 4 }
+  ],
+  purchasing: { itemsPerVendor: 2, posPerVendorYear: 6 },
+  kits: { count: 0, componentsPerKit: 0 },
+  channels: {
+    wholesale: { on: true, unit: "case", ship: ["Common carrier"] },
+    dtc: { on: false, unit: "each", ship: ["Common carrier"] },
+    grocery: { on: false, unit: "case", ship: ["Direct store delivery"] },
+    retail: { on: false, unit: "case", ship: ["Delivery"] },
+    distributor: { on: false, unit: "pallet", ship: ["Less than truckload"] }
+  }
+};
+
+const ESTABLISHED = {
+  schemaVersion: 1,
+  name: "Current",
+  offerings: 16,
+  components: { perOffering: 3, commonPct: 25 },
+  packaging: { caseTypes: 6, components: { "Package type A": 4, "Package type B": 3, "Package type C": 3 } },
+  secondaryStep: true,
+  forms: { form1: true, form2: true, form2b: true },
+  packageTypes: { "Package type A": true, "Package type B": true, "Package type C": true },
+  machineTypes: [
+    { id: "mt1", label: "Machine type 1", accepts: "form1", packageType: "Package type A", sizes: ["Size A", "Size B"], machines: 2, maxChangeoversPerDay: 4 },
+    { id: "mt2", label: "Machine type 2", accepts: "form2", packageType: "Package type A",
+      sizes: ["Size A", "Size B", "Size C", "Size D", "Size E", "Size F", "Size G", "Size H", "Size I"], machines: 2, maxChangeoversPerDay: 4 },
+    { id: "mt3", label: "Machine type 3", accepts: "form2b", packageType: "Package type B",
+      sizes: ["Pack A", "Pack B", "Bulk A", "Bulk B"], machines: 1, maxChangeoversPerDay: 4 },
+    { id: "mt4", label: "Machine type 4", accepts: "form2b", packageType: "Package type C", sizes: ["Pack A"], machines: 1, maxChangeoversPerDay: 4 }
+  ],
+  purchasing: { itemsPerVendor: 12, posPerVendorYear: 6 },
+  kits: { count: 0, componentsPerKit: 0 },
+  channels: {
+    wholesale: { on: true, unit: "case", ship: ["Common carrier", "Will call", "Delivery"] },
+    dtc: { on: true, unit: "each", ship: ["Common carrier"] },
+    grocery: { on: true, unit: "case", ship: ["Direct store delivery"] },
+    retail: { on: true, unit: "case", ship: ["Delivery"] },
+    distributor: { on: true, unit: "pallet", ship: ["Less than truckload"] }
+  }
+};
+
+function validate(s) {
+  const e = [];
+  if (s.schemaVersion !== SCHEMA_VERSION) e.push("schemaVersion must be " + SCHEMA_VERSION);
+  if (!Number.isInteger(s.offerings) || s.offerings < 1) e.push("offerings must be an integer >= 1");
+  if (!Number.isInteger(s.components.perOffering) || s.components.perOffering < 1) e.push("components.perOffering must be an integer >= 1");
+  for (const [k, v] of Object.entries(s.packaging.components)) if (!Number.isInteger(v) || v < 1) e.push("packaging.components " + k + " must be an integer >= 1");
+  for (const k of ["itemsPerVendor", "posPerVendorYear"]) if (!Number.isInteger(s.purchasing[k]) || s.purchasing[k] < 1) e.push("purchasing." + k + " must be an integer >= 1");
+  if (!Number.isInteger(s.packaging.caseTypes) || s.packaging.caseTypes < 1) e.push("packaging.caseTypes must be an integer >= 1");
+  if (!(s.components.commonPct >= 0 && s.components.commonPct <= 100)) e.push("components.commonPct must be 0 to 100");
+  if (s.forms.form2 && !s.secondaryStep) e.push("form2 needs secondaryStep on");
+  if (s.forms.form2b && !s.forms.form2) e.push("form2b needs form2 on");
+  const ids = new Set();
+  for (const m of s.machineTypes) {
+    if (ids.has(m.id)) e.push("duplicate machine type id " + m.id);
+    ids.add(m.id);
+    if (!FORMS.includes(m.accepts)) e.push(m.id + ": unknown form " + m.accepts);
+    if (!(m.packageType in s.packageTypes)) e.push(m.id + ": unknown package type " + m.packageType);
+    if (!Number.isInteger(m.maxChangeoversPerDay) || m.maxChangeoversPerDay < 1) e.push(m.id + ": maxChangeoversPerDay must be >= 1");
+    if (!m.sizes.length) e.push(m.id + ": needs at least one size");
+    if (!Number.isInteger(m.machines) || m.machines < 1) e.push(m.id + ": machines must be >= 1");
+  }
+  for (const [k, c] of Object.entries(s.channels)) {
+    if (!CHANNELS.includes(k)) e.push("unknown channel " + k);
+    if (!PICK_UNITS.includes(c.unit)) e.push(k + ": unit must be each, case or pallet");
+    if (!Array.isArray(c.ship) || !c.ship.length) e.push(k + ": needs at least one ship method");
+  }
+  return e;
+}
+
+// A machine type is live only when its format is switched on and the form it accepts is being made.
+function activeMachineTypes(s) {
+  return s.machineTypes.filter(m => s.packageTypes[m.packageType] && s.forms[m.accepts]);
+}
+
+
+function derive(s) {
+  const types = activeMachineTypes(s);
+  const perType = types.map(m => {
+    const runs = s.offerings * m.sizes.length;                       // full cross product
+    const skus = runs;
+    const changeovers = Math.max(0, runs - m.machines);
+    const capacityPerDay = m.machines * m.maxChangeoversPerDay;
+    const sharedPackaging = ((s.packaging.components[m.packageType] || 1) - 1) * m.sizes.length;
+    return { id: m.id, label: m.label, packageType: m.packageType, accepts: m.accepts, runs, skus, sharedPackaging,
+             changeovers, capacityPerDay, changeoverDays: Math.ceil(changeovers / capacityPerDay) };
+  });
+
+  const packagedSkus = perType.reduce((n, t) => n + t.skus, 0);
+  const finishedSkus = packagedSkus + s.kits.count;
+
+  const wipStates = s.secondaryStep ? (s.forms.form2 ? 1 : 0) + (s.forms.form2b ? 1 : 0) : 0;
+  const wipItems = wipStates * s.offerings;
+
+  const boms = finishedSkus + wipItems;                               // one per SKU, one per WIP item
+  const routings = types.length + (s.kits.count > 0 ? 1 : 0);         // one per form-to-machine-type path, plus kitting
+
+  const primary = Math.max(0, s.offerings - 1);
+  const secondary = Math.max(0, wipItems - 1);
+  const packaging = perType.reduce((n, t) => n + t.changeovers, 0);
+  const kitting = Math.max(0, s.kits.count - 1);
+  const changeovers = primary + secondary + packaging + kitting;
+
+  // Every offering has its own ingredients. Every finished SKU has one packaging component of its own; the rest are shared by size. Case types are shared.
+  const commonIngredients = Math.round(s.components.perOffering * (s.components.commonPct || 0) / 100);
+  const ingredientItems = commonIngredients + s.offerings * (s.components.perOffering - commonIngredients);
+  const sharedPackagingItems = perType.reduce((n, t) => n + t.sharedPackaging, 0);
+  const packagingItems = packagedSkus + sharedPackagingItems;
+  const caseTypes = s.packaging.caseTypes;
+
+  const units = new Set(Object.values(s.channels).filter(c => c.on).map(c => c.unit));
+  const pickFaces = finishedSkus * units.size;                        // one face per SKU per pick unit in use
+
+  const onCh = Object.values(s.channels).filter(c => c.on);
+  const shipLanes = onCh.reduce((n, c) => n + c.ship.length, 0);
+  const carrierTypes = new Set([].concat(...onCh.map(c => c.ship))).size;
+  const componentItems = ingredientItems + packagingItems + caseTypes;
+  const vendors = Math.ceil(componentItems / s.purchasing.itemsPerVendor), posPerMonth = Math.max(2, Math.round(vendors * s.purchasing.posPerVendorYear / 12));   // never fewer than 2: something to make it from and something to put it in
+
+  return {
+    stats: { finishedSkus, inventoryItems: componentItems + finishedSkus, vendors, posPerMonth, componentItems, ingredientItems, packagingItems, caseTypes,
+      boms, wipStates, wipItems, routings, changeoversPerCycle: changeovers,
+      changeoverDays: perType.reduce((n, t) => Math.max(n, t.changeoverDays), 0), pickFaces, shipLanes, carrierTypes },
+    counters: { finishedSkus, boms, wipStates, routings, changeoversPerCycle: changeovers, pickFaces },
+    longestChangeoverDays: perType.reduce((n, t) => Math.max(n, t.changeoverDays), 0),
+    detail: {
+      perType, wipItems, ingredientItems, commonIngredients, packagingItems, sharedPackagingItems, caseTypes, purchasedItems: ingredientItems + packagingItems + caseTypes, kitSkus: s.kits.count,
+      changeovers: { primary, secondary, packaging, kitting },
+      pickUnits: [...units]
+    }
+  };
+}
+
+// Text for the definition popup (feature 3 reads this; nothing renders it yet).
+const DEFINITIONS = {
+  finishedSkus: { label: "Finished SKUs", text: "Every distinct item that can be sold. Each offering, in each package size, is its own item. Kits add one each." },
+  boms: { label: "BOMs", text: "Bills of material: the recipe for each thing made. One per finished SKU, plus one per offering for each in-process variant held between steps." },
+  wipStates: { label: "WIP states", text: "Work in process: places where half-made product waits between the secondary step and packaging. One per variant the secondary step produces." },
+  routings: { label: "Routings", text: "Distinct paths through the plant. One per pairing of a variant with the machine type that packages it, plus one for kit assembly." },
+  changeoversPerCycle: { label: "Changeovers per cycle", text: "Stops to switch from one item to the next, counted over one cycle of making everything once. Covers the primary step, the secondary step, and every packaging machine. Each machine can only absorb so many per day." },
+  pickFaces: { label: "Pick faces", text: "Reachable warehouse locations pickers pull from. One per finished SKU for each unit it ships in (each, case, pallet)." },
+  inventoryItems: { label: "Items to keep in inventory", text: "Everything that has to be bought or made, counted, stored and kept from running out: every component plus every finished good. Work in process is not included." },
+  componentItems: { label: "Things to buy", text: "Every distinct item purchased to make the products: ingredients, packaging items and case types." },
+  vendors: { label: "Vendors", text: "Suppliers to find, set up, pay and chase. The things to buy divided by how many each vendor supplies." },
+  posPerMonth: { label: "POs a month", text: "Purchase orders to write, track and receive against each month: vendors times the orders placed with each in a year, divided by twelve. Never fewer than 2." },
+  ingredientItems: { label: "Ingredients", text: "Distinct raw inputs to the primary step. Ingredients common to every offering are counted once; the rest are counted once per offering." },
+  packagingItems: { label: "Packaging items", text: "Every component of every package. One component is unique to each finished SKU, such as its label. The rest are shared by every SKU of the same size on the same machine type." },
+  caseTypes: { label: "Case types", text: "Distinct shipping cases bought. Shared across items, so this grows slowly." },
+  wipItems: { label: "WIP items", text: "Distinct half-made products held between the secondary step and packaging: one per offering in each WIP state." },
+  changeoverDays: { label: "Days of changeovers", text: "Each machine can only absorb so many changeovers a day. This is how many days the busiest machine type needs to work through one cycle of them." },
+  shipLanes: { label: "Ways out the door", text: "Every pairing of a sales channel with a way it ships. Each one is its own routine, paperwork and cut-off time." },
+  carrierTypes: { label: "Carrier types", text: "Distinct ways product leaves the building, such as common carrier, will call or delivery." }
+};
+
+
+// ---------- Feature 2: state -> graph (pure), graph -> SVG (renderer). One thin line per item. ----------
+
+const FORM_LABEL = { form1: "Variant 1", form2: "Variant 2", form2b: "Variant 3" };
+const FORM_ORDER = { form1: 0, form2: 1, form2b: 2 };
+
+const CHANNEL_LABEL = { wholesale: "Wholesale", dtc: "Direct to consumer", grocery: "Grocery", retail: "Retail", distributor: "Distributor" };
+const UNIT_ORDER = { each: 0, "case": 1, pallet: 2 };
+
+function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+
+function buildGraph(s) {
+  const d = derive(s);
+  const types = activeMachineTypes(s).slice().sort((a, b) => FORM_ORDER[a.accepts] - FORM_ORDER[b.accepts]);
+  const lanes = types.map((m, i) => ({
+    index: i, id: m.id, form: m.accepts, sizes: m.sizes.length, rows: s.offerings * m.sizes.length,
+    shared: ((s.packaging.components[m.packageType] || 1) - 1) * m.sizes.length,
+    label: FORM_LABEL[m.accepts] + " into " + m.packageType,
+    machine: m.label, sub: plural(m.sizes.length, "size") + " · " + plural(m.machines, "machine")
+  }));
+  const groups = ["form2", "form2b"].map(form => ({ form, lanes: lanes.filter(l => l.form === form).map(l => l.index) })).filter(g => g.lanes.length);
+  return {
+    name: s.name, offerings: s.offerings, lanes, groups,
+    vendors: d.stats.vendors, pos: d.stats.posPerMonth, people: typeof staffing === "function" ? Math.round(staffing(s).total) : null,
+    ingredients: s.components.perOffering, common: d.detail.commonIngredients,
+    packagingItems: d.detail.packagingItems, caseTypes: d.detail.caseTypes,
+    purchased: d.detail.purchasedItems, finished: d.counters.finishedSkus,
+    units: d.detail.pickUnits.slice().sort((a, b) => UNIT_ORDER[a] - UNIT_ORDER[b]),
+    channels: Object.entries(s.channels).filter(e => e[1].on).map(e => ({ label: CHANNEL_LABEL[e[0]], unit: e[1].unit, ship: e[1].ship }))
+  };
+}
+
+// Columns left to right. "g" entries are gutters where lines fan out or in.
+const XCOLS = [["po", 124], ["gp", 56], ["receive", 124], ["gr", 44], ["raw", 116], ["g0", 84], ["primary", 124], ["g1", 100], ["secondary", 124], ["wip", 70],
+  ["g2", 150], ["pack", 124], ["inspect", 124], ["g3", 64], ["store", 110], ["g4", 70], ["pick", 124], ["g5", 170], ["packout", 124], ["g6", 150], ["ship", 160]];
+const STAGE_HEADS = [["PO", "po", "po"], ["Receive", "receive", "receive"], ["Storage", "raw", "raw"], ["Processing", "primary", "wip"],
+  ["Packaging", "pack", "pack"], ["Inspection", "inspect", "inspect"], ["Storage", "store", "store"], ["Picking", "pick", "pick"],
+  ["Packing", "packout", "packout"], ["Ship", "ship", "ship"]];
+const G = { pad: 14, top: 58, boxW: 108, boxH: 46, pitch: 3, laneGap: 24, minLane: 58 };
+
+function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+let CHART_RATIO = 16 / 9;   // width over height of the frame; set from the space on screen
+
+function renderChart(g, fit) {
+  const pitch = fit ? fit.pitch : G.pitch, top0 = fit ? fit.top : G.top;
+  const X = {}; let x = G.pad;
+  // one ship box per delivery system
+  const methods = []; g.channels.forEach(c => c.ship.forEach(m => { if (!methods.includes(m)) methods.push(m); }));
+  for (const [k, w] of XCOLS) { X[k] = { l: x, c: x + w / 2, r: x + w }; x += w; }
+  const W = x + G.pad, hw = G.boxW / 2;
+
+  // vertical: every finished item gets one row, G.pitch tall, inside its lane
+  let y = top0;
+  for (const l of g.lanes) { l.h = Math.max(G.minLane, l.rows * pitch + 12); l.y0 = y; y += l.h + G.laneGap; }
+  const Y0 = top0, Y1 = y - G.laneGap, mid = (Y0 + Y1) / 2;
+  const nShip = g.channels.reduce((n, c) => n + c.ship.length, 0), Yb = Math.max(Y1, Y0 + nShip * 52 + (nShip - 1) * 12);
+  // storage: one triangle per item, in denominations. Gold 100, silver 10, bronze 1.
+  // storage: one triangle per item, stacked top to bottom over the chart height, overlapping when crowded, wrapping to more columns
+  const TW = 24, TH = 22, coins = count => { const span = Y1 - Y0 - TH, cap = Math.floor(span / 4) + 1, cols = Math.min(3, Math.ceil(count / cap)), per = Math.ceil(count / cols);
+    const pitch = per > 1 ? Math.min(TH + 4, span / (per - 1)) : 0, top = mid - ((per - 1) * pitch + TH) / 2;
+    return { count, cols, per, pitch, top, bottom: top + (per - 1) * pitch + TH, hw: (cols * TW + (cols - 1) * 4) / 2 }; };
+  const triPos = (c, cx, i) => ({ x: cx - c.hw + (i % c.cols) * (TW + 4) + TW / 2, y: c.top + Math.floor(i / c.cols) * c.pitch + TH / 2 });
+  const rawC = coins(g.purchased), finC = coins(g.finished), rawBottom = rawC.bottom + 6;
+  const by = Math.max(Yb + 22, rawBottom + 16) + 34 + g.caseTypes * 5;
+  const railY = Math.max(Yb + 22, rawBottom + 16), H = by + 162;
+  const rowY = (l, i) => l.y0 + (l.h - l.rows * pitch) / 2 + (i + 0.5) * pitch;
+  const port = (i, n, a, b) => a + (i + 0.5) * (b - a) / n;
+  const P = o => port(o, g.offerings, Y0, Y1);
+  const fan = (x1, y1, x2, y2) => { const m = (x1 + x2) / 2; return `M${x1},${y1}C${m},${y1} ${m},${y2} ${x2},${y2}`; };
+  const out = [], threads = [];
+
+  for (const [label, a, b] of STAGE_HEADS)
+    out.push(`<text class="t-stage" x="${(X[a].l + X[b].r) / 2}" y="18">${label}</text><path class="stage-rule" d="M${X[a].l + 8},27H${X[b].r - 8}"/>`);
+
+  g.lanes.forEach(l => {
+    out.push(`<rect class="${l.index % 2 ? "band-b" : "band-a"}" x="${X.g1.l}" y="${l.y0}" width="${X.g3.r - X.g1.l}" height="${l.h}"/>`);
+    out.push(`<text class="t-lane" x="${X.inspect.c + hw}" y="${l.y0 - 7}">${esc(l.label)}</text>`);
+  });
+
+  const pR = X.primary.c + hw, packL = X.pack.c - hw;
+  // ingredients converge on each offering
+  // inbound: one line per vendor from purchase orders to receiving, one line per thing bought from receiving to its triangle
+  const spanBox = (n, unit) => { const h = Math.max(G.boxH + 14, Math.min(Y1 - Y0, n * unit)); return [mid - h / 2, mid + h / 2]; };
+  const [poA, poB] = spanBox(g.vendors, 9), [rcA, rcB] = spanBox(g.purchased, 3), inb = [];
+  for (let v = 0; v < g.vendors; v++) inb.push(fan(X.po.c + hw, port(v, g.vendors, poA + 4, poB - 4), X.receive.c - hw, port(v, g.vendors, rcA + 4, rcB - 4)));
+  for (let i = 0; i < g.purchased; i++) { const t = triPos(rawC, X.raw.c, i); inb.push(fan(X.receive.c + hw, port(i, g.purchased, rcA + 4, rcB - 4), t.x, t.y)); }
+  out.push(`<path class="inbound" d="${inb.join("")}"/>`);
+
+  // ingredients unique to an offering fan in as thin lines; ingredients common to all run as a trunk each, with a tap into every offering
+  const pL = X.primary.c - hw, rawR = X.raw.c + rawC.hw + 4, nUniq = g.ingredients - g.common, cm = [];
+  const slotY = (o, j) => P(o) + (j - (g.ingredients - 1) / 2) * Math.min(1.5, (Y1 - Y0) / g.offerings * 0.8 / g.ingredients);
+  for (let o = 0; o < g.offerings; o++) for (let j = 0; j < nUniq; j++) { const t = triPos(rawC, X.raw.c, o * nUniq + j); threads.push(fan(t.x, t.y, pL, slotY(o, j))); }
+  for (let k = 0; k < g.common; k++) { const tx = pL - 8 - k * 3, y1 = slotY(0, nUniq + k), y2 = slotY(g.offerings - 1, nUniq + k);
+    const t = triPos(rawC, X.raw.c, g.offerings * nUniq + k);
+    cm.push(`M${t.x},${t.y}H${tx}M${tx},${Math.min(t.y, y1)}V${Math.max(t.y, y2)}`);
+    for (let o = 0; o < g.offerings; o++) cm.push(`M${tx},${slotY(o, nUniq + k)}H${pL}`); }
+  out.push(`<path class="common" d="${cm.join("")}"/>`);
+  // Variant 1 goes straight to packaging: one line per item
+  for (const l of g.lanes.filter(l => l.form === "form1")) for (let o = 0; o < g.offerings; o++) for (let k = 0; k < l.sizes; k++) {
+    const ry = rowY(l, o * l.sizes + k);
+    threads.push(fan(pR, P(o), X.g1.r, ry) + `H${packL}`);
+  }
+  // other forms: offering -> secondary step -> WIP, then each WIP item fans out to every size on every machine type that takes it
+  const tall = [];
+  for (const grp of g.groups) {
+    const first = g.lanes[grp.lanes[0]], last = g.lanes[grp.lanes[grp.lanes.length - 1]];
+    const a = first.y0, b = last.y0 + last.h, S = o => port(o, g.offerings, a + 4, b - 4);
+    tall.push({ kind: "task", x: X.secondary.c, a, b, lines: ["Secondary step", FORM_LABEL[grp.form], plural(g.offerings, "WIP item")] });
+    tall.push({ kind: "delay", x: X.wip.c, a, b });
+    for (let o = 0; o < g.offerings; o++) {
+      threads.push(fan(pR, P(o), X.g1.r, S(o)) + `H${X.wip.c}`);
+      for (const li of grp.lanes) { const l = g.lanes[li];
+        for (let k = 0; k < l.sizes; k++) threads.push(fan(X.wip.c + 19, S(o), packL, rowY(l, o * l.sizes + k)));
+      }
+    }
+  }
+  // through packaging and inspection, then everything lands in one storage point
+  let sk = 0;
+  for (const l of g.lanes) {
+    for (let i = 0; i < l.rows; i++) { const ry = rowY(l, i), t = triPos(finC, X.store.c, sk++); threads.push(`M${packL},${ry}H${X.inspect.c}` + fan(X.inspect.c + hw, ry, t.x, t.y)); }
+    tall.push({ kind: "task", x: X.pack.c, a: l.y0, b: l.y0 + l.h, lines: [l.machine, l.sub, plural(l.rows, "item")] });
+    tall.push({ kind: "task", x: X.inspect.c, a: l.y0, b: l.y0 + l.h, lines: ["Inspection"] });
+  }
+  // outbound: a pick face per item per unit, packing by unit, then every way each channel ships
+  const nSku = g.lanes.reduce((n, l) => n + l.rows, 0), U = g.units.length, F = nSku * U;
+  const faceY = (i, u) => port(i * U + u, F, Y0 + 4, Y1 - 4);
+  const split = (n, gap) => k => { const h = ((Yb - Y0) - (n - 1) * gap) / n, a = Y0 + k * (h + gap); return [a, a + h]; };
+  for (let i = 0; i < nSku; i++) for (let u = 0; u < U; u++) { const t = triPos(finC, X.store.c, i); threads.push(fan(t.x, t.y, X.pick.c - hw, faceY(i, u))); }
+  tall.push({ kind: "task", x: X.pick.c, a: Y0, b: Y1, lines: ["Picking", plural(F, "pick face"), g.units.join(", ")] });
+  const packBox = split(U, 14);
+  g.units.forEach((unit, u) => { const [a, b] = packBox(u);
+    for (let i = 0; i < nSku; i++) threads.push(fan(X.pick.c + hw, faceY(i, u), X.packout.c - hw, port(i, nSku, a + 4, b - 4)));
+    tall.push({ kind: "task", x: X.packout.c, a, b, lines: ["Packing", "by " + unit, plural(nSku, "item")] });
+  });
+  const pairs = methods.map(m => g.channels.filter(c => c.ship.includes(m)).sort((x, y) => g.units.indexOf(x.unit) - g.units.indexOf(y.unit)));   // same order as the packing boxes, so lines do not cross inside a carrier
+  const sGap = 12, unitH = ((Yb - Y0) - (methods.length - 1) * sGap) / nShip, shw = 72; let sy = Y0;
+  methods.forEach((m, mi) => { const a = sy, b = a + pairs[mi].length * unitH; sy = b + sGap;
+    pairs[mi].forEach((c, ci) => { const [pa, pb] = packBox(g.units.indexOf(c.unit));
+      for (let i = 0; i < nSku; i++) threads.push(fan(X.packout.c + hw, port(i, nSku, pa + 4, pb - 4), X.ship.c - shw, port(ci * nSku + i, pairs[mi].length * nSku, a + 4, b - 4))); });
+    tall.push({ kind: "task", x: X.ship.c, w: shw * 2, a, b, lines: [m].concat(pairs[mi].map(c => c.label)) });
+  });
+  tall.push({ kind: "task", x: X.primary.c, a: Y0, b: Y1, lines: ["Primary step", plural(g.ingredients, "ingredient") + " into 1", plural(g.offerings, "offering")] });
+  out.push(`<path class="thread" d="${threads.join("")}"/>`);
+
+  // single flows where product is not yet, or no longer, split by item
+
+  // packaging: every finished item has its own packaging item. One line each, bundled along a rail, fanning up into its row.
+  const ox = X.g2.l + 8, r = 6, pk = [], nUnique = g.lanes.reduce((n, l) => n + l.rows, 0);
+  const nIng = g.offerings * nUniq + g.common, tX = X.raw.c - rawC.hw - 6, stubs = []; let topY = railY;
+  for (let n = 0; n < g.packagingItems; n++) { const t = triPos(rawC, X.raw.c, nIng + n); stubs.push(`M${t.x},${t.y}H${tX}`); topY = Math.min(topY, t.y); }
+  out.push(`<path class="pthread" d="${stubs.join("")}"/>`);
+  out.push(`<path class="pbundle" d="M${tX},${topY}V${railY - r}Q${tX},${railY} ${tX + r},${railY}H${ox}"/>`);
+  for (const l of g.lanes) for (let i = 0; i < l.rows; i++) pk.push(fan(ox, railY, packL, rowY(l, i) + 1.3));
+  out.push(`<path class="pthread" d="${pk.join("")}"/>`);
+  const sh = []; for (const l of g.lanes) for (let j = 0; j < l.shared; j++) sh.push(fan(ox, railY, packL, port(j, l.shared, l.y0 + 5, l.y0 + l.h - 5)));
+  out.push(`<path class="pshared" d="${sh.join("")}"/>`);
+  out.push(`<text class="t-sub" style="text-anchor:start" x="${X.raw.c + 14 + g.caseTypes * 5}" y="${railY - 6}">${esc(plural(g.packagingItems, "packaging item") + ": " + nUnique + " one per finished item, " + (g.packagingItems - nUnique) + " shared by size")}</text>`);
+  // case types: one dashed line each, running up behind the machines
+  for (let j = 0; j < g.caseTypes; j++) {
+    const sx = X.raw.c + 4 + j * 5, ry = railY + 9 + j * 5, tx = packL + 16 + j * 5;
+    out.push(`<path class="feed" d="M${sx},${rawBottom}V${ry}H${tx}V${g.lanes[0].y0 + g.lanes[0].h}"/>`);
+  }
+  out.push(`<text class="t-sub" style="text-anchor:start" x="${X.raw.c + 12 + g.caseTypes * 5}" y="${railY + 20 + g.caseTypes * 5}">${esc(plural(g.caseTypes, "case type"))}</text>`);
+
+  const textBlock = (cx, cy, lines) => lines.map((t, i) =>
+    `<text class="${i ? "t-sub" : "t-label"}" x="${cx}" y="${cy + 4 + (i - (lines.length - 1) / 2) * 14}">${esc(t)}</text>`).join("");
+  for (const n of tall) {
+    if (n.kind === "task") out.push(`<rect class="task" x="${n.x - (n.w || G.boxW) / 2}" y="${n.a}" width="${n.w || G.boxW}" height="${n.b - n.a}" rx="9"/>` + textBlock(n.x, (n.a + n.b) / 2, n.lines));
+    else out.push(`<path class="hold" d="M${n.x - 19},${n.a + 4}h19a19,19 0 0 1 19,19V${n.b - 23}a19,19 0 0 1 -19,19h-19z"/><text class="t-sub" x="${n.x}" y="${(n.a + n.b) / 2 + 4}">WIP</text>`);
+  }
+  tall.push({ kind: "task", x: X.po.c, a: poA, b: poB, lines: ["Purchase orders", plural(g.pos, "PO") + " a month", plural(g.vendors, "vendor")] });
+  tall.push({ kind: "task", x: X.receive.c, a: rcA, b: rcB, lines: ["Receive", plural(g.purchased, "thing") + " to buy"] });
+  for (const n of tall.slice(-2)) out.push(`<rect class="task" x="${n.x - hw}" y="${n.a}" width="${G.boxW}" height="${n.b - n.a}" rx="9"/>` + textBlock(n.x, (n.a + n.b) / 2, n.lines));
+  for (const [k, count, c] of [["raw", g.purchased, rawC], ["store", g.finished, finC]]) {
+    const cx = X[k].c, d = [];
+    for (let i = 0; i < count; i++) { const col = i % c.cols, row = Math.floor(i / c.cols); d.push(`M${cx - c.hw + col * (TW + 4)},${c.top + row * c.pitch}h${TW}l${-TW / 2},${TH}z`); }
+    out.push(d.map(p => `<path class="hold" d="${p}"/>`).join(""));
+    out.push(`<text class="t-label" x="${cx}" y="${c.top - 19}">Storage</text><text class="t-sub" x="${cx}" y="${c.top - 7}">${plural(count, "item")}</text>`);
+  }
+  // bracket: everything that has to be kept in inventory, and under it the people estimate
+  const bx1 = X.raw.l + 6, bx2 = X.store.r - 6, bxc = (bx1 + bx2) / 2;
+  const brk = [plural(g.offerings, "offering"), plural(g.finished, "finished good") + " (SKUs)", plural(g.purchased, "component"), plural(g.purchased + g.finished, "item") + " to keep in inventory"];
+  if (g.people !== null) brk.push(plural(g.people, "person").replace("persons", "people") + " to run it (estimate)");
+  out.push(`<path class="brk" d="M${bx1},${by - 4}v12H${bx2}v-12"/>` + brk.map((t, i) => `<text class="t-brk" x="${bxc}" y="${by + 36 + i * 28}">${t}</text>`).join(""));
+  // fit the frame: shrink the row pitch if the content is too tall, otherwise centre it
+  const frameH = Math.round(W / CHART_RATIO);
+  if (!(fit && fit.done)) {
+    if (H > frameH && pitch > 0.5) return renderChart(g, { pitch: pitch * 0.93, top: top0 });
+    return renderChart(g, { pitch, top: top0 + Math.max(0, (frameH - H) / 2), done: true });
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${frameH}" role="img" aria-label="Process chart for the ${esc(g.name)} state: ${plural(g.finished, "finished item")}, one line each">${out.join("")}</svg>`;
+}
+
+function summaryLine(s) {
+  const types = activeMachineTypes(s);
+  const pk = new Set(types.map(m => m.packageType)).size;
+  const ch = Object.values(s.channels).filter(c => c.on).length;
+  return [plural(s.offerings, "offering"), plural(types.length, "machine type"), plural(pk, "package type"), plural(ch, "channel"), plural(derive(s).counters.finishedSkus, "finished item")].join(" · ");
+}
+
+const STAT_ORDER = ["finishedSkus", "inventoryItems", "vendors", "posPerMonth", "componentItems", "ingredientItems", "packagingItems", "caseTypes", "boms", "wipStates", "wipItems",
+  "routings", "changeoversPerCycle", "changeoverDays", "pickFaces", "shipLanes", "carrierTypes"];
+
+function statsStrip(s, i) {
+  const st = derive(s).stats;
+  return `<div class="stats">` + STAT_ORDER.map(k =>
+    `<button class="stat" type="button" id="stat-${i}-${k}" popovertarget="def-${k}"><span class="stat-n">${st[k].toLocaleString("en-US")}</span><span class="stat-l">${esc(DEFINITIONS[k].label)}</span></button>`).join("") + `</div>`;
+}
+
+
+// ---------- Feature 4: parameter panel. Edits one working state; every change redraws stats and chart. ----------
+
+const METHODS = ["Common carrier", "Will call", "Delivery", "Direct store delivery", "Less than truckload"];
+const PKG_TYPES = ["Package type A", "Package type B", "Package type C"];
+const SIZE_NAMES = "ABCDEFGHIJKL";
+const PRESETS = [DAY_ONE, ESTABLISHED];
+let state;
+
+function loadState(s) {
+  state = JSON.parse(JSON.stringify(s));
+  PKG_TYPES.forEach(p => { if (!(p in state.packageTypes)) state.packageTypes[p] = false; if (!(p in state.packaging.components)) state.packaging.components[p] = 3; });
+}
+function normalize() {
+  if (!state.secondaryStep) state.forms.form2 = false;
+  if (!state.forms.form2) state.forms.form2b = false;
+}
+function setPath(path, val) { const ks = path.split("."); let o = state; for (let i = 0; i < ks.length - 1; i++) o = o[ks[i]]; o[ks[ks.length - 1]] = val; }
+function getPath(path) { return path.split(".").reduce((o, k) => o[k], state); }
+function clampInt(v, min, max) { v = parseInt(v, 10); if (isNaN(v)) v = min; return Math.max(min, Math.min(max, v)); }
+
+function panelHtml() {
+  const slug = t => t.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
+  const range = (label, path, min, max, step, suffix) => { const id = "p-" + slug(path);
+    return `<label class="ctl" for="${id}"><span>${label}</span><input type="range" id="${id}" min="${min}" max="${max}" step="${step || 1}" value="${getPath(path)}" data-path="${path}" data-suffix="${suffix || ""}"><output id="${id}-out">${getPath(path)}${suffix || ""}</output></label>`; };
+  const check = (label, path, disabled) => { const id = "p-" + slug(path);
+    return `<label class="chk" for="${id}"><input type="checkbox" id="${id}" data-path="${path}"${getPath(path) ? " checked" : ""}${disabled ? " disabled" : ""}>${label}</label>`; };
+  const select = (id, path, opts, aria) => `<select id="${id}" data-path="${path}" aria-label="${aria}">` +
+    opts.map(([v, t]) => `<option value="${esc(v)}"${getPath(path) === v ? " selected" : ""}>${esc(t)}</option>`).join("") + `</select>`;
+  const num = (id, attrs, value, min, max, aria) => `<input type="number" id="${id}" ${attrs} value="${value}" min="${min}" max="${max}" aria-label="${aria}">`;
+
+  const machines = state.machineTypes.map((m, i) => `<tr>
+      <td><input type="text" id="mt-${m.id}-label" data-path="machineTypes.${i}.label" value="${esc(m.label)}" aria-label="Machine type name"></td>
+      <td>${select(`mt-${m.id}-accepts`, `machineTypes.${i}.accepts`, Object.entries(FORM_LABEL), "Variant it accepts")}</td>
+      <td>${select(`mt-${m.id}-pkg`, `machineTypes.${i}.packageType`, PKG_TYPES.map(p => [p, p]), "Package type")}</td>
+      <td>${num(`mt-${m.id}-sizes`, `data-act="sizes" data-i="${i}"`, m.sizes.length, 1, 12, "Sizes")}</td>
+      <td>${num(`mt-${m.id}-machines`, `data-path="machineTypes.${i}.machines" data-min="1" data-max="6"`, m.machines, 1, 6, "Machines")}</td>
+      <td>${num(`mt-${m.id}-max`, `data-path="machineTypes.${i}.maxChangeoversPerDay" data-min="1" data-max="12"`, m.maxChangeoversPerDay, 1, 12, "Max changeovers per machine per day")}</td>
+      <td><button type="button" class="btn" id="mt-${m.id}-rm" data-act="rm" data-i="${i}">Remove</button></td></tr>`).join("");
+
+  const channels = Object.keys(state.channels).map(k => { const c = state.channels[k];
+    return `<tr><td>${check(CHANNEL_LABEL[k], `channels.${k}.on`)}</td>
+      <td>${select(`ch-${k}-unit`, `channels.${k}.unit`, [["each", "each"], ["case", "case"], ["pallet", "pallet"]], "Unit")}</td>
+      <td class="ships">${METHODS.map((m, mi) => `<label class="chk" for="ch-${k}-m${mi}"><input type="checkbox" id="ch-${k}-m${mi}" data-act="ship" data-ch="${k}" data-m="${esc(m)}"${c.ship.includes(m) ? " checked" : ""}>${esc(m)}</label>`).join("")}</td></tr>`; }).join("");
+
+  return `
+    <fieldset><legend>Offerings and processing</legend>
+      ${range("Offerings", "offerings", 1, 24)}
+      ${range("Ingredients per offering", "components.perOffering", 1, 20)}
+      ${range("Percent common to all offerings", "components.commonPct", 0, 100, 5, "%")}
+      <div class="row">${check("Secondary step", "secondaryStep")}${check("Variant 1", "forms.form1")}${check("Variant 2", "forms.form2", !state.secondaryStep)}${check("Variant 3", "forms.form2b", !state.forms.form2)}</div>
+    </fieldset>
+    <fieldset><legend>Packaging</legend>
+      <div class="row">${PKG_TYPES.map(p => check(p, "packageTypes." + p)).join("")}</div>
+      ${PKG_TYPES.map(p => range("Components in " + p, "packaging.components." + p, 1, 8)).join("")}
+      ${range("Case types", "packaging.caseTypes", 1, 12)}
+    </fieldset>
+    <fieldset><legend>Purchasing</legend>
+      ${range("Things bought per vendor", "purchasing.itemsPerVendor", 1, 20)}
+      ${range("POs per vendor a year", "purchasing.posPerVendorYear", 1, 52)}
+    </fieldset>
+    <fieldset class="wide"><legend>Machine types</legend>
+      <div class="tscroll"><table><thead><tr><th>Name</th><th>Accepts</th><th>Package type</th><th>Sizes</th><th>Machines</th><th>Max changeovers a day</th><th></th></tr></thead><tbody>${machines}</tbody></table></div>
+      <button type="button" class="btn" id="mt-add" data-act="add">Add machine type</button>
+    </fieldset>
+    <fieldset class="wide"><legend>Channels</legend>
+      <div class="tscroll"><table><thead><tr><th>Channel</th><th>Picks and packs by</th><th>Ships by</th></tr></thead><tbody>${channels}</tbody></table></div>
+    </fieldset>`;
+}
+
+function redraw() {
+  const box = document.getElementById("chart"), room = window.innerHeight - (document.querySelector(".page").classList.contains("presenting") ? 150 : 190);
+  if (box.clientWidth && room > 0) CHART_RATIO = Math.max(16 / 9, Math.min(2.6, box.clientWidth / room));
+  const live = activeMachineTypes(state), chOn = Object.values(state.channels).some(c => c.on);
+  document.getElementById("state-name").textContent = typeof whatIf !== "undefined" && whatIf ? whatIf.base.name : state.name;   // a trial keeps the base name so the line beside it does not shift
+  document.getElementById("state-summary").textContent = summaryLine(state);
+  document.getElementById("cost").innerHTML = costStrip(state) + staffStrip(state);
+  document.getElementById("stats").innerHTML = statsStrip(state, 0);
+  document.getElementById("chart").innerHTML = !live.length
+    ? `<p class="empty">Nothing can be made. Turn on a variant and a package type that at least one machine type uses.</p>`
+    : !chOn ? `<p class="empty">Nothing can be sold. Turn on at least one channel.</p>`
+    : renderChart(buildGraph(state));
+  document.querySelectorAll("[data-preset]").forEach(b => b.setAttribute("aria-pressed", String(PRESETS[b.dataset.preset].name === state.name)));
+}
+function renderPanel() {
+  const active = document.activeElement && document.activeElement.id;
+  document.getElementById("panel-body").innerHTML = panelHtml();
+  if (active) { const el = document.getElementById(active); if (el) el.focus(); }
+}
+
+if (typeof window !== "undefined") { let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (state) redraw(); }, 150); }); }
+
+// ---------- Logistics cost index. Relative, not dollars: drivers the chart already shows, each times a weight, scaled so the first keyframe is 1. ----------
+
+const W_KEY = "pcm-cost-weights-v1";
+const COST_DRIVERS = [
+  { key: "component", group: "Inbound", label: "Each thing to buy and receive", stat: "componentItems", w: 1 },
+  { key: "vendor", group: "Inbound", label: "Each vendor", stat: "vendors", w: 3 },
+  { key: "po", group: "Inbound", label: "Each PO a month", stat: "posPerMonth", w: 1 },
+  { key: "stored", group: "Warehouse", label: "Each item kept in storage", stat: "inventoryItems", w: 1 },
+  { key: "pickFace", group: "Warehouse", label: "Each pick face", stat: "pickFaces", w: 1 },
+  { key: "packUnit", group: "Warehouse", label: "Each packing unit (each, case, pallet)", stat: "packUnits", w: 10 },
+  { key: "shipLane", group: "Outbound", label: "Each way out the door", stat: "shipLanes", w: 15 },
+  { key: "carrier", group: "Outbound", label: "Each carrier type", stat: "carrierTypes", w: 30 }
+];
+const COST_GROUPS = ["Inbound", "Warehouse", "Outbound"];
+let weights = {};
+COST_DRIVERS.forEach(d => { weights[d.key] = d.w; });
+try { const v = JSON.parse(localStorage.getItem(W_KEY)); if (v) COST_DRIVERS.forEach(d => { if (typeof v[d.key] === "number" && v[d.key] >= 0) weights[d.key] = v[d.key]; }); } catch (e) { /* storage is optional */ }
+
+function logisticsCost(s) {
+  const d = derive(s), val = Object.assign({ packUnits: d.detail.pickUnits.length }, d.stats), groups = {};
+  COST_GROUPS.forEach(g => { groups[g] = 0; });
+  COST_DRIVERS.forEach(c => { groups[c.group] += weights[c.key] * val[c.stat]; });
+  return { groups, total: COST_GROUPS.reduce((n, g) => n + groups[g], 0) };
+}
+function costStrip(s) {
+  const base = logisticsCost(typeof frames !== "undefined" && frames.length ? frames[0] : s).total || 1, c = logisticsCost(s);
+  const idx = v => (v / base).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  return `<div class="cost"><button class="stat cost-total" type="button" id="cost-total" popovertarget="def-costIndex"><span class="stat-n">${idx(c.total)}</span><span class="stat-l">Logistics cost index (first keyframe = 1)</span></button>` +
+    COST_GROUPS.map(g => `<div class="cost-part"><span class="stat-n">${idx(c.groups[g])}</span><span class="stat-l">${g}</span><span class="cost-bar"><span style="width:${c.total ? (c.groups[g] / c.total * 100).toFixed(1) : 0}%"></span></span></div>`).join("") + `</div>`;
+}
+
+if (typeof document !== "undefined") {
+  const box = document.getElementById("weights-body");
+  box.innerHTML = COST_GROUPS.map(g => `<fieldset><legend>${g}</legend>` + COST_DRIVERS.filter(d => d.group === g).map(d =>
+    `<label class="ctl" for="w-${d.key}"><span>${d.label}</span><input type="number" id="w-${d.key}" data-w="${d.key}" min="0" max="1000" step="1" value="${weights[d.key]}"><span></span></label>`).join("") + `</fieldset>`).join("");
+  box.addEventListener("change", e => { const k = e.target.dataset.w; if (!k) return;
+    const v = Math.max(0, Math.min(1000, parseFloat(e.target.value) || 0)); weights[k] = v; e.target.value = v;
+    try { localStorage.setItem(W_KEY, JSON.stringify(weights)); } catch (err) { /* optional */ }
+    redraw(); });
+}
+
+// ---------- Staffing estimate, in people: each function is a fixed part plus a rate times its driver, never below zero. ----------
+
+const S_KEY = "pcm-staff-rates-v2";
+const OWN_FLEET = ["Delivery", "Direct store delivery"];
+const STAFF_FUNCS = [
+  { key: "operators", group: "Production", label: "Machine operators", per: "packaging machine", driver: "machines", rate: 1.4, floor: -0.4 },
+  { key: "associates", group: "Production", label: "Line associates", per: "packaging machine", driver: "machines", rate: 1.8, floor: -0.8 },
+  { key: "processing", group: "Production", label: "Processing", per: "offering", driver: "offerings", rate: 0.233, floor: 0.267 },
+  { key: "whLanes", group: "Warehouse and delivery", label: "Warehouse, by way out the door", per: "way out the door", driver: "shipLanes", rate: 0.5, floor: 0 },
+  { key: "whFaces", group: "Warehouse and delivery", label: "Warehouse, by pick face", per: "100 pick faces", driver: "pickFaces100", rate: 0.326, floor: 0 },
+  { key: "delivery", group: "Warehouse and delivery", label: "Delivery", per: "carrier type run on own trucks", driver: "ownFleet", rate: 0.5, floor: 0 },
+  { key: "leads", group: "Support", label: "Leads and supervisors", per: "person in production, warehouse and delivery", driver: "supervised", rate: 0.135, floor: 0.095 },
+  { key: "quality", group: "Support", label: "Quality", per: "100 finished SKUs", driver: "skus100", rate: 0.735, floor: 0.118 },
+  { key: "purchasing", group: "Support", label: "Purchasing", per: "100 components", driver: "components100", rate: 0.252, floor: 0.11 },
+  { key: "maintenance", group: "Support", label: "Maintenance", per: "packaging machine", driver: "machines", rate: 0.175, floor: -0.05 },
+  { key: "planning", group: "Support", label: "Planning and coordination", per: "100 changeovers per cycle", driver: "changeovers100", rate: 0.296, floor: 0.125 }
+];
+const STAFF_GROUPS = ["Production", "Warehouse and delivery", "Support"];
+let staffRates = {};
+STAFF_FUNCS.forEach(f => { staffRates[f.key] = { rate: f.rate, floor: f.floor }; });
+try { const v = JSON.parse(localStorage.getItem(S_KEY)); if (v) STAFF_FUNCS.forEach(f => { const x = v[f.key]; if (x && isFinite(x.rate) && isFinite(x.floor)) staffRates[f.key] = { rate: +x.rate, floor: +x.floor }; }); } catch (e) { /* storage is optional */ }
+
+function staffing(s) {
+  const d = derive(s), st = d.stats, on = Object.values(s.channels).filter(c => c.on);
+  const drv = { machines: activeMachineTypes(s).reduce((n, m) => n + m.machines, 0), offerings: s.offerings, shipLanes: st.shipLanes, pickFaces100: st.pickFaces / 100,
+    ownFleet: OWN_FLEET.filter(m => on.some(c => c.ship.includes(m))).length, skus100: st.finishedSkus / 100, components100: st.componentItems / 100, changeovers100: st.changeoversPerCycle / 100, supervised: 0 };
+  const groups = {}, by = {};
+  STAFF_GROUPS.forEach(g => { groups[g] = 0; });
+  for (const f of STAFF_FUNCS) { if (f.driver === "supervised") drv.supervised = groups["Production"] + groups["Warehouse and delivery"];
+    by[f.key] = Math.max(0, staffRates[f.key].floor + staffRates[f.key].rate * drv[f.driver]); groups[f.group] += by[f.key]; }
+  return { groups, by, total: STAFF_GROUPS.reduce((n, g) => n + groups[g], 0) };
+}
+function staffStrip(s) {
+  const c = staffing(s), one = v => v.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  return `<div class="cost"><button class="stat cost-total" type="button" id="staff-total" popovertarget="def-staffIndex"><span class="stat-n">${Math.round(c.total)}</span><span class="stat-l">People to run it (estimate)</span></button>` +
+    STAFF_GROUPS.map(g => `<div class="cost-part"><span class="stat-n">${one(c.groups[g])}</span><span class="stat-l">${g}</span><span class="cost-bar"><span style="width:${c.total ? (c.groups[g] / c.total * 100).toFixed(1) : 0}%"></span></span></div>`).join("") + `</div>`;
+}
+
+if (typeof document !== "undefined") {
+  const box = document.getElementById("staff-body");
+  box.innerHTML = STAFF_GROUPS.map(g => `<fieldset><legend>${g}</legend><div class="tscroll"><table><thead><tr><th>Function</th><th>Rate</th><th>per</th><th>Fixed part</th></tr></thead><tbody>` +
+    STAFF_FUNCS.filter(f => f.group === g).map(f => `<tr><td>${f.label}</td>
+      <td><input type="number" id="sr-${f.key}" data-s="${f.key}" data-f="rate" min="0" max="50" step="0.001" value="${staffRates[f.key].rate}" aria-label="${f.label} rate"></td><td>${f.per}</td>
+      <td><input type="number" id="sf-${f.key}" data-s="${f.key}" data-f="floor" min="-50" max="50" step="0.001" value="${staffRates[f.key].floor}" aria-label="${f.label} fixed part"></td></tr>`).join("") +
+    `</tbody></table></div></fieldset>`).join("");
+  box.addEventListener("change", e => { const k = e.target.dataset.s; if (!k) return;
+    const v = Math.max(e.target.dataset.f === "floor" ? -50 : 0, Math.min(50, parseFloat(e.target.value) || 0)); staffRates[k][e.target.dataset.f] = v; e.target.value = v;
+    try { localStorage.setItem(S_KEY, JSON.stringify(staffRates)); } catch (err) { /* optional */ }
+    redraw(); });
+}
+
+// ---------- Feature 6: keyframes and the master slider. A keyframe is a whole state; between two, the slider interpolates. ----------
+
+const KF_KEY = "pcm-keyframes-v2", KF_MAX = 6;
+const clone = o => JSON.parse(JSON.stringify(o));
+function filled(s) { const c = clone(s);
+  if (!c.purchasing) c.purchasing = { itemsPerVendor: 12, posPerVendorYear: 6 };
+  if (!c.purchasing.posPerVendorYear) c.purchasing = { itemsPerVendor: c.purchasing.itemsPerVendor === 8 ? 12 : c.purchasing.itemsPerVendor, posPerVendorYear: 6 };
+  if (c.purchasing.posPerVendorYear === 5 && (c.purchasing.itemsPerVendor === 14 || c.purchasing.itemsPerVendor === 2)) c.purchasing = { itemsPerVendor: c.purchasing.itemsPerVendor === 14 ? 12 : 2, posPerVendorYear: 6 };   // earlier defaults
+  PKG_TYPES.forEach(p => { if (!(p in c.packageTypes)) c.packageTypes[p] = false; if (!(p in c.packaging.components)) c.packaging.components[p] = 3; });
+  return c; }
+
+const GROW = (() => { const s = clone(ESTABLISHED); s.name = "Early"; s.offerings = 8; s.components.commonPct = 0; s.forms.form2b = false;
+  s.packageTypes = { "Package type A": true, "Package type B": false, "Package type C": false };
+  s.machineTypes = [
+    { id: "mt1", label: "Machine type 1", accepts: "form1", packageType: "Package type A", sizes: ["Size A", "Size B"], machines: 1, maxChangeoversPerDay: 4 },
+    { id: "mt2", label: "Machine type 2", accepts: "form2", packageType: "Package type A", sizes: ["Size A", "Size B", "Size C", "Size D"], machines: 1, maxChangeoversPerDay: 4 }];
+  s.packaging.caseTypes = 3; s.channels.grocery.on = false; s.channels.distributor.on = false; s.channels.wholesale.ship = ["Common carrier", "Will call"];
+  return s; })();
+// Stage 3: fewer offerings and one fewer package type, machine type and channel than the fully grown state below it.
+const MATURE = (() => { const s = clone(ESTABLISHED); s.name = "Mature"; s.offerings = 12; s.packageTypes["Package type C"] = false;
+  s.machineTypes = s.machineTypes.filter(m => m.id !== "mt4");
+  s.machineTypes[0].machines = 1; s.machineTypes[1].sizes = s.machineTypes[1].sizes.slice(0, 6); s.machineTypes[2].sizes = s.machineTypes[2].sizes.slice(0, 2);
+  s.packaging.caseTypes = 4; s.channels.retail.on = false;
+  return s; })();
+// Stage 4: past the old "Current": more offerings, more sizes on every machine type, more machines, more ways out the door.
+const SPRAWL = (() => { const s = clone(ESTABLISHED); s.name = "Sprawling"; s.offerings = 20;
+  const sz = n => "ABCDEFGHIJKL".slice(0, n).split("").map(c => "Size " + c);
+  s.machineTypes[0].sizes = sz(3); s.machineTypes[0].machines = 2;
+  s.machineTypes[1].sizes = sz(11); s.machineTypes[1].machines = 3;
+  s.machineTypes[2].sizes = ["Pack A", "Pack B", "Pack C", "Bulk A", "Bulk B"]; s.machineTypes[2].machines = 2;
+  s.machineTypes[3].sizes = ["Pack A", "Pack B"]; s.machineTypes[3].machines = 1;
+  s.packaging.caseTypes = 8; s.purchasing.itemsPerVendor = 14;
+  s.channels.wholesale.ship = ["Common carrier", "Will call", "Delivery", "Less than truckload"];
+  s.channels.dtc.ship = ["Common carrier", "Will call"]; s.channels.grocery.ship = ["Direct store delivery", "Common carrier"];
+  s.channels.retail.ship = ["Delivery", "Common carrier"]; s.channels.distributor.ship = ["Less than truckload", "Common carrier"];
+  return s; })();
+
+function defaultFrames() { return [DAY_ONE, GROW, MATURE, SPRAWL].map(filled); }
+
+// State part-way (0 < f < 1) from keyframe a to keyframe b. Counts interpolate; machine types, channels and toggles switch at thresholds.
+function interp(a, b, f) {
+  if (f <= 0) return a; if (f >= 1) return b;
+  const s = clone(a), L = (x, y) => Math.round(x + (y - x) * f);
+  s.name = a.name + " to " + b.name;
+  s.offerings = L(a.offerings, b.offerings);
+  s.components.perOffering = L(a.components.perOffering, b.components.perOffering);
+  s.components.commonPct = L(a.components.commonPct || 0, b.components.commonPct || 0);
+  s.packaging.caseTypes = L(a.packaging.caseTypes, b.packaging.caseTypes);
+  s.purchasing = { itemsPerVendor: L(a.purchasing.itemsPerVendor, b.purchasing.itemsPerVendor), posPerVendorYear: L(a.purchasing.posPerVendorYear, b.purchasing.posPerVendorYear) };
+  for (const p of PKG_TYPES) s.packaging.components[p] = L(a.packaging.components[p], b.packaging.components[p]);
+
+  const aM = new Map(a.machineTypes.map(m => [m.id, m])), bM = new Map(b.machineTypes.map(m => [m.id, m]));
+  const added = b.machineTypes.filter(m => !aM.has(m.id)), gone = a.machineTypes.filter(m => !bM.has(m.id));
+  const tOn = new Map(added.map((m, k) => [m.id, (k + 1) / (added.length + 1)]));
+  const tOff = new Map(gone.map((m, k) => [m.id, (gone.length - k) / (gone.length + 1)]));
+  const ramp = (n0, n1, t0, t1) => Math.max(1, Math.round(n0 + (n1 - n0) * Math.min(1, Math.max(0, (f - t0) / (t1 - t0)))));
+  s.machineTypes = [];
+  for (const m of a.machineTypes) { const n = bM.get(m.id);
+    if (n) { const c = clone(f < 0.5 ? m : n);
+      c.sizes = (m.sizes.length >= n.sizes.length ? m : n).sizes.slice(0, L(m.sizes.length, n.sizes.length));
+      c.machines = L(m.machines, n.machines); c.maxChangeoversPerDay = L(m.maxChangeoversPerDay, n.maxChangeoversPerDay); s.machineTypes.push(c); }
+    else if (f < tOff.get(m.id)) { const c = clone(m); c.sizes = m.sizes.slice(0, ramp(m.sizes.length, 1, 0, tOff.get(m.id))); s.machineTypes.push(c); } }
+  for (const n of added) if (f >= tOn.get(n.id)) { const c = clone(n), t = tOn.get(n.id);
+    c.sizes = n.sizes.slice(0, ramp(1, n.sizes.length, t, 1)); c.machines = ramp(1, n.machines, t, 1); s.machineTypes.push(c); }
+
+  // a toggle switches when the first machine type that needs it arrives, or the last one leaves
+  const sw = (av, bv, onAt, offAt) => av === bv ? av : bv ? f >= onAt : f < offAt;
+  const when = (list, key, val, map, pick) => { const ts = list.filter(m => m[key] === val).map(m => map.get(m.id)); return ts.length ? pick.apply(null, ts) : 0.5; };
+  for (const k of ["form1", "form2", "form2b"]) s.forms[k] = sw(a.forms[k], b.forms[k], when(added, "accepts", k, tOn, Math.min), when(gone, "accepts", k, tOff, Math.max));
+  for (const p of PKG_TYPES) s.packageTypes[p] = sw(a.packageTypes[p], b.packageTypes[p], when(added, "packageType", p, tOn, Math.min), when(gone, "packageType", p, tOff, Math.max));
+  if (s.forms.form2b) s.forms.form2 = true;
+  s.secondaryStep = a.secondaryStep === b.secondaryStep ? a.secondaryStep : (s.forms.form2 || s.forms.form2b);
+  if (!s.secondaryStep) { s.forms.form2 = false; s.forms.form2b = false; }
+
+  const keys = Object.keys(b.channels), on = keys.filter(k => !a.channels[k].on && b.channels[k].on), off = keys.filter(k => a.channels[k].on && !b.channels[k].on);
+  for (const k of keys) { const x = a.channels[k], y = b.channels[k]; let live, src;
+    if (x.on && y.on) { live = true; src = f < 0.5 ? x : y; }
+    else if (y.on) { live = f >= (on.indexOf(k) + 1) / (on.length + 1); src = y; }
+    else if (x.on) { live = f < (off.length - off.indexOf(k)) / (off.length + 1); src = x; }
+    else { live = false; src = x; }
+    s.channels[k] = { on: live, unit: src.unit, ship: src.ship.slice() }; }
+  return s;
+}
+
+let frames = [], pos = 0, whatIf = null;   // whatIf: a trial state built with the add-one buttons, not saved until kept as a keyframe
+const onFrame = () => !whatIf && Math.abs(pos - Math.round(pos)) < 1e-6;
+function currentState() { if (whatIf) return whatIf.state; if (onFrame()) return frames[Math.round(pos)]; const i = Math.floor(pos); return interp(frames[i], frames[i + 1], pos - i); }
+function saveFrames() { try { localStorage.setItem(KF_KEY, JSON.stringify(frames)); } catch (e) { /* storage is optional */ } }
+function loadFrames() {
+  try { const v = JSON.parse(localStorage.getItem(KF_KEY));
+    if (Array.isArray(v) && v.length && v.length <= KF_MAX) { const f = v.map(filled); f.forEach(s => { if ((s.name === "Current" || s.name === "Peak" || s.name === "Plan" || s.name === "Rationalize") && !s.components.commonPct) s.components.commonPct = 25; if (s.name === "Rationalize") s.name = "Plan"; if (s.name === "Peak") s.name = "Current"; }); if (f.every(s => !validate(s).length)) return f; }
+  } catch (e) { /* fall through to defaults */ }
+  return defaultFrames();
+}
+function edited() { saveFrames(); }
+
+function renderKeyframes() {
+  const sl = document.getElementById("kf-slider"), at = onFrame(), i = Math.round(pos);
+  sl.max = Math.max(1, frames.length - 1); sl.disabled = frames.length < 2; sl.value = pos;
+  document.getElementById("kf-ticks").innerHTML = frames.map((f, k) =>
+    `<button type="button" class="btn" id="kf-go-${k}" data-go="${k}" aria-pressed="${at && k === i}">${esc(f.name)}</button>`).join("");
+  const full = frames.length >= KF_MAX;
+  document.getElementById("kf-tools").innerHTML = (at
+    ? `<label class="chk" for="kf-name">Name <input type="text" id="kf-name" value="${esc(frames[i].name)}"></label>
+       <button type="button" class="btn" id="kf-left" data-kf="left"${i === 0 ? " disabled" : ""}>Move earlier</button>
+       <button type="button" class="btn" id="kf-right" data-kf="right"${i === frames.length - 1 ? " disabled" : ""}>Move later</button>
+       <button type="button" class="btn" id="kf-del" data-kf="del"${frames.length < 2 ? " disabled" : ""}>Delete</button>`
+    : `<span class="hint">${whatIf ? "Trying a change." : "Between keyframes."} The parameters are read only here.</span>`) +
+    `<button type="button" class="btn" id="kf-keep" data-kf="add"${full ? " disabled" : ""}>${at ? "Add a copy after this" : "Keep this as a keyframe"}</button>
+     <button type="button" class="btn" id="kf-reset" data-kf="reset">Reset to the four defaults</button>
+     <span class="hint">${frames.length} of ${KF_MAX} keyframes</span>`;
+}
+// ---------- Feature 7: add or take away one. Each button changes a single thing in the state on screen and reports what else came with it. ----------
+const livePkgs = s => PKG_TYPES.filter(p => s.packageTypes[p] && activeMachineTypes(s).some(m => m.packageType === p));
+const ADD_KINDS = [
+  { key: "offering", label: "Offering", count: s => s.offerings,
+    can: (s, d) => d > 0 ? s.offerings < 40 : s.offerings > 1,
+    run: (s, d) => { s.offerings += d; return "1 offering"; } },
+  { key: "size", label: "Size", count: s => activeMachineTypes(s).reduce((n, m) => n + m.sizes.length, 0),
+    can: (s, d) => activeMachineTypes(s).some(m => d > 0 ? m.sizes.length < 12 : m.sizes.length > 1),
+    run: (s, d) => { const m = activeMachineTypes(s).find(x => d > 0 ? x.sizes.length < 12 : x.sizes.length > 1);
+      if (d < 0) m.sizes.pop(); else for (const ch of SIZE_NAMES) if (!m.sizes.includes("Size " + ch)) { m.sizes.push("Size " + ch); break; }
+      return "1 size on " + m.label; } },
+  { key: "package", label: "Package type", count: s => livePkgs(s).length,
+    can: (s, d) => d > 0 ? PKG_TYPES.length < 10 || PKG_TYPES.some(p => !s.packageTypes[p]) : livePkgs(s).length > 1,
+    run: (s, d) => {
+      if (d < 0) { const p = livePkgs(s).pop(); s.packageTypes[p] = false; return "1 package type"; }
+      let p = PKG_TYPES.find(x => !s.packageTypes[x]);
+      if (!p) { p = "Package type " + "ABCDEFGHIJ"[PKG_TYPES.length]; PKG_TYPES.push(p);
+        frames.forEach(f => { f.packageTypes[p] = false; f.packaging.components[p] = 3; }); if (whatIf) { whatIf.base.packageTypes[p] = false; whatIf.base.packaging.components[p] = 3; } s.packaging.components[p] = 3; }
+      s.packageTypes[p] = true;
+      if (!s.machineTypes.some(m => m.packageType === p && s.forms[m.accepts])) {
+        const variant = ["form1", "form2", "form2b"].find(v => s.forms[v]) || "form1"; s.forms[variant] = true;
+        const n = s.machineTypes.reduce((x, m) => Math.max(x, parseInt(m.id.slice(2), 10) || 0), 0) + 1;
+        s.machineTypes.push({ id: "mt" + n, label: "Machine type " + n, accepts: variant, packageType: p, sizes: ["Size A"], machines: 1, maxChangeoversPerDay: 4 }); }
+      return "1 package type"; } },
+  { key: "channel", label: "Channel", count: s => Object.values(s.channels).filter(c => c.on).length,
+    can: (s, d) => { const n = Object.values(s.channels).filter(c => c.on).length; return d > 0 ? n < Object.keys(s.channels).length : n > 1; },
+    run: (s, d) => { const keys = Object.keys(s.channels), key = d > 0 ? keys.find(c => !s.channels[c].on) : keys.filter(c => s.channels[c].on).pop();
+      s.channels[key].on = d > 0; return "1 channel (" + CHANNEL_LABEL[key] + ")"; } }
+];
+// One entry per kind with its running total: "+2 offerings", never "+ 1 offering + 1 offering".
+function trialLabel() {
+  return ADD_KINDS.filter(a => whatIf.net[a.key]).map(a => { const n = whatIf.net[a.key];
+    return (n > 0 ? "+" : "\u2212") + Math.abs(n) + " " + a.label.toLowerCase() + (Math.abs(n) === 1 ? "" : "s"); }).join(" \u00b7 ");
+}
+function addOne(kind, dir) {
+  const def = ADD_KINDS.find(a => a.key === kind), cur = currentState(); if (!def || !def.can(cur, dir)) return;
+  if (!whatIf) whatIf = { base: clone(cur), state: clone(cur), net: {} };
+  def.run(whatIf.state, dir);
+  whatIf.net[kind] = (whatIf.net[kind] || 0) + dir;
+  if (ADD_KINDS.every(a => !whatIf.net[a.key])) { whatIf = null; return; }   // back where it started
+  whatIf.state.name = whatIf.base.name + " " + trialLabel();
+}
+function renderAddOne() {
+  const cur = currentState();
+  let h = ADD_KINDS.map(a => `<span class="pm"><button type="button" class="btn" id="sub-${a.key}" data-add="${a.key}" data-dir="-1" aria-label="Take away one ${a.label.toLowerCase()}"${a.can(cur, -1) ? "" : " disabled"}>\u2212</button><span class="pm-l" id="n-${a.key}"><b>${a.count(cur)}</b> ${a.count(cur) === 1 ? a.label.toLowerCase() : a.label.toLowerCase() + "s"}</span><button type="button" class="btn" id="add-${a.key}" data-add="${a.key}" data-dir="1" aria-label="Add one ${a.label.toLowerCase()}"${a.can(cur, 1) ? "" : " disabled"}>+</button></span>`).join("");
+  if (whatIf) h += `<button type="button" class="btn" id="add-undo" data-add="undo">Undo</button>`;
+  document.getElementById("kf-add").innerHTML = h;
+}
+function refresh(panelToo) {
+  state = currentState();
+  renderKeyframes(); renderAddOne();
+  if (panelToo !== false) renderPanel();
+  document.getElementById("panel-body").inert = !onFrame();
+  redraw();
+}
+
+if (typeof document !== "undefined") {
+  const body = document.getElementById("panel-body"), sl = document.getElementById("kf-slider");
+  document.getElementById("defs").innerHTML = STAT_ORDER.map(k => `<div class="def" popover id="def-${k}"><h3>${esc(DEFINITIONS[k].label)}</h3><p>${esc(DEFINITIONS[k].text)}</p></div>`).join("");
+  frames = loadFrames();
+
+  document.getElementById("kf-add").addEventListener("click", e => { const b = e.target.closest("[data-add]"); if (!b) return;
+    const id = b.id; if (b.dataset.add === "undo") whatIf = null; else addOne(b.dataset.add, +b.dataset.dir); refresh(); const again = document.getElementById(id); if (again) again.focus(); });
+  sl.addEventListener("input", () => { whatIf = null; let v = +sl.value; if (Math.abs(v - Math.round(v)) < 0.04) v = Math.round(v); pos = v; refresh(); });
+  document.getElementById("kf-ticks").addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (!b) return; whatIf = null; pos = +b.dataset.go; refresh(); document.getElementById("kf-go-" + pos).focus(); });
+  document.getElementById("kf-tools").addEventListener("change", e => { if (e.target.id !== "kf-name" || !onFrame()) return;
+    frames[Math.round(pos)].name = e.target.value.trim() || "Keyframe " + (Math.round(pos) + 1); saveFrames(); refresh(); });
+  document.getElementById("kf-tools").addEventListener("click", e => { const b = e.target.closest("[data-kf]"); if (!b) return; const act = b.dataset.kf, i = Math.round(pos);
+    if (act === "reset") { frames = defaultFrames(); pos = 0; }
+    else if (act === "add" && frames.length < KF_MAX) { const c = clone(currentState()), at = onFrame() ? i : Math.floor(pos);
+      c.name = "Keyframe " + (frames.length + 1); frames.splice(at + 1, 0, c); pos = at + 1; }
+    else if (act === "del" && onFrame() && frames.length > 1) { frames.splice(i, 1); pos = Math.min(i, frames.length - 1); }
+    else if (act === "left" && onFrame() && i > 0) { frames.splice(i - 1, 0, frames.splice(i, 1)[0]); pos = i - 1; }
+    else if (act === "right" && onFrame() && i < frames.length - 1) { frames.splice(i + 1, 0, frames.splice(i, 1)[0]); pos = i + 1; }
+    else return;
+    whatIf = null; saveFrames(); refresh(); });
+
+  body.addEventListener("input", e => { const t = e.target; if (t.type !== "range" || !onFrame()) return;
+    setPath(t.dataset.path, +t.value); document.getElementById(t.id + "-out").textContent = t.value + t.dataset.suffix; edited(); redraw(); });
+  body.addEventListener("change", e => { const t = e.target; if (t.type === "range" || !onFrame()) return;
+    if (t.dataset.act === "sizes") { const m = state.machineTypes[t.dataset.i], n = clampInt(t.value, 1, 12), sizes = m.sizes.slice(0, n);
+      for (const ch of SIZE_NAMES) { if (sizes.length >= n) break; if (!sizes.includes("Size " + ch)) sizes.push("Size " + ch); }
+      m.sizes = sizes;
+    } else if (t.dataset.act === "ship") { const c = state.channels[t.dataset.ch], m = t.dataset.m;
+      if (t.checked) { if (!c.ship.includes(m)) c.ship = METHODS.filter(x => x === m || c.ship.includes(x)); }
+      else if (c.ship.length > 1) c.ship = c.ship.filter(x => x !== m);
+    } else if (t.dataset.path) {
+      setPath(t.dataset.path, t.type === "checkbox" ? t.checked : t.type === "number" ? clampInt(t.value, +t.dataset.min, +t.dataset.max) : t.value);
+    } else return;
+    normalize(); edited(); renderPanel(); redraw(); });
+  body.addEventListener("click", e => { const b = e.target.closest("button[data-act]"); if (!b || !onFrame()) return;
+    if (b.dataset.act === "rm") state.machineTypes.splice(+b.dataset.i, 1);
+    else { const n = state.machineTypes.reduce((x, m) => Math.max(x, parseInt(m.id.slice(2), 10) || 0), 0) + 1;
+      state.machineTypes.push({ id: "mt" + n, label: "Machine type " + n, accepts: "form1", packageType: "Package type A", sizes: ["Size A"], machines: 1, maxChangeoversPerDay: 4 }); }
+    edited(); renderPanel(); redraw(); });
+
+  refresh();
+}
+
+// ---------- Feature 9: save and load keyframes as a file, and a chart-only presenting view. ----------
+
+function exportText() { return JSON.stringify({ app: "product-complexity-model", version: 1, toolVersion: "1.2", frames, weights, staffRates }, null, 2); }
+function importText(text) {
+  let d; try { d = JSON.parse(text); } catch (e) { return "That is not valid JSON."; }
+  const list = Array.isArray(d) ? d : d && d.frames;
+  if (!Array.isArray(list) || !list.length) return "No keyframes found in that file.";
+  if (list.length > KF_MAX) return "That file has " + list.length + " keyframes; the limit is " + KF_MAX + ".";
+  let f; try { f = list.map(filled); } catch (e) { return "A keyframe in that file is missing parts this version needs."; }
+  for (const s of f) { let errs; try { errs = validate(s); } catch (e) { errs = ["missing parts this version needs"]; }
+    if (errs.length) return "Keyframe “" + (s.name || "unnamed") + "” can’t be loaded: " + errs[0] + "."; }
+  f.forEach(s => Object.keys(s.packageTypes).forEach(p => { if (!PKG_TYPES.includes(p)) PKG_TYPES.push(p); }));
+  frames = f.map(filled); whatIf = null; pos = 0;
+  if (d.weights) COST_DRIVERS.forEach(c => { if (typeof d.weights[c.key] === "number" && d.weights[c.key] >= 0) weights[c.key] = d.weights[c.key]; });
+  if (d.staffRates) STAFF_FUNCS.forEach(c => { const x = d.staffRates[c.key]; if (x && isFinite(x.rate) && isFinite(x.floor)) staffRates[c.key] = { rate: +x.rate, floor: +x.floor }; });
+  saveFrames();
+  try { localStorage.setItem(W_KEY, JSON.stringify(weights)); localStorage.setItem(S_KEY, JSON.stringify(staffRates)); } catch (e) { /* optional */ }
+  document.querySelectorAll("[data-w]").forEach(el => { el.value = weights[el.dataset.w]; });
+  document.querySelectorAll("[data-s]").forEach(el => { el.value = staffRates[el.dataset.s][el.dataset.f]; });
+  refresh();
+  return "";
+}
+
+if (typeof document !== "undefined") {
+  const say = t => { document.getElementById("io-status").textContent = t; };
+  const box = document.getElementById("io-text");
+  document.getElementById("io-save").addEventListener("click", async () => {
+    const data = exportText(), filename = "complexity-keyframes.json";
+    let dl = null; try { dl = window.claude && window.claude.use ? await Promise.race([window.claude.use("downloads"), new Promise(r => setTimeout(() => r(null), 1500))]) : null; } catch (e) { dl = null; }
+    if (dl) { try { await dl.save({ filename, data }); say("Saved " + frames.length + " keyframes."); }
+      catch (e) { say(e && e.code === "declined" ? "Save cancelled." : "This view can’t save files. Use Copy instead."); } return; }
+    try { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([data], { type: "application/json" })); a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      say("If no file appeared, this view can’t save files. Use Copy instead."); } catch (e) { say("This view can’t save files. Use Copy instead."); }
+  });
+  document.getElementById("io-copy").addEventListener("click", () => { const data = exportText(); box.value = data;
+    navigator.clipboard.writeText(data).then(() => say("Copied " + frames.length + " keyframes."), () => { box.focus(); box.select(); say("Select all and copy from the box below."); }); });
+  document.getElementById("io-file").addEventListener("change", e => { const file = e.target.files[0]; if (!file) return;
+    const r = new FileReader(); r.onload = () => { const err = importText(String(r.result)); say(err || "Loaded " + frames.length + " keyframes from " + file.name + "."); e.target.value = ""; }; r.onerror = () => say("That file could not be read."); r.readAsText(file); });
+  document.getElementById("io-load").addEventListener("click", () => { if (!box.value.trim()) { say("Paste saved keyframes into the box first."); return; }
+    const err = importText(box.value); say(err || "Loaded " + frames.length + " keyframes."); });
+
+  const page = document.querySelector(".page"), btn = document.getElementById("present");
+  const setPresent = on => { page.classList.toggle("presenting", on); btn.textContent = on ? "Exit" : "Present"; btn.setAttribute("aria-pressed", String(on));
+    if (on && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
+    if (!on && document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    redraw(); };
+  btn.addEventListener("click", () => setPresent(!page.classList.contains("presenting")));
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && page.classList.contains("presenting")) setPresent(false); });
+  document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && page.classList.contains("presenting")) setPresent(false); else redraw(); });
+}
+
+</script>
+</body>
+</html>
