@@ -2,7 +2,7 @@
 publish: true
 title: It's Just One More Flavor
 created: 2026-10-04T03:43:31.553Z
-modified: 2026-10-04T04:19:18.482Z
+modified: 2026-10-04T15:35:19.140Z
 tags:
   - operations
   - leadership
@@ -10,9 +10,9 @@ tags:
 
 # It's Just One More Flavor
 
-Every product meeting I have ever sat in has this moment. Somebody leans back and says, "It's just one more flavor."
+Every CPG company thinks this - let's grow sales with more skus...
 
-And it sounds so reasonable. One recipe. One label. How hard could it be?
+And it sounds so reasonable. One recipe. One new label. Another size? How hard could it be?
 
 So I wind up being the wet blanket and try to explain how complex that 1 extra variant or flavor is going to be.  So I came up with an idea of a picture.
 
