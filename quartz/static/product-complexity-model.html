@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- Product Complexity Model v1.1 · built 2026-10-03 -->
+<!-- Product Complexity Model v1.2 · built 2026-10-04 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="version" content="1.1">
+<meta name="version" content="1.2">
 <title>Product Complexity Model</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 </head>
@@ -164,7 +164,7 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
     <div class="guide">
       <p><strong>Left to right is the life of a product:</strong> order, receive, store, make, package, inspect, store, pick, pack, ship.</p>
       <p><strong>Every thin line is one item.</strong> Blue lines are things being made and shipped. Amber lines are packaging. Grey lines on the left are things being bought. A triangle is one item sitting in stock.</p>
-      <p><strong>Drag the slider</strong> to grow the operation from Start to Current, then on to Plan. Nothing about the process changes. Only the number of items does.</p>
+      <p><strong>Drag the slider</strong> to grow the operation from Day one through Early and Mature to Sprawling. Nothing about the process changes. Only the number of items does.</p>
       <p><strong>Use the minus and plus buttons</strong> to add or take away one offering, size, package type or channel. The chart and the numbers under it show what came with it.</p>
       <p><strong>The numbers under the chart</strong> count what the picture shows. Select any number for what it means.</p>
       <p><strong>What it leaves out:</strong> volume. It counts how many different things there are, not how much of each. The cost index is relative, not dollars. The people figure is an estimate.</p>
@@ -196,7 +196,7 @@ label.btn:focus-within { outline: 2px solid var(--task-stroke); outline-offset: 
   <details id="staffing" class="fold"><summary>Staffing rates</summary><div id="staff-body"></div></details>
   <div class="def" popover id="def-staffIndex"><h3>People to run it</h3><p>An estimate, not a staffing plan. Each function (operators, line associates, processing, warehouse, delivery, leads, quality, purchasing, maintenance, planning) is a fixed part plus a rate times what drives it, such as machines, offerings, pick faces or ways out the door. It does not know volume. Set the rates under Staffing rates.</p></div>
   <div class="def" popover id="def-costIndex"><h3>Logistics cost index</h3><p>A relative measure, not dollars. Each logistics driver on the chart (components to receive, items in storage, pick faces, packing units, ways out the door, carrier types) is multiplied by a weight and added up, then scaled so the first keyframe is 1. Set the weights under Logistics cost weights.</p></div>
-  <p class="ver" id="ver">Product Complexity Model v1.1 · built 2026-10-03</p>
+  <p class="ver" id="ver">Product Complexity Model v1.2 · built 2026-10-04</p>
   <div id="defs"></div>
 </div>
 
@@ -236,7 +236,7 @@ const SCHEMA = {
 
 const DAY_ONE = {
   schemaVersion: 1,
-  name: "Start",
+  name: "Day one",
   offerings: 1,
   components: { perOffering: 1, commonPct: 0 },
   packaging: { caseTypes: 1, components: { "Package type A": 4 } },
@@ -580,7 +580,7 @@ function renderChart(g, fit) {
   }
   // bracket: everything that has to be kept in inventory, and under it the people estimate
   const bx1 = X.raw.l + 6, bx2 = X.store.r - 6, bxc = (bx1 + bx2) / 2;
-  const brk = [plural(g.offerings, "offering"), plural(g.finished, "finished good") + (g.finished === 1 ? " (SKU)" : " (SKUs)"), plural(g.purchased, "component"), plural(g.purchased + g.finished, "item") + " to keep in inventory"];
+  const brk = [plural(g.offerings, "offering"), plural(g.finished, "finished good") + " (SKUs)", plural(g.purchased, "component"), plural(g.purchased + g.finished, "item") + " to keep in inventory"];
   if (g.people !== null) brk.push(plural(g.people, "person").replace("persons", "people") + " to run it (estimate)");
   out.push(`<path class="brk" d="M${bx1},${by - 4}v12H${bx2}v-12"/>` + brk.map((t, i) => `<text class="t-brk" x="${bxc}" y="${by + 36 + i * 28}">${t}</text>`).join(""));
   // fit the frame: shrink the row pitch if the content is too tall, otherwise centre it
@@ -794,7 +794,7 @@ if (typeof document !== "undefined") {
 
 // ---------- Feature 6: keyframes and the master slider. A keyframe is a whole state; between two, the slider interpolates. ----------
 
-const KF_KEY = "pcm-keyframes-v1", KF_MAX = 6;
+const KF_KEY = "pcm-keyframes-v2", KF_MAX = 6;
 const clone = o => JSON.parse(JSON.stringify(o));
 function filled(s) { const c = clone(s);
   if (!c.purchasing) c.purchasing = { itemsPerVendor: 12, posPerVendorYear: 6 };
@@ -803,20 +803,33 @@ function filled(s) { const c = clone(s);
   PKG_TYPES.forEach(p => { if (!(p in c.packageTypes)) c.packageTypes[p] = false; if (!(p in c.packaging.components)) c.packaging.components[p] = 3; });
   return c; }
 
-const GROW = (() => { const s = clone(ESTABLISHED); s.name = "Grow"; s.offerings = 8; s.components.commonPct = 0; s.forms.form2b = false;
+const GROW = (() => { const s = clone(ESTABLISHED); s.name = "Early"; s.offerings = 8; s.components.commonPct = 0; s.forms.form2b = false;
   s.packageTypes = { "Package type A": true, "Package type B": false, "Package type C": false };
   s.machineTypes = [
     { id: "mt1", label: "Machine type 1", accepts: "form1", packageType: "Package type A", sizes: ["Size A", "Size B"], machines: 1, maxChangeoversPerDay: 4 },
     { id: "mt2", label: "Machine type 2", accepts: "form2", packageType: "Package type A", sizes: ["Size A", "Size B", "Size C", "Size D"], machines: 1, maxChangeoversPerDay: 4 }];
   s.packaging.caseTypes = 3; s.channels.grocery.on = false; s.channels.distributor.on = false; s.channels.wholesale.ship = ["Common carrier", "Will call"];
   return s; })();
-const RATIONALIZE = (() => { const s = clone(ESTABLISHED); s.name = "Plan"; s.offerings = 10; s.packageTypes["Package type C"] = false;
+// Stage 3: fewer offerings and one fewer package type, machine type and channel than the fully grown state below it.
+const MATURE = (() => { const s = clone(ESTABLISHED); s.name = "Mature"; s.offerings = 12; s.packageTypes["Package type C"] = false;
   s.machineTypes = s.machineTypes.filter(m => m.id !== "mt4");
-  s.machineTypes[1].sizes = s.machineTypes[1].sizes.slice(0, 5); s.machineTypes[2].sizes = s.machineTypes[2].sizes.slice(0, 2);
-  s.packaging.caseTypes = 4; s.channels.retail.on = false; s.channels.wholesale.ship = ["Common carrier", "Delivery"];
+  s.machineTypes[0].machines = 1; s.machineTypes[1].sizes = s.machineTypes[1].sizes.slice(0, 6); s.machineTypes[2].sizes = s.machineTypes[2].sizes.slice(0, 2);
+  s.packaging.caseTypes = 4; s.channels.retail.on = false;
+  return s; })();
+// Stage 4: past the old "Current": more offerings, more sizes on every machine type, more machines, more ways out the door.
+const SPRAWL = (() => { const s = clone(ESTABLISHED); s.name = "Sprawling"; s.offerings = 20;
+  const sz = n => "ABCDEFGHIJKL".slice(0, n).split("").map(c => "Size " + c);
+  s.machineTypes[0].sizes = sz(3); s.machineTypes[0].machines = 2;
+  s.machineTypes[1].sizes = sz(11); s.machineTypes[1].machines = 3;
+  s.machineTypes[2].sizes = ["Pack A", "Pack B", "Pack C", "Bulk A", "Bulk B"]; s.machineTypes[2].machines = 2;
+  s.machineTypes[3].sizes = ["Pack A", "Pack B"]; s.machineTypes[3].machines = 1;
+  s.packaging.caseTypes = 8; s.purchasing.itemsPerVendor = 14;
+  s.channels.wholesale.ship = ["Common carrier", "Will call", "Delivery", "Less than truckload"];
+  s.channels.dtc.ship = ["Common carrier", "Will call"]; s.channels.grocery.ship = ["Direct store delivery", "Common carrier"];
+  s.channels.retail.ship = ["Delivery", "Common carrier"]; s.channels.distributor.ship = ["Less than truckload", "Common carrier"];
   return s; })();
 
-function defaultFrames() { return [DAY_ONE, GROW, ESTABLISHED, RATIONALIZE].map(filled); }
+function defaultFrames() { return [DAY_ONE, GROW, MATURE, SPRAWL].map(filled); }
 
 // State part-way (0 < f < 1) from keyframe a to keyframe b. Counts interpolate; machine types, channels and toggles switch at thresholds.
 function interp(a, b, f) {
@@ -992,7 +1005,7 @@ if (typeof document !== "undefined") {
 
 // ---------- Feature 9: save and load keyframes as a file, and a chart-only presenting view. ----------
 
-function exportText() { return JSON.stringify({ app: "product-complexity-model", version: 1, toolVersion: "1.1", frames, weights, staffRates }, null, 2); }
+function exportText() { return JSON.stringify({ app: "product-complexity-model", version: 1, toolVersion: "1.2", frames, weights, staffRates }, null, 2); }
 function importText(text) {
   let d; try { d = JSON.parse(text); } catch (e) { return "That is not valid JSON."; }
   const list = Array.isArray(d) ? d : d && d.frames;
